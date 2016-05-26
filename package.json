@@ -1,6 +1,12 @@
 {
   "name": "festu",
   "main": "server.js",
+  "author": {
+    "name": "Johan Angséus & Markus Hultman",
+    "email": "festu@festu.se",
+    "url": "http://festu.se"
+  },
+  "license": "MIT",
   "dependencies": {
     "body-parser": "latest",
     "cookie-parser": "latest",
@@ -14,5 +20,19 @@
     "passport-local": "^1.0.0",
     "twitter": "^1.2.5"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "browser-sync": "^2.12.8",
+    "browserify": "^13.0.1",
+    "gulp": "^3.9.1",
+    "gulp-bower": "0.0.13",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-inject": "^4.1.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-minify": "0.0.11",
+    "gulp-nodemon": "^1.0.5",
+    "gulp-notify": "^2.2.0",
+    "gulp-server-livereload": "^1.7.4",
+    "jshint": "^2.9.2"
+  }
 }
