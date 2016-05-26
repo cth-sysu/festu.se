@@ -4,9 +4,8 @@ var cookieParser    = require('cookie-parser');
 var passport        = require('passport');
 var path            = require('path');
 var helmet          = require('helmet');
-
-var http    = require('http');
-var https   = require('https');
+var http    		= require('http');
+var https   		= require('https');
 
 var app = express();
 
@@ -49,6 +48,8 @@ app.use(express.static(__dirname + '/static/strecku/shared', { index: false }));
 app.get('/', function(req, res, next) {
   res.sendFile(__dirname +  '/static/public/index.html');
 });
+
+
 
 // http.createServer(express().use('*', function(req, res){
 //     res.redirect(`https://${req.hostname}${req.originalUrl}`);
