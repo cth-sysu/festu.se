@@ -7,10 +7,11 @@ var helmet          = require('helmet');
 var http    		= require('http');
 var https   		= require('https');
 
+/* Express App */
 var app = express();
 
-// TODO: MongoDB
-// var db = require('./config/db');
+/* Database connection */
+var db = require('./config/db.js');
 
 // Helmet
 app.use(helmet());

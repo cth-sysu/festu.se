@@ -64,3 +64,6 @@ gulp.task('nodemon', function (cb) {
 		} 
 	});
 });
+
+// The default task (called when you run `gulp` from cli)
+gulp.task('default', ['serve']);
