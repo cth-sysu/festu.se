@@ -1,1 +1,13 @@
 /* CSS */
+.menu.center-block {
+  display: table;
+  border-bottom: 1px solid black;
+}
+.menu-item {
+  float: left;
+  font-size: 18px;
+  padding: 16px;
+}
+.menu-item a {
+  color: pink;
+}
