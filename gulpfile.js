@@ -11,6 +11,10 @@ gulp.task('html', function () {
     return gulp.src('./static/public/*html')
 });
 
+gulp.task('css', function () {
+    return gulp.src('./static/public/css/*css')
+});
+
 // create a task that ensures the `js` task is complete before
 // reloading browsers
 gulp.task('js-watch', ['js'], function() {
@@ -18,6 +22,10 @@ gulp.task('js-watch', ['js'], function() {
 });
 
 gulp.task('html-watch', ['html'], function() {
+    browserSync.reload();
+});
+
+gulp.task('css-watch', ['css'], function() {
     browserSync.reload();
 });
 
@@ -38,6 +46,7 @@ gulp.task('serve', ['nodemon'], function () {
     // all browsers reload after tasks are complete.
     gulp.watch("./static/public/js/*.js", ['js-watch']);
     gulp.watch("./static/public/*.html", ['html-watch']);
+    gulp.watch("./static/public/css/*.css", ['css-watch']);
 });
 
 gulp.task('nodemon', function (cb) {
