@@ -5,7 +5,9 @@ body {
 .menu.center-block {
   display: table;
   white-space: nowrap;
-  border-bottom: 1px solid black;
+  border: 0;
+  border-image: linear-gradient(to right, red, purple, orange) 1 0 100;
+  border-bottom: 3px;
   margin-bottom: 8px;
 }
 .menu-item {
