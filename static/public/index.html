@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <base href="/">
-  <title>FestU</title>
+  <title>Festkommittén FestU</title>
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
@@ -15,41 +16,122 @@
   <!-- <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script> -->
   <script src="js/app.js"></script>
 
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->  
+
 </head>
 <body ng-app="festu">
 
-  <div class="container">
-    <div class="menu center-block">
-      <div class="menu-item"><a href="/parties">Kalases</a></div>
-      <div class="menu-item"><a href="/">FESTU</a></div>
-      <div class="menu-item"><a href="/about">About FestU</a></div>
+  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top main-navigation">
+    <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand page-scroll" href="#page-top"><img src="images/logo.png" alt="Festkommittén FestU"></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-left">
+          <li>
+            <a id ="parties-anchor" class="page-scroll" href="#news"><h3>Parties</h3></a>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a id ="news-anchor" class="page-scroll" href="#news"><h3>About FestU</h3></a>
+          </li>
+        </ul>
+      </div>
+    <!-- /.navbar-collapse -->
+    </div>
+  <!-- /.container-fluid -->
+  </nav>
+
+  <!-- banner start -->
+  <!-- ================ -->
+  <div id="banner" class="banner">
+    <div class="banner-image"></div>
+    <div class="banner-caption">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 object-non-visible" data-animation-effect="fadeIn">
+            <h1 class="text-center">Festkommittén <span>FestU</span></h1>
+            <p class="lead text-center">The FestU committee arranges huge parties in the Chalmers Student Union building. Valborgskalaset is the biggest one and counts as one of the biggest reoccuring indoor parties in northen Europe.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-  <!-- Alert -->
-  <div class="alert alert-info text-center" role="alert">Aspa satan! <a href="/aspa">Aspformulär</a></div>
-
+  <!-- banner end -->
+ 
   <!-- Main content -->
   <div ng-view></div>
 
   <!-- Footer -->
-  <div class="footer center-block">
-    <div class="row">
-      <div class="col-xs-2 text-left">
-        <a href="/contact">contact</a>
-      </div>
-      <div class="col-xs-8 text-center">
-        <a href="http://ljudobildgruppen.se">LoB</a>
-        <a href="http://svea.se">Svea</a>
-        <a href="http://pu.se">PU</a>
-        <a href="http://cffc.se">CFFC</a>
-      </div>
-      <div class="col-xs-2 text-right">
-        <a href="/orv">OrvU</a>
+  <div class="black-bg space">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="link-logo">
+            <a href="http://lob.chs.chalmers.se">
+              <img src="images/lob.png" alt="Ljud- och bildgruppen">
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="link-logo">
+            <a href="http://pu.chs.chalmers.se">
+              <img src="images/pu.png" alt="Programkommittén PU">
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="link-logo">
+            <a href="http://svea.chs.chalmers.se">
+              <img src="images/svea.png" alt="Svea Skivgarde">
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="link-logo">
+            <a href="http://charm.chs.chalmers.se">
+              <img src="images/charm.png" alt="Charm">
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="link-logo">
+            <a href="http://cffc.chs.chalmers.se">
+              <img src="images/cffc.png" alt="Chalmers Foto- och Filmkommitté">
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-    <h6 class="text-center">(c) festu.se</h6>
   </div>
+  <!-- section end -->
+
+  <script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="libs/jquery-backstretch/jquery.backstretch.js"></script>
+  <script type="text/javascript" src="libs/modernizr/modernizr.js"></script>
+  <script type="text/javascript" src="libs/jquery-appear/build/jquery.appear.min.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
 
 </body>
 </html>
