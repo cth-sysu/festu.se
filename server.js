@@ -44,10 +44,10 @@ app.use(express.static(__dirname + '/static/public', { index: false }));
 // ====== PRIVATE ======
 
 // Shared static
-app.use(express.static(__dirname + '/static/strecku/shared', { index: false }));
+// app.use(express.static(__dirname + '/static/strecku/shared', { index: false }));
 
-app.get('/', function(req, res, next) {
-  res.sendFile(__dirname +  '/static/public/index.html');
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/static/public', 'index.html'));
 });
 
 
