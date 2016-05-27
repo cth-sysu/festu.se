@@ -24,6 +24,7 @@ h5,
 h6 {
   color: #CC0000;
 }
+
 h1 {
   font-size: 38px;
   font-weight: 700;
@@ -131,6 +132,12 @@ blockquote {
 body .alert {
   margin: 12px;
   border-radius: 0;
+}
+
+div.content {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 96px;
 }
 
 .footer {
@@ -361,6 +368,15 @@ header .header-content .header-content-inner p {
 }
 .banner:after {
   position: absolute;
+  box-shadow: 0 0 2px #aaa;
+}
+
+img.party-poster {
+  width: 340px;
+}
+
+.fullscreen-poster {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -368,9 +384,39 @@ header .header-content .header-content-inner p {
   background-color: rgba(0, 0, 0, 0.55);
   content: "";
 }
+
 .banner-caption {
   position: absolute;
   top: 40%;
   width: 100%;
   z-index: 2;
+  z-index: 1;
+  background: rgba(0,0,0,0.7);
+}
+
+}
+.fullscreen-poster img {
+  width: 80%;
+  padding: 32px;
+}
+
+.white {
+  background: #FFFFFF;
+  opacity: 0.7;
+}
+
+.center {
+  text-align: center;
+  vertical-align: center;
+}
+
+.black-bg {
+  background: #000000;
+}
+
+.link-logo {
+  text-align: center;
+  width: 100px;
+  height: 100px;
+
 }
