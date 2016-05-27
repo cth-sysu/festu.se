@@ -28,6 +28,12 @@ body .alert {
   border-radius: 0;
 }
 
+div.content {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 96px;
+}
+
 .footer {
   background: rgba(255,255,255, 0.9);
   position: fixed;
@@ -35,4 +41,22 @@ body .alert {
   left: 0;
   right: 0;
   padding: 16px;
+  box-shadow: 0 0 2px #aaa;
+}
+
+img.party-poster {
+  width: 340px;
+}
+.fullscreen-poster {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background: rgba(0,0,0,0.7);
+}
+.fullscreen-poster img {
+  width: 80%;
+  padding: 32px;
 }
