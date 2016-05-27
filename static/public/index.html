@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <base href="/">
-  <title>FestU</title>
+  <title>Festkommittéen FestU</title>
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
@@ -19,24 +19,28 @@
 </head>
 <body ng-app="festu">
 
-  <div class="container">
+  <div class="header">
     <div class="menu center-block">
       <div class="menu-item"><a href="/parties">Kalases</a></div>
       <div class="menu-item brand"><a href="/">FESTU</a></div>
       <div class="menu-item"><a href="/about">About FestU</a></div>
     </div>
-  </div>
 
-  <!-- Alert -->
-  <div class="container">
-    <div class="alert alert-info text-center" role="alert">Aspa satan! <a href="/aspa">Aspformulär</a></div>
+    <!-- Alert -->
+    <div class="container">
+      <div class="text-center h4" role="alert">Aspa satan! <a href="/aspa">Aspformulär</a></div>
+      <div class="divider"></div>
+    </div>
+
   </div>
 
   <!-- Main content -->
   <div ng-view></div>
 
   <!-- Footer -->
-  <div class="footer center-block">
+  <div class="container footer center-block">
+    <div class="divider"></div><br>
+    
     <div class="row">
       <div class="col-xs-2 text-left">
         <a href="/contact">Contact</a>
