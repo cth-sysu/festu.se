@@ -25,7 +25,8 @@ angular.module('festu', [
   })
   .controller('MainCtrl', function() {
   })
-  .controller('HomeCtrl', function() {
+  .controller('HomeCtrl', function($rootScope) {
+    $rootScope.active = null;
     this.party = {
       name: 'Nollkalaset',
       date: new Date(),
@@ -54,9 +55,11 @@ angular.module('festu', [
       }
     };
   })
-  .controller('PartiesCtrl', function() {
+  .controller('PartiesCtrl', function($rootScope) {
+    $rootScope.active = 'parties';
   })
-  .controller('AboutCtrl', function() {
+  .controller('AboutCtrl', function($rootScope) {
+    $rootScope.active = 'about';
   })
   .controller('ContactCtrl', function() {
   });

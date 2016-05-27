@@ -21,9 +21,11 @@
 
   <div class="header">
     <div class="menu center-block">
-      <div class="menu-item"><a href="/parties">Kalases</a></div>
-      <div class="menu-item brand"><a href="/">FESTU</a></div>
-      <div class="menu-item"><a href="/about">About FestU</a></div>
+      <div class="menu-item" ng-class="{ active: active == 'parties' }"><a href="/parties">Kalases</a></div>
+      <div class="menu-item brand" ng-class="{ active: !active }"><a href="/">
+        <img src="/images/logo_header.png">
+      </a></div>
+      <div class="menu-item" ng-class="{ active: active == 'about' }"><a href="/about">About FestU</a></div>
     </div>
 
     <!-- Alert -->
@@ -40,7 +42,7 @@
   <!-- Footer -->
   <div class="container footer center-block">
     <div class="divider"></div><br>
-    
+
     <div class="row">
       <div class="col-xs-2 text-left">
         <a href="/contact">Contact</a>

@@ -21,11 +21,16 @@ body {
 }
 .menu-item a {
   text-shadow: 0 4px 6px rgba(20,20,20,0.2);
-  color: initial !important;
+  color: #888;
   text-decoration: none !important;
 }
-.menu-item.brand a { transition: all .2s ease-in-out; }
-.menu-item.brand a:hover { font-size: 24px; }
+
+.menu-item.active a {
+  color: #222;
+}
+
+.menu-item.brand img { transition: all .2s ease-in-out; }
+.menu-item.brand img:hover { transform: scale(1.2); }
 
 body .alert {
   margin: 12px;
@@ -33,7 +38,7 @@ body .alert {
 }
 
 div.content {
-  padding-top: 100px;
+  padding-top: 128px;
   padding-left: 16px;
   padding-right: 16px;
   padding-bottom: 16px;
