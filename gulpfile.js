@@ -35,18 +35,17 @@ gulp.task('serve', ['nodemon'], function () {
     // Serve files from the root of this project
     browserSync.init({
         server: {
-            baseDir: "./static/public/",
-            index: "index.html",
-            browser: "google chrome",
-        	port: 3002,
+          baseDir: "./static/public/",
+          index: "index.html",
+          browser: "google chrome"
         }
     });
 
     // add browserSync.reload to the tasks array to make
     // all browsers reload after tasks are complete.
-    gulp.watch("./static/public/js/*.js", ['js-watch']);
-    gulp.watch("./static/public/*.html", ['html-watch']);
-    gulp.watch("./static/public/css/*.css", ['css-watch']);
+    gulp.watch("./static/public/js/**/*.js", ['js-watch']);
+    gulp.watch("./static/public/**/*.html", ['html-watch']);
+    gulp.watch("./static/public/css/**/*.css", ['css-watch']);
 });
 
 gulp.task('nodemon', function (cb) {
