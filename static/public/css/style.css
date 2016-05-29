@@ -145,3 +145,20 @@ img.party-poster {
 }
 
 /* Party photos */
+.partywall-container{
+  padding-left: 0px !important;
+  padding-right: 0px !important;  
+}
+
+a.partywall:after {
+  content: attr(title);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0.5em 20px;
+  width: 100%;
+  background: rgba(0,0,0,0.8);
+  text-decoration: none !important;
+  color: #fff;
+  opacity: 1;
+}
