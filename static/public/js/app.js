@@ -1,6 +1,5 @@
 /* app.js with site functionality */
-angular.module('festu', [
-  'ngRoute'])
+angular.module('festu', ['ngRoute'])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
