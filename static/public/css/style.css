@@ -162,3 +162,13 @@ a.partywall:after {
   color: #fff;
   opacity: 1;
 }
+
+.ng-enter {
+  -webkit-transition: 1.5s linear all; /* Chrome */
+  transition: 1.5s linear all;
+  opacity: 0;
+}
+ 
+.ng-enter-active {
+  opacity: 1;
+}
