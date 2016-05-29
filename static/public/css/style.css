@@ -145,12 +145,12 @@ img.party-poster {
 }
 
 /* Party photos */
-.partywall-container{
+.partywall .col-md-4{
   padding-left: 0px !important;
   padding-right: 0px !important;  
 }
 
-a.partywall:after {
+.partywall a:after {
   content: attr(title);
   position: absolute;
   left: 0;
@@ -163,12 +163,12 @@ a.partywall:after {
   opacity: 1;
 }
 
-.ng-enter {
+.partywall .ng-enter {
   -webkit-transition: 1.5s linear all; /* Chrome */
   transition: 1.5s linear all;
   opacity: 0;
 }
  
-.ng-enter-active {
+.partywall .ng-enter-active {
   opacity: 1;
 }
