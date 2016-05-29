@@ -151,6 +151,10 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
         }
       );
     }
+
+    $scope.fetchMoreParties();
+    $scope.fetchMoreParties();
+
   })
   .controller('AboutCtrl', function($rootScope) {
     $rootScope.active = 'about';
