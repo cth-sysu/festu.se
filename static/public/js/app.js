@@ -14,7 +14,8 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
     })
     .when('/about', {
         templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        controller: 'AboutCtrl',
+        controllerAs: 'ctrl'
     })
     .when('/contact', {
         templateUrl: 'views/contact.html',
@@ -158,6 +159,34 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
   })
   .controller('AboutCtrl', function($rootScope) {
     $rootScope.active = 'about';
+    var now = new Date();
+    var year = now.getMonth() < 6 ? now.getFullYear() : now.getFullYear() + 1;
+    this.festuYear = 
+      (year - 1).toString().substr(-2) + '/' + 
+      (year).toString().substr(-2);
+    // TODO: load from backend
+    this.members = [{
+      post: {
+        symbol: '6', name: 'Sexmästare'
+      },
+      name: 'Albin Hessleryd',
+      mail: '6@festu.se',
+      programme: {
+        name: 'Z', year: 13
+      },
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+    }, {
+      post: {
+        symbol: '66',
+        name: 'Sexmästarinna'
+      },
+      name: 'Sigge',
+      mail: '66@festu.se',
+      programme: {
+        name: 'D', year: 13
+      },
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+    }];
   })
   .controller('ContactCtrl', function() {
   });

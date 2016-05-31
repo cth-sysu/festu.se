@@ -1,1 +1,30 @@
-about.html
+<link rel="stylesheet" type="text/css" href="css/about.css">
+<div class="content container">
+  
+  <h2>About FestU</h2>
+  <p> FestU är Chalmers studentkårs festkommitté. Vi har till uppdrag att arrangera stora kalas för kårens medlemmar. Detta gör vi i Chalmers kårhus på Gibraltarområdet. FestU har anor sedan början på 1940-talet. Då bestod FestU av en sexmästare och ett antal assistenter. Idag utgörs FestU av sex personer med en strikt inbördes postfördelning där varje person ansvarar för en viss del av verksamheten. </p>
+  <p> Lite förenklat kan man säga att FestU fungerar som ett se<a href="http://festu.chs.chalmers.se/xwiki/index.php/Huvudsida">x</a>mäster<a style="color:white" href="http://festu.chs.chalmers.se/66wiki/index.php/Huvudsida">i</a>, men i större skala. FestU har först och främst en samordnande roll under arrangemangen.</p>    
+  <p> Ett FestU-kalas har ofta tusentals besökare och har oftast attraktioner som live-band, leksaker (hoppborg, bollhav etc.), flipperspel, dansuppvisningar, filmvisning, olika dansgolv, flera barer, grillning med mera. </p>    
+  <p> Denna typ av arrangemang kräver mycket arbete både före, under och efter kalaset, därför tar FestU oftast hjälp av andra föreningar och teknologer som vill gå gratis på kalaset (puffare).</p>
+  <p> Gamla FestU kallas <a href="/orv">Orv</a>.</p>
+
+  <h2>FestU {{ctrl.festuYear}}</h2>
+  <div class="row"></div>
+  <div ng-repeat="member in ctrl.members" class="card col-xs-12 col-sm-6">
+    <div class="col-xs-4 text-center">
+      <div class="picture">
+        <img src="http://ljudobildgruppen.se/images/lobare/pb@2x.jpg">
+        <div class="avatar">{{member.post.symbol}}</div>
+      </div>
+      <p class="h5">{{member.post.name}}</p>
+      <p class="h5"><a ng-href="mailto:{{member.mail}}">{{member.mail}}</a></p>
+    </div>
+    <div class="col-xs-8">
+      <p><span class="h4">{{member.name}}</span>
+        <span>{{member.programme.name}}{{member.programme.year}}</span></p>
+      <p>{{member.description}}</p>
+    </div>
+  </div>
+
+
+</div>
