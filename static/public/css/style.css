@@ -327,7 +327,7 @@ textarea {
   padding-right: 10px;
 }
 
-.footer-content .btn {
+.form-content .btn {
   padding: 8px 15px !important;
   font-size: 14px ;
   line-height: 1.42857143;
@@ -342,11 +342,11 @@ textarea {
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-.footer-content .btn-primary {
+.form-content .btn-primary {
   color: #CC0000;
   border: 1px solid #cccccc;
 }
-.footer-content .btn-primary:hover {
+.form-content .btn-primary:hover {
   color: #ffffff;
   background-color: #CC0000;
   border-color: #CC0000;
