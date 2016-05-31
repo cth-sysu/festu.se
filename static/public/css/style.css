@@ -328,6 +328,10 @@ textarea {
   padding-right: 10px;
 }
 
+.form-content .pull-left {
+  width: auto;
+  margin-right: 8px;
+}
 .form-content .btn {
   padding: 8px 15px !important;
   font-size: 14px ;

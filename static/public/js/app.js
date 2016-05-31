@@ -12,6 +12,11 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
         controller: 'PartiesCtrl',
         controllerAs: 'partyctrl'
     })
+    .when('/aspa', {
+        templateUrl: 'views/aspa.html',
+        controller: 'AspaCtrl',
+        controllerAs: 'ctrl'
+    })
     .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
@@ -156,6 +161,9 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
     $scope.fetchMoreParties();
     $scope.fetchMoreParties();
 
+  })
+  .controller('AspaCtrl', function(){
+    
   })
   .controller('AboutCtrl', function($rootScope) {
     $rootScope.active = 'about';
