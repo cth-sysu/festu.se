@@ -127,9 +127,15 @@ div.content {
   font-size: 12px;
 }
 
-.footer img{
-  margin-left: 5px;
-  margin-right: 5px;
+.footer .logos {
+  display: flex;
+  padding: 4px; 
+}
+.footer .logos a {
+  padding: 0 4px;
+}
+.footer .logos img {
+  max-width: 100%;
 }
 
 /* --------------------- */
