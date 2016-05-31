@@ -113,6 +113,7 @@ body .alert {
 /* --------------------- */
 div[ng-view] {
   padding-top: 96px;
+  min-height: calc(100% - 80px);
 }
 div.content {
   padding: 0 16px;
