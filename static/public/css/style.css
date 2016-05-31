@@ -71,6 +71,9 @@ button.navbar-toggle {
 }
 
 /*List item style*/
+.nav.navbar-nav > li {
+  width: 128px;
+}
 .nav.navbar-nav > li:not(.brand) {
   padding-top: 26px;
 }
