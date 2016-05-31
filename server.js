@@ -23,7 +23,7 @@ app.use(cookieParser(process.env.STRECKUSECRET));
 
 // ====== PUBLIC ======
 
-// app.use(express.static(__dirname + '/static/public', { index: false }));
+app.use(express.static(__dirname + '/static/public', { index: false }));
 
 // app.route('/login')
 //     .get(auth.try('jwt', '/'), function(req, res) {
@@ -46,9 +46,9 @@ app.use(cookieParser(process.env.STRECKUSECRET));
 // Shared static
 // app.use(express.static(__dirname + '/static/strecku/shared', { index: false }));
 
-// app.get('*', function(req, res) {
-//   res.sendFile(path.join(__dirname, '/static/public', 'index.html'));
-// });
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/static/public', 'index.html'));
+});
 
 
 
