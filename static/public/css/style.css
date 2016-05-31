@@ -127,9 +127,11 @@ div.content {
 /* --------------------- */
 .footer {
   background: rgba(0,0,0, 0.05);
-  box-shadow: 0 0 6px #888;
   height:80px;
   padding: 8px;
+  border: 0;
+  border-image: linear-gradient(to right, red, purple, orange) 1 0 100;
+  border-top: 3px solid;
 }
 
 .footer span {
