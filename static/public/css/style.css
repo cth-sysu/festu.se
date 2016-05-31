@@ -123,6 +123,7 @@ div.content {
 /* --------------------- */
 .footer {
   background: rgba(0,0,0, 0.05);
+  box-shadow: 0 0 6px #888;
   height:80px;
   padding: 8px;
 }
