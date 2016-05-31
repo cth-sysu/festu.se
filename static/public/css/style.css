@@ -151,16 +151,16 @@ img.party-poster {
 .partywall .col-md-4{
   padding-left: 0px !important;
   padding-right: 0px !important;  
+  padding: 4px !important;
 }
 
 .partywall a:after {
   content: attr(title);
   position: absolute;
-  left: 0;
-  bottom: 0;
+  left: 4px;
+  bottom: 4px;
   padding: 0.5em 20px;
-  width: 100%;
-  background: rgba(0,0,0,0.4);
+  background: rgba(255,255,255,0.4);
   text-decoration: none !important;
   color: #fff;
   opacity: 1;
