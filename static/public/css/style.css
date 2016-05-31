@@ -1,12 +1,28 @@
-/* CSS */
+/* --------------------- */
+/* HTML and body         */
+/* --------------------- */
+html,
 body {
-  font-family: 'Open Sans', sans-serif !important;
+  height: 100%;
 }
 
-.header {
-  /*width: 100%;
-  position: fixed;*/
+body {
+  font-family: 'Open Sans', sans-serif !important
 }
+/* --------------------- */
+/* Header spans          */
+/* --------------------- */
+h1 span,
+h2 span,
+h3 span,
+h4 span {
+  color: #CC0000;
+}
+
+/* --------------------- */
+/* Navbar                */
+/* --------------------- */
+
 .navbar.navbar-default {
   background-image: none;
   background-color: white;
@@ -81,31 +97,49 @@ button.navbar-toggle {
   }
 }
 
-
-
+/* --------------------- */
+/* Asp alert             */
+/* --------------------- */
 body .alert {
   margin: 12px;
 }
 
+
+/* --------------------- */
+/* Content               */
+/* --------------------- */
 div[ng-view] {
   padding-top: 96px;
 }
-
 div.content {
   padding: 0 16px;
 }
 
-.divider {
-  border-top: 1px solid #aaa;
-}
+/* --------------------- */
+/* Footer                */
+/* --------------------- */
 .footer {
-  background: rgba(255,255,255, 0.9);
-  padding: 16px;
+  background: rgba(0,0,0, 0.05);
+  height:80px;
+  padding: 8px;
 }
 
+.footer span {
+  font-size: 12px;
+}
+
+.footer img{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* --------------------- */
+/* Image posters         */
+/* --------------------- */
 img.party-poster {
   width: 340px;
 }
+
 .fullscreen-poster {
   position: fixed;
   top: 0;
@@ -118,4 +152,94 @@ img.party-poster {
 .fullscreen-poster img {
   width: 80%;
   padding: 32px;
+}
+
+/* --------------------- */
+/* Banner                */
+/* --------------------- */
+.banner {
+  width: 100%;
+  height: 87%;
+  min-height: 87%;
+  position: relative;
+  color: #fff;
+}
+.banner-image {
+  vertical-align: middle;
+  min-height: 100%;
+  width: 100%;
+}
+.banner:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  content: "";
+}
+.banner-caption {
+  position: absolute;
+  top: 25%;
+  width: 100%;
+  z-index: 2;
+}
+
+
+/* --------------------- */
+/* Party photos          */
+/* --------------------- */
+.partywall .col-md-4{
+  padding-left: 0px !important;
+  padding-right: 0px !important;  
+  padding: 4px !important;
+}
+
+.partywall a:after {
+  content: attr(title);
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  padding: 0.5em 20px;
+  background: rgba(255,255,255,0.4);
+  text-decoration: none !important;
+  color: #fff;
+  opacity: 1;
+}
+
+.partywall .ng-enter {
+  -webkit-transition: 1.5s linear all; /* Chrome */
+  transition: 1.5s linear all;
+  opacity: 0;
+}
+ 
+.partywall .ng-enter-active {
+  opacity: 1;
+}
+
+/* --------------------- */
+/* CHS colors            */
+/* --------------------- */
+.bg-chs-white {
+    background: #FFFFFF;
+}
+
+.bg-chs-blue {
+    background: #00a8ff;
+    color: white;
+}
+
+.bg-chs-green {
+    background: #4AB08C;
+    color: white;
+}
+
+.bg-chs-red {
+    background: #D5767E;
+    color: white;
+}
+
+.bg-chs-purple {
+    background: #8F76AA;
+    color: white;
 }

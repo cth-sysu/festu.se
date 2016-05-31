@@ -10,13 +10,18 @@
   <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400">
+  <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
 
+  <script src="libs/jquery/jquery.min.js"></script>
   <script src="libs/angular/angular.min.js"></script>
   <script src="libs/angular-route/angular-route.min.js"></script>
+  <script src="libs/angular-animate/angular-animate.min.js"></script>
 
-  <script src="libs/jquery/dist/jquery.min.js"></script>
+  <script src='libs/ngInfiniteScroll/build/ng-infinite-scroll.min.js'></script>
+
+  <!-- <script src="libs/jquery/dist/jquery.min.js"></script> -->
   <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
-  
+
   <script src="js/app.js"></script>
 
 </head>
@@ -71,30 +76,50 @@
     <div class="divider"></div>
   </div> -->
 
+  <div class="delimiter-top"></div>
+
+  <!-- banner start -->
+<!--   <div id="banner" class="banner">
+    <div class="banner-image"></div>
+    <div class="banner-caption">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 object-non-visible" data-animation-effect="fadeIn">
+            <h1 class="text-center">Festkommittén <span>FestU</span></h1>
+            <p class="lead text-center">The FestU committee arranges huge parties in the Chalmers Student Union building. Valborgskalaset is the biggest one and counts as one of the biggest reoccuring indoor parties in northen Europe.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- banner end -->
+
   <!-- Main content -->
   <div ng-view></div>
 
   <!-- Footer -->
-  <div class="container footer center-block">
-    <div class="divider"></div><br>
-
+  <div class="footer container-fluid center-block">
     <div class="row">
-      <div class="col-xs-2 text-left">
-        <a href="/contact">Contact</a>
+      <div class="col-md-3 text-left">
+        <span>Festkommittén FestU</span><br>
+        <span>031-20 66 66</span><br>
+        <span><a href="mailto:festu@festu.se">festu@festu.se</a></span>
       </div>
-      <div class="col-xs-8 text-center">
-        <a href="http://ljudobildgruppen.se">LoB</a>
-        <a href="http://svea.se">Svea</a>
-        <a href="http://pu.se">PU</a>
-        <a href="http://cffc.se">CFFC</a>
-        <a href="http://chs.chalmers.se">CHS</a>
+      <div class="col-md-6 text-center logos">
+        <a href="http://ljudobildgruppen.se"><img src="/images/committees/lob.png"></a>
+        <a href="http://svea.chs.chalmers.se"><img src="/images/committees/svea.png"></a>
+        <a href="http://pu.se"><img src="/images/committees/pu.png"></a>
+        <a href="http://cffc.se"><img src="/images/committees/cffc.png"></a>
+        <a href="http://chs.chalmers.se"><img src="/images/committees/chs.png"></a>
       </div>
-      <div class="col-xs-2 text-right">
+      <div class="col-md-3 text-right">
         <a href="/orv">OrvU</a>
       </div>
     </div>
-    <h6 class="text-center">(c) festu.se</h6>
   </div>
+
+  <script type="text/javascript" src="libs/jquery-backstretch/jquery.backstretch.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
 
 </body>
 </html>

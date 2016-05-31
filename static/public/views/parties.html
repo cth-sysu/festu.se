@@ -1,1 +1,14 @@
-parties.html
+<div class="content container partywall">
+  <div class="row">
+    <div infinite-scroll="fetchMoreParties()" infinite-scroll-immediate-check="1" infinite-scroll-distance="1">
+      <div ng-repeat="party in parties" ng-animate="{enter: 'animate-enter'}">
+        <div class="clearfix" ng-if="$index % 3 == 0"></div>
+        <div class="col-md-4">
+          <a title="{{party.name}}">
+            <img ng-src="{{party.imageURL}}" class="img-responsive">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
