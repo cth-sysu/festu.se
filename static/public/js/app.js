@@ -31,8 +31,11 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
   })
   .controller('MainCtrl', function() {
   })
-  .controller('HomeCtrl', function($rootScope) {
+  .controller('HomeCtrl', function($rootScope, $filter) {
     $rootScope.active = null;
+    this.dates = function(sales) {
+      return sales.map(sale => $filter('date')(sale.startTime, 'd/M'));
+    };
     this.party = {
       name: 'Nollkalaset',
       date: new Date(),
