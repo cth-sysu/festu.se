@@ -68,11 +68,27 @@ router.route('/parties/next')
 
 // ?year=2015
 router.route('/members')
-  .get()
+  .get(function(req, res, next){
+    Member.find()
+    .select('-_id -__v')
+    .exec().then(function(members){
+      res.json(members);
+    }, next)
+  })
   .put()
   .post()
   .delete();
 
+router.get('/members/current', function(req, res, next){
+  var now = new Date();
+  var year = now.getMonth() < 6 ? now.getFullYear() - 1 : now.getFullYear();
+  Member.find({ year })
+  .select('-_id -__v -mail -address')
+  .exec().then(function(members){
+    res.json(members);
+  }, next)
+
+});
 
 // /api/strings/contact_info
 router.route('/strings/:key')
