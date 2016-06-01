@@ -37,6 +37,7 @@ h4 span {
   border: 0;
   border-image: linear-gradient(to right, red, purple, orange) 1 0 100;
   border-bottom: 3px solid;
+  width: 100%;
 }
 
 /*Mobile logo*/
