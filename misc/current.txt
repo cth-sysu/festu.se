@@ -1,0 +1,66 @@
+{
+    "name" : "Albin Hessleryd",
+    "post" : ObjectId("574ef0ed5f6af3c3e008a56c"),
+    "mail" : "hessleryd@live.se",
+    "programme" : {
+        "name" : "Z",
+        "year" : 2013
+    },
+    "year" : 2015,
+    "description" : "Nyllmästare"
+}
+{
+    "name" : "Martin Sigvardsson",
+    "post" : ObjectId("574ef10d5f6af3c3e008a56d"),
+    "mail" : "mt.sigvardsson@gmail.com",
+    "programme" : {
+        "name" : "D",
+        "year" : 2013
+    },
+    "year" : 2015,
+    "description" : "Kökshora"
+}
+{
+    "name" : "Jesper Carlsson",
+    "post" : ObjectId("574ef11e5f6af3c3e008a56e"),
+    "mail" : "jesper.carlsson11@gmail.com",
+    "programme" : {
+        "name" : "D",
+        "year" : 2013
+    },
+    "year" : 2015,
+    "description" : "Casseur"
+}
+{
+    "name" : "Amanda Lundberg",
+    "post" : ObjectId("574ef1435f6af3c3e008a56f"),
+    "mail" : "amanda.lundberg94@gmail.com",
+    "programme" : {
+        "name" : "K",
+        "year" : 2013
+    },
+    "year" : 2015,
+    "description" : "Personalansvarig"
+}
+{
+    "name" : "Viktoria Hedlund",
+    "post" : ObjectId("574ef15c5f6af3c3e008a570"),
+    "mail" : "hedlund.viktoria@gmail.com",
+    "programme" : {
+        "name" : "K",
+        "year" : 2011
+    },
+    "year" : 2015,
+    "description" : "Pyntansvarig"
+}
+{
+    "name" : "Isac Lindgren",
+    "post" : ObjectId("574ef16c5f6af3c3e008a571"),
+    "mail" : "isacthelindgren@gmail.com",
+    "programme" : {
+        "name" : "Z",
+        "year" : 2012
+    },
+    "year" : 2015,
+    "description" : "Den korta killen"
+}
