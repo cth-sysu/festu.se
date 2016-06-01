@@ -29,6 +29,13 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
     .otherwise('/');
     $locationProvider.html5Mode(true);
   })
+  .directive('bannerImage', function($window) {
+    return {
+      link: function(scope, elem, attrs) {
+        elem.css('height', $window.innerHeight - 96 + 'px');
+      }
+    };
+  })
   .controller('MainCtrl', function() {
   })
   .controller('HomeCtrl', function($rootScope, $filter) {
