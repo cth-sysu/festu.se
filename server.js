@@ -4,14 +4,17 @@ var cookieParser    = require('cookie-parser');
 var passport        = require('passport');
 var path            = require('path');
 var helmet          = require('helmet');
+var mongoose        = require('mongoose');
+
 var http    		= require('http');
 var https   		= require('https');
 
 /* Express App */
 var app = express();
 
-/* Database connection */
+// DB connection
 var db = require('./config/db.js');
+mongoose.connect(db);
 
 // Helmet
 app.use(helmet());
@@ -21,8 +24,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.STRECKUSECRET));
 
-// ====== PUBLIC ======
+// API
+var api = require('./app/api');
+app.use('/api', api);
 
+// Public
 app.use(express.static(__dirname + '/static/public', { index: false }));
 
 // app.route('/login')
