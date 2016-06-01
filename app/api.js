@@ -4,13 +4,14 @@ var mongoose = require('mongoose');
 
 var Party = require('./models/parties');
 var Member = require('./models/members');
+var Post = require('./models/post');
 var StaticString = require('./models/string');
 
 var router = express.Router();
 
 router.route('/parties')
   .get(function(req, res, next) {
-    Party.find()
+    Party.find({ cffc: { $exists: true }})
     .exec().then(function(parties){
       res.json(parties);
     }, next);
@@ -70,7 +71,7 @@ router.route('/parties/next')
 router.route('/members')
   .get(function(req, res, next){
     Member.find()
-    .select('-_id -__v')
+    .select('-__v')
     .exec().then(function(members){
       res.json(members);
     }, next)
@@ -83,7 +84,8 @@ router.get('/members/current', function(req, res, next){
   var now = new Date();
   var year = now.getMonth() < 6 ? now.getFullYear() - 1 : now.getFullYear();
   Member.find({ year })
-  .select('-_id -__v -mail -address')
+  .select('-__v -mail -address')
+  .populate('post')
   .exec().then(function(members){
     res.json(members);
   }, next)

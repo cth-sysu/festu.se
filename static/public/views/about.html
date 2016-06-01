@@ -13,15 +13,15 @@
   <div ng-repeat="member in ctrl.members" class="card col-xs-12 col-sm-6">
     <div class="col-xs-4 text-center">
       <div class="picture">
-        <img src="http://ljudobildgruppen.se/images/lobare/pb@2x.jpg">
+        <img src="/members/images/{{member._id}}.jpg">
         <div class="avatar">{{member.post.symbol}}</div>
       </div>
       <p class="h5">{{member.post.name}}</p>
-      <p class="h5"><a ng-href="mailto:{{member.mail}}">{{member.mail}}</a></p>
+      <p class="h5"><a ng-href="mailto:{{member.post.mail}}">{{member.post.mail}}</a></p>
     </div>
     <div class="col-xs-8">
       <p><span class="h4">{{member.name}}</span>
-        <span>{{member.programme.name}}{{member.programme.year}}</span></p>
+        <span>{{member.programme.name}}{{member.programme.year.toString().substr(-2)}}</span></p>
       <p>{{member.description}}</p>
     </div>
   </div>
