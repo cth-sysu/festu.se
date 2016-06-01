@@ -64,8 +64,15 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
       }
     };
   })
-  .controller('PartiesCtrl', function($rootScope, $scope) {
+  .controller('PartiesCtrl', function($rootScope, $scope, $window, $timeout) {
     $rootScope.active = 'parties';
+
+    $scope.windowWidth = $window.innerWidth;
+    $window.onresize = function(event) {
+      $timeout(function() {
+        $scope.windowWidth = $window.innerWidth;
+      });
+    };
 
     $scope.parties = [];
 
@@ -73,7 +80,7 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
       $scope.parties.push(
         {
           id: 1,
-          name: 'Nollkalaset',
+          name: 'Nollkalaset 2016',
           date: new Date(),
           poster: {
             small: 'http://festu.chs.chalmers.se/images/kalas/original/139.png',
@@ -98,11 +105,12 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
             }],
             note: 'Reserve for changes, >= 18 years'
           },
-          imageURL: 'http://cffc.se/thumbnail/thumb/42354/big.jpg'
+          imageURL: 'http://cffc.se/thumbnail/thumb/42354/big.jpg',
+          cffc: 'http://cffc.se/bilder/2016/valborgskalaset/'
         },
         {
           id: 2,
-          name: 'Nollkalaset',
+          name: 'Nollkalaset 2015',
           date: new Date(),
           poster: {
             small: 'http://festu.chs.chalmers.se/images/kalas/original/139.png',
@@ -127,11 +135,12 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
             }],
             note: 'Reserve for changes, >= 18 years'
           },
-          imageURL: 'http://cffc.se/thumbnail/thumb/42332/big.jpg'
+          imageURL: 'http://cffc.se/thumbnail/thumb/42332/big.jpg',
+          cffc: 'http://cffc.se/bilder/2016/valborgskalaset/'
         },
         {
           id: 3,
-          name: 'Nollkalaset',
+          name: 'Nollkalaset 2014',
           date: new Date(),
           poster: {
             small: 'http://festu.chs.chalmers.se/images/kalas/original/139.png',
@@ -156,7 +165,8 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
             }],
             note: 'Reserve for changes, >= 18 years'
           },
-          imageURL: 'http://cffc.se/thumbnail/thumb/42337/big.jpg'
+          imageURL: 'http://cffc.se/thumbnail/thumb/42337/big.jpg',
+          cffc: 'http://cffc.se/bilder/2016/valborgskalaset/'
         }
       );
     }
