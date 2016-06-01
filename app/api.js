@@ -40,16 +40,30 @@ router.get('/members/current', function(req, res, next){
 
 });
 
-// ?key=contact
-router.route('/string')
+// /api/strings/contact_info
+router.route('/strings/:key')
   .get(function(req, res, next) {
-    StaticString.findOne({ key: req.query.key})
-    .select('-_id value')
+    StaticString.findOne({ key: req.params.key})
     .then(function(val) {
       if (!val) return res.status(404).end();
-      res.json(val);
+      res.json({ value: val.value });
     }, next);
   })
-  .post();
+  .post(function(req, res, next) {
+    var key = req.params.key;
+    var value = req.body.value;
+    if (!value) return res.status(400).end();
+    new StaticString({ key, value })
+    .save().then(function(val) {
+      res.json({ value: val.value });
+    }, next);
+  })
+  .delete(function(req, res, next) {
+    var key = req.params.key;
+    StaticString.findOneAndRemove({ key })
+    .exec(function(val) {
+      res.end();
+    }, next);
+  });
 
 module.exports = router;
