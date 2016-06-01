@@ -102,7 +102,8 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
             }],
             note: 'Reserve for changes, >= 18 years'
           },
-          imageURL: 'http://cffc.se/thumbnail/thumb/42354/big.jpg'
+          imageURL: 'http://cffc.se/thumbnail/thumb/42354/big.jpg',
+          cffc: 'http://cffc.se/bilder/2016/valborgskalaset/'
         },
         {
           id: 2,
@@ -131,7 +132,8 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
             }],
             note: 'Reserve for changes, >= 18 years'
           },
-          imageURL: 'http://cffc.se/thumbnail/thumb/42332/big.jpg'
+          imageURL: 'http://cffc.se/thumbnail/thumb/42332/big.jpg',
+          cffc: 'http://cffc.se/bilder/2016/valborgskalaset/'
         },
         {
           id: 3,
@@ -160,7 +162,8 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
             }],
             note: 'Reserve for changes, >= 18 years'
           },
-          imageURL: 'http://cffc.se/thumbnail/thumb/42337/big.jpg'
+          imageURL: 'http://cffc.se/thumbnail/thumb/42337/big.jpg',
+          cffc: 'http://cffc.se/bilder/2016/valborgskalaset/'
         }
       );
     }
