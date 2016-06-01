@@ -5,11 +5,12 @@
 
 .banner {
   position: relative;
-  color: #fff;
-  padding: 32px 0;
+  height: calc(100vh - 96px);
+  padding: 10vh 0;
   background-position: center;
   background-size: cover;
   background-image: url(/images/banner.jpg);
+  color: #fff;
 }
 .banner::before {
   content: "";  
