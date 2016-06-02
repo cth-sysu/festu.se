@@ -26,10 +26,19 @@ app.use(cookieParser(process.env.STRECKUSECRET));
 // Passport.js
 app.use(passport.initialize());
 
+var LocalStrategy = require('passport-local').Strategy;
+var JwtStrategy   = require('passport-jwt').Strategy;
+
+passport.use('local-user', new LocalStrategy(
+    function(email, password, done) {
+      done(null, email == process.env.ADMIN_USER &&
+        password == process.env.ADMIN_PWD);
+    }
+));
+
 // API
 var api = require('./app/api');
 app.use('/api', api);
-
 
 
 // Public
@@ -49,7 +58,7 @@ app.get('/login', function(req, res, next){
 
 // Index
 app.get('/admin*', function(req, res) {
-  res.sendFile(path.join(__dirname, '/static/private', 'index.html'));
+  res.sendFile(path.join(__dirname, '/static/admin', 'index.html'));
 });
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '/static/public', 'index.html'));
