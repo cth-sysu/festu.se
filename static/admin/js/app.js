@@ -46,7 +46,15 @@ angular.module('festu-admin', ['ngRoute'])
   })
   .controller('MembersCtrl', function($rootScope) {
   })
-  .controller('AboutCtrl', function($rootScope) {
+  .controller('AboutCtrl', function($rootScope, $http) {
+    var vm = this;
+    $http.get('/api/strings/about')
+    .then(function(res) {
+      vm.aboutContent = res.data['value'];
+    });
+
+
+
   })
   .controller('ContactCtrl', function($rootScope) {
   })
