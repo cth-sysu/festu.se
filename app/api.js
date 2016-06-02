@@ -105,8 +105,9 @@ router.route('/strings/:key')
     var key = req.params.key;
     var value = req.body.value;
     if (!value) return res.status(400).end();
-    new StaticString({ key, value })
-    .save().then(function(val) {
+    StaticString.findOneAndUpdate({ key }, { key, value },
+      { upsert: true, new: true })
+    .exec().then(function(val) {
       res.json({ value: val.value });
     }, next);
   })
