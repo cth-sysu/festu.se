@@ -28,12 +28,14 @@ h4 span {
 /* --------------------- */
 
 .navbar.navbar-default {
+  margin: 0;
   background-image: none;
   background-color: white;
   border: none;
   box-shadow: none;
 }
 .navbar .navbar-container {
+  height: 96px;
   border: 0;
   border-image: linear-gradient(to right, red, purple, orange) 1 0 100;
   border-bottom: 3px solid;
@@ -154,6 +156,7 @@ div.content {
 /* Image posters         */
 /* --------------------- */
 img.party-poster {
+  width: 100%;
   max-width: 340px;
 }
 
