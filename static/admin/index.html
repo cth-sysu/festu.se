@@ -7,51 +7,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400">
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/angular-material/angular-material.min.css">
 
-    <script src="/libs/jquery/jquery.min.js"></script>
+    <!-- Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <!-- Angular -->
     <script src="/libs/angular/angular.min.js"></script>
     <script src="/libs/angular-route/angular-route.min.js"></script>
     <script src="/libs/angular-animate/angular-animate.min.js"></script>
+    <script src="/libs/angular-aria/angular-aria.min.js"></script>
+    <script src="/libs/angular-messages/angular-messages.min.js"></script>
 
-    <script src='/libs/ngInfiniteScroll/build/ng-infinite-scroll.min.js'></script>
-
-    <!-- <script src="libs/jquery/dist/jquery.min.js"></script> -->
-    <script src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Angular Material -->
+    <script src="/libs/angular-material/angular-material.min.js"></script>
 
     <script src="js/app.js"></script>
 
     <title>FestU.se | Dashboard</title>
   </head>
+  <body ng-app="festu-admin" layout="column">
 
-  <body ng-app="festu-admin">
-    <!-- Navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container navbar-container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="">FestU Admin Dashboard</a><div class="navbar-brand"> | </div> <a class="navbar-brand" href="/">Back to site</a>
-        </div>
-      </div>
-    </nav>
+    <md-toolbar class="md-toolbar-tools md-whiteframe-z1 md-hue-2">
+      <md-button class="md-icon-button" hide-gt-xs ng-click="menu=!menu">
+        <md-icon>menu</md-icon>
+      </md-button>      
+      <h2><a href="">FestU Admin Dashboard</a></h2><br>
+      <div layout-padding></div>|<div layout-padding></div>
+      <h2><a href="/">Back to site</a></h2>
+    </md-toolbar>
 
-    <!-- Sidebar -->
-    <div class="col-md-3 sidebar">
-      <ul class="nav nav-sidebar">
-        <li><a href="">Main</a></li>
-        <li><a href="parties">Kalas</a></li>
-        <li><a href="aspa">Aspa</a></li>
-        <li><a href="members">Members</a></li>
-        <li><a href="about">About FestU</a></li>
-        <li><a href="contact">Contact info</a></li>
-        <li><a href="/logout">Logout</a></li>
-      </ul>
-    </div>
-    
-    <!-- Main Content-->
-    <div class="col-md-9 main">
+    <md-content flex layout="row">
+
+      <!-- Sidenav -->
+      <md-sidenav class="md-sidenav-left" md-is-open="menu"
+        md-is-locked-open="$mdMedia('gt-xs')" md-whiteframe="4">
+        <md-content>
+          <md-list>
+            <md-list-item ng-href="parties"
+              ng-class="{ active: active == 'parties' }"><p>Kalas</p></md-list-item>
+            <md-list-item ng-href="members"
+              ng-class="{ active: active == 'members' }"><p>Members</p></md-list-item>
+            <md-list-item ng-href="about"
+              ng-class="{ active: active == 'about' }"><p>About FestU</p></md-list-item>
+            <md-list-item ng-href="contact"
+              ng-class="{ active: active == 'contact' }"><p>Contact info</p></md-list-item>
+            <md-list-item ng-href="aspa"
+              ng-class="{ active: active == 'aspa' }"><p>Aspa</p></md-list-item>
+            <md-list-item ng-href="/logout"><p>Logout</p></md-list-item>
+          </md-list>  
+        </md-content>
+      </md-sidenav>
+
+      <!-- Main content -->
       <div ng-view></div>
-    </div>
+    </md-content>
   </body>
 </html>
