@@ -35,7 +35,7 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
     $rootScope.active = null;
     this.dates = function(sales) {
       return sales && sales.map(function(sale) {
-        $filter('date')(sale.startTime, 'd/M');
+        return $filter('date')(sale.startTime, 'd/M');
       });
     };
     var vm = this;

@@ -14,7 +14,7 @@
     <div>
       <a class="card text-center" href="#next-party">
         <p><span class="h2">{{ctrl.party.name}}</span>
-          <span class="h4"> - {{ctrl.party.date | date:'longDate'}}</span></p>
+          <span class="h3"> - {{ctrl.party.date | date:'longDate'}}</span></p>
         <p>
           <span class="h4">Tickets:</span>
           <span>{{ ctrl.dates(ctrl.party.ticketSale.sales).join(' & ') }}</span>
@@ -42,7 +42,9 @@
     <h4 class="col-xs-4">{{sale.startTime | date:'EEEE d/M H:mm'}}-{{sale.endTime | date:'H:mm'}} *</h4>
     <h4 class="col-xs-8">
       <p>{{sale.locations.join(', ')}}</p>
-      <p>{{sale.info}}<p/>
+      <p ng-repeat="line in (lines = sale.info.split('\n'))">
+        {{line}}
+      <p/>
     </h4>
   </div>
   <h5>* {{ctrl.party.ticketSale.note}}</h5>
