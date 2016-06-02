@@ -34,7 +34,7 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
   .controller('HomeCtrl', function($rootScope, $http, $filter) {
     $rootScope.active = null;
     this.dates = function(sales) {
-      return sales.map(sale => $filter('date')(sale.startTime, 'd/M'));
+      return sales && sales.map(sale => $filter('date')(sale.startTime, 'd/M'));
     };
     var vm = this;
     $http.get('/api/parties/next')
