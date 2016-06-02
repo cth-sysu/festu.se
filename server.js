@@ -28,8 +28,13 @@ app.use(cookieParser(process.env.STRECKUSECRET));
 var api = require('./app/api');
 app.use('/api', api);
 
+
+
 // Public
 app.use(express.static(__dirname + '/static/public', { index: false }));
+
+// Images
+app.use('/images', express.static(__dirname + '/static/images', { index: false }));
 
 // app.route('/login')
 //     .get(auth.try('jwt', '/'), function(req, res) {
