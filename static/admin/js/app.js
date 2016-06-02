@@ -3,33 +3,38 @@ angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
-        templateUrl: 'views/home.html',
-        controller: 'HomeCtrl',
-        controllerAs: 'ctrl'
+      templateUrl: 'views/home.html',
+      controller: 'HomeCtrl',
+      controllerAs: 'ctrl'
     })
     .when('/parties', {
-        templateUrl: 'views/parties.html',
-        controller: 'PartiesCtrl',
-        controllerAs: 'ctrl'
+      templateUrl: 'views/parties.html',
+      controller: 'PartiesCtrl',
+      controllerAs: 'ctrl'
     })
     .when('/members', {
-        templateUrl: 'views/members.html',
-        controller: 'MembersCtrl',
-        controllerAs: 'ctrl'
+      templateUrl: 'views/members.html',
+      controller: 'MembersCtrl',
+      controllerAs: 'ctrl'
     })
     .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'ctrl'
+      templateUrl: 'views/about.html',
+      controller: 'AboutCtrl',
+      controllerAs: 'ctrl'
     })
     .when('/contact', {
-        templateUrl: 'views/contact.html',
-        controller: 'ContactCtrl',
-        controllerAs: 'ctrl'
+      templateUrl: 'views/contact.html',
+      controller: 'ContactCtrl',
+      controllerAs: 'ctrl'
+    })
+    .when('/aspa', {
+      templateUrl: 'views/aspa.html',
+      controller: 'AspaCtrl',
+      controllerAs: 'ctrl'
     })
     .otherwise('/');
     $locationProvider.html5Mode({
-        enabled: true,
+      enabled: true,
     });
   })
   .config(function($mdThemingProvider) {
@@ -48,4 +53,7 @@ angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
   })
   .controller('ContactCtrl', function($rootScope, $routeParams) {
     $rootScope.active = 'contact';
+  })
+  .controller('AspaCtrl', function($rootScope) {
+    $rootScope.active = 'aspa';
   });
