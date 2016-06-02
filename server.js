@@ -12,8 +12,7 @@ var https   		= require('https');
 /* Express App */
 var app = express();
 
-// DB connection
-var db = require('./config/db.js');
+var db = require('./config/db');
 mongoose.connect(db);
 
 // Helmet
@@ -23,6 +22,9 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.STRECKUSECRET));
+
+// Passport.js
+app.use(passport.initialize());
 
 // API
 var api = require('./app/api');
@@ -37,7 +39,7 @@ app.use(express.static(__dirname + '/static/public', { index: false }));
 app.use('/images', express.static(__dirname + '/static/images', { index: false }));
 
 // Admin
-app.use('/admin', express.static(__dirname + '/static/private', { index: false }));
+app.use('/admin', express.static(__dirname + '/static/admin', { index: false }));
 
 
 // Admin
