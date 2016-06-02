@@ -36,6 +36,23 @@ app.use(express.static(__dirname + '/static/public', { index: false }));
 // Images
 app.use('/images', express.static(__dirname + '/static/images', { index: false }));
 
+// Admin
+app.use('/admin', express.static(__dirname + '/static/private', { index: false }));
+
+
+// Admin
+app.get('/login', function(req, res, next){
+  res.end();
+});
+
+// Index
+app.get('/admin*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/static/private', 'index.html'));
+});
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/static/public', 'index.html'));
+});
+
 // app.route('/login')
 //     .get(auth.try('jwt', '/'), function(req, res) {
 //         res.sendFile(path.join(__dirname, '/static/public', 'index.html'));
@@ -57,9 +74,6 @@ app.use('/images', express.static(__dirname + '/static/images', { index: false }
 // Shared static
 // app.use(express.static(__dirname + '/static/strecku/shared', { index: false }));
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, '/static/public', 'index.html'));
-});
 
 
 
