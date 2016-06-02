@@ -1,5 +1,5 @@
 /* app.js with site functionality */
-angular.module('festu-admin', ['ngRoute'])
+angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
@@ -32,16 +32,20 @@ angular.module('festu-admin', ['ngRoute'])
         enabled: true,
     });
   })
-  .controller('MainCtrl', function() {
-  })
-  .controller('HomeCtrl', function($rootScope) {
-    this.test = 'Tjoho'
+  .config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
+    .primaryPalette('red')
+    .accentPalette('purple');
   })
   .controller('PartiesCtrl', function($rootScope) {
+    $rootScope.active = 'parties';
   })
   .controller('MembersCtrl', function($rootScope) {
+    $rootScope.active = 'members';
   })
   .controller('AboutCtrl', function($rootScope) {
+    $rootScope.active = 'about';
   })
-  .controller('ContactCtrl', function($rootScope) {
+  .controller('ContactCtrl', function($rootScope, $routeParams) {
+    $rootScope.active = 'contact';
   });
