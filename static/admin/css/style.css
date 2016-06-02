@@ -7,7 +7,7 @@
  * Hide default border to remove 1px line.
  */
 
-.navbar.navbar-default {
+/*.navbar.navbar-default {
   margin: 0;
   background-image: none;
   background-color: white;
@@ -28,12 +28,12 @@
   padding: 20px;
   background-color: #f5f5f5;
   border-right: 1px solid #eee;
-}
+}*/
 
 /* Sidebar navigation */
-.nav-sidebar {
+/*.nav-sidebar {
   margin-top: 0px;
-  margin-right: -21px; /* 20px padding + 1px border */
+  margin-right: -21px;
   margin-left: -20px;
 }
 .nav-sidebar > li > a {
@@ -45,16 +45,23 @@
 .nav-sidebar > .active > a:focus {
   color: #fff;
   background-color: #428bca;
-}
+}*/
 
 
 /*
  * Main content
  */
-div[ng-view] {
+/*div[ng-view] {
   padding-top: 50px;
   min-height: calc(100% - 80px);
 }
 div.content {
   padding: 0 16px;
+}*/
+
+md-list-item a.md-button {
+  margin: 0;
+}
+md-list-item.active {
+  background-color: #bbb;
 }
