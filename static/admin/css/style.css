@@ -52,7 +52,7 @@
  * Main content
  */
 div[ng-view] {
-  padding-top: 96px;
+  padding-top: 50px;
   min-height: calc(100% - 80px);
 }
 div.content {
