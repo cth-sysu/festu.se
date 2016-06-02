@@ -3,16 +3,15 @@ angular.module('festu-admin', ['ngRoute'])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
-        templateUrl: 'admin/views/home.html',
+        templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
         controllerAs: 'ctrl'
     })
     .otherwise('/');
-    $locationProvider.html5Mode(true);
   })
   .controller('MainCtrl', function() {
   })
-  .controller('HomeCtrl', function($rootScope, $http, $filter) {
+  .controller('HomeCtrl', function($rootScope) {
     $rootScope.active = null;
     this.test = 'Tjoho'
   });
