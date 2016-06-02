@@ -65,3 +65,7 @@ md-list-item a.md-button {
 md-list-item.active {
   background-color: #bbb;
 }
+
+img.cffc {
+  max-width: 128px;
+}

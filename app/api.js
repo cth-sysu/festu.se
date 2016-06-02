@@ -9,14 +9,27 @@ var StaticString = require('./models/string');
 
 var router = express.Router();
 
+function auth(req, res, next) {
+  // if (req.isAuthenticated())
+    return next();
+  next('route');
+}
+
 router.route('/parties')
+  .get(auth, function(req, res, next) {
+    Party.find()
+    .sort('date')
+    .exec().then(res.json.bind(res), next);
+  })
   .get(function(req, res, next) {
     Party.find({ cffc: { $exists: true }})
+    .sort('date')
     .exec().then(function(parties){
       res.json(parties);
     }, next);
   })
   .post(function(req, res, next) {
+    console.log(req.body);
     var name = req.body.name;
     var date = req.body.date;
     var ticketSaleDate = new Date(req.body.ticketSaleDate);

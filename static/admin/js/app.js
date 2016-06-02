@@ -10,6 +10,11 @@ angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
       controller: 'PartiesCtrl',
       controllerAs: 'ctrl'
     })
+    .when('/parties/new', {
+      templateUrl: 'views/add_party.html',
+      controller: 'AddPartyCtrl',
+      controllerAs: 'ctrl'
+    })
     .when('/members', {
       templateUrl: 'views/members.html',
       controller: 'MembersCtrl',
@@ -40,8 +45,33 @@ angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
     .primaryPalette('red')
     .accentPalette('purple');
   })
-  .controller('PartiesCtrl', function($rootScope) {
+  .controller('PartiesCtrl', function($rootScope, $http, $location) {
     $rootScope.active = 'parties';
+    var vm = this;
+    $http.get('/api/parties')
+    .then(function(res) {
+      vm.parties = res.data;
+    });
+    this.add = function(ev) {
+      $location.url('parties/new');
+    };
+    this.edit = function(ev, party) {
+      console.log('TODO: edit', party.name);
+    };
+  })
+  .controller('AddPartyCtrl', function($rootScope, $http, $location) {
+    $rootScope.active = 'parties';
+    this.save = function(ev) {
+      $http.post('/api/parties', this.party)
+      .then(function(res) {
+        $location.url('/admin/parties');
+      });
+    };
+    // var vm = this;
+    // $http.get('/api/parties')
+    // .then(function(res) {
+    //   vm.parties = res.data;
+    // });
   })
   .controller('MembersCtrl', function($rootScope) {
     $rootScope.active = 'members';
