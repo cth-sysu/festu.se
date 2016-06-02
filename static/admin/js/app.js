@@ -3,9 +3,7 @@ angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
-      templateUrl: 'views/home.html',
-      controller: 'HomeCtrl',
-      controllerAs: 'ctrl'
+      redirect: '/parties'
     })
     .when('/parties', {
       templateUrl: 'views/parties.html',
@@ -55,6 +53,7 @@ angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
     .then(function(res) {
       vm.aboutContent = res.data['value'];
     })
+  })
   .controller('ContactCtrl', function($rootScope, $routeParams) {
     $rootScope.active = 'contact';
   })
