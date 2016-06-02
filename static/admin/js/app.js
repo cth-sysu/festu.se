@@ -53,6 +53,15 @@ angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
     .then(function(res) {
       vm.aboutContent = res.data['value'];
     })
+
+    this.submit = function(){
+      console.log(this.aboutContent);
+      var value = this.aboutContent;
+      $http.post('/api/strings/about', {value})
+      .then(function(res) {
+        console.log(res);
+      })
+    }
   })
   .controller('ContactCtrl', function($rootScope, $routeParams) {
     $rootScope.active = 'contact';
