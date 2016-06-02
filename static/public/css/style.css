@@ -154,7 +154,7 @@ div.content {
 /* Image posters         */
 /* --------------------- */
 img.party-poster {
-  width: 340px;
+  max-width: 340px;
 }
 
 .fullscreen-poster {
