@@ -1,6 +1,6 @@
 <div class="content container">
   <h1>About</h1>
-  <form>
+  <form ng-submit="ctrl.submit()">
     <textarea name="aboutContent" ng-model="ctrl.aboutContent" rows="20" cols="100"></textarea>
     <br>
     <input type="submit" value="Submit">
