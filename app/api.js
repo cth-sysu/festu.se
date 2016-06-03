@@ -7,6 +7,9 @@ var Member = require('./models/members');
 var Post = require('./models/post');
 var StaticString = require('./models/string');
 
+var http = require('http');
+var fs = require('fs');
+
 var router = express.Router();
 
 function auth(req, res, next) {
@@ -18,18 +21,17 @@ function auth(req, res, next) {
 router.route('/parties')
   .get(auth, function(req, res, next) {
     Party.find()
-    .sort('date')
+    .sort('-date')
     .exec().then(res.json.bind(res), next);
   })
   .get(function(req, res, next) {
     Party.find({ cffc: { $exists: true }})
-    .sort('date')
+    .sort('-date')
     .exec().then(function(parties){
       res.json(parties);
     }, next);
   })
   .post(function(req, res, next) {
-    console.log(req.body);
     var name = req.body.name;
     var date = req.body.date;
     var ticketSaleDate = new Date(req.body.ticketSaleDate);
@@ -58,7 +60,17 @@ router.route('/parties')
 router.route('/parties/:party_id')
   .put(function(req, res, next) {
     var cffc = req.body.cffc;
-    Party.findByIdAndUpdate(req.params.party_id, { cffc })
+    var image = req.body.image;
+    if (cffc && image) {
+      // Download and store image file
+      var file = fs.createWriteStream('./static/images/parties/' +
+        req.params.party_id + '.jpg');
+      var request = http.get(image, function(response) {
+        response.pipe(file);
+      });
+    }
+    Party.findByIdAndUpdate(req.params.party_id,
+      { $set: { cffc } })
     .exec().then(function(party) {
       res.end();
     }, next);
@@ -82,9 +94,11 @@ router.route('/parties/next')
 
 // ?year=2015
 router.route('/members')
-  .get(function(req, res, next){
+  .get(auth, function(req, res, next){
     Member.find()
     .select('-__v')
+    .populate({ path: 'post', select: 'symbol name' })
+    .sort('-year')
     .exec().then(function(members){
       res.json(members);
     }, next)

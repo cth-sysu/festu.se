@@ -76,7 +76,11 @@ function auth(req, res, next) {
 app.use(express.static(__dirname + '/static/public', { index: false }));
 app.use('/admin', auth, express.static(__dirname + '/static/admin', { index: false }));
 
-app.use('/images', express.static(__dirname + '/static/images', { index: false }));
+app.use('/images',
+  express.static(__dirname + '/static/images', { index: false }),
+  function(req, res, next) {
+    res.status(404).end();
+  });
 
 // Routes
 app.get('/admin*', auth, function(req, res) {
