@@ -131,7 +131,7 @@ angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
     .then(function(res){
       vm.posts = res.data;
     })
-    this.programmes = [ 'K', 'KfKb', 'Sjö', 'M', 'TD', 'Z', 'E' 'D', 'IT', 'F', 'A', 'V', 'I', 'H' ];
+    this.programmes = [ 'K', 'KfKb', 'Sjö', 'M', 'TD', 'Z', 'E', 'D', 'IT', 'F', 'A', 'V', 'I', 'H' ];
     var year = new Date().getFullYear();
     this.member = { year };
     this.save = function(ev) {
