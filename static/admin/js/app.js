@@ -20,6 +20,11 @@ angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
       controller: 'MembersCtrl',
       controllerAs: 'ctrl'
     })
+    .when('/members/new', {
+      templateUrl: 'views/add_member.html',
+      controller: 'AddMemberCtrl',
+      controllerAs: 'ctrl'
+    })
     .when('/about', {
       templateUrl: 'views/about.html',
       controller: 'AboutCtrl',
@@ -77,7 +82,7 @@ angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
     this.save = function(ev) {
       $http.post('/api/parties', this.party)
       .then(function(res) {
-        $location.url('/admin/parties');
+        $location.url('parties');
       });
     };
   })
@@ -91,7 +96,7 @@ angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
       });
     };
   })
-  .controller('MembersCtrl', function($rootScope, $http, $mdDialog) {
+  .controller('MembersCtrl', function($rootScope, $http, $location, $mdDialog) {
     $rootScope.active = 'members';
     var vm = this;
     $http.get('/api/members')
@@ -117,6 +122,23 @@ angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
       var now = new Date();
       return now.getFullYear() - new Date(year,0,1).getFullYear() -
         (now.getMonth() < 7 ? 1 : 0);
+    };
+  })
+  .controller('AddMemberCtrl', function($rootScope, $http, $location) {
+    $rootScope.active = 'members';
+    var vm = this;
+    $http.get('/api/posts')
+    .then(function(res){
+      vm.posts = res.data;
+    })
+    this.programmes = [ 'K', 'KfKb', 'Sjö', 'M', 'TD', 'Z', 'E' 'D', 'IT', 'F', 'A', 'V', 'I', 'H' ];
+    var year = new Date().getFullYear();
+    this.member = { year };
+    this.save = function(ev) {
+      $http.post('/api/members', this.member)
+      .then(function(res) {
+        $location.url('members');
+      });
     };
   })
   .controller('AboutCtrl', function($rootScope, $http) {

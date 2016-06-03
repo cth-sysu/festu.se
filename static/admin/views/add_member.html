@@ -1,0 +1,46 @@
+<md-content layout-padding>
+  <h2>Add member</h2>
+  <form layout="row" layout-wrap>
+    
+    <md-input-container class="md-block" flex="30">
+      <label>Name</label>
+      <input ng-model="ctrl.member.name">
+    </md-input-container>
+    <md-input-container class="md-block" flex="30">
+      <label>Mail</label>
+      <input type="email" ng-model="ctrl.member.mail">
+    </md-input-container>
+    <md-input-container flex="20">
+      <label>FestU-post</label>
+      <md-select ng-model="ctrl.member.post">
+        <md-option ng-repeat="post in ctrl.posts" value="{{post._id}}">
+          {{post.symbol}} - {{post.name}}
+        </md-option>
+      </md-select>
+    </md-input-container>
+    <md-input-container class="md-block" flex="20">
+      <label>Year</label>
+      <input type="number" ng-model="ctrl.member.year">
+    </md-input-container>
+    
+    <md-input-container flex="20">
+      <label>Chalmers program</label>
+      <md-select ng-model="ctrl.member.programme.name">
+        <md-option ng-repeat="programme in ctrl.programmes" value="{{programme}}">
+          {{programme}}
+        </md-option>
+      </md-select>
+    </md-input-container>
+    <md-input-container class="md-block" flex="20">
+      <label>Chalmers year</label>
+      <input type="number" ng-model="ctrl.member.programme.year">
+    </md-input-container>
+
+    <md-input-container class="md-block" flex="100">
+      <label>Description</label>
+      <input type="text" ng-model="ctrl.member.description">
+    </md-input-container>
+    
+    <md-button class="md-raised md-primary" ng-click="ctrl.save()">Save</md-button>
+  </form>
+</md-content>

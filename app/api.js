@@ -93,6 +93,10 @@ router.route('/parties/next')
 
 
 // ?year=2015
+router.route('/posts')
+  .get(auth, function(req, res, next) {
+    Post.find().exec().then(res.json.bind(res), next);
+  });
 router.route('/members')
   .get(auth, function(req, res, next){
     Member.find()
@@ -104,7 +108,9 @@ router.route('/members')
     }, next)
   })
   .put()
-  .post()
+  .post(auth, function(req, res, next) {
+    new Member(req.body).save().then(res.json.bind(res), next);
+  })
   .delete();
 
 router.get('/members/current', function(req, res, next){
@@ -115,8 +121,7 @@ router.get('/members/current', function(req, res, next){
   .populate('post')
   .exec().then(function(members){
     res.json(members);
-  }, next)
-
+  }, next);
 });
 
 // /api/strings/contact_info
