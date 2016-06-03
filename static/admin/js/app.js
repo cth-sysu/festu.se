@@ -45,7 +45,7 @@ angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
     .primaryPalette('red')
     .accentPalette('purple');
   })
-  .controller('PartiesCtrl', function($rootScope, $http, $location) {
+  .controller('PartiesCtrl', function($rootScope, $http, $location, $mdDialog) {
     $rootScope.active = 'parties';
     var vm = this;
     $http.get('/api/parties')
@@ -56,7 +56,20 @@ angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
       $location.url('parties/new');
     };
     this.edit = function(ev, party) {
-      console.log('TODO: edit', party.name);
+      $mdDialog.show({
+        controller: 'EditPartyCtrl',
+        controllerAs: 'ctrl',
+        templateUrl: '/admin/views/edit_party.html',
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        locals: { party, cffc: party.cffc },
+        bindToController: true
+      })
+      .then(function(cffc) {
+        party.cffc = cffc;
+        party.reload = party.reload || 0;
+        party.reload++;
+      })
     };
   })
   .controller('AddPartyCtrl', function($rootScope, $http, $location) {
@@ -67,14 +80,44 @@ angular.module('festu-admin', ['ngRoute', 'ngMaterial'])
         $location.url('/admin/parties');
       });
     };
-    // var vm = this;
-    // $http.get('/api/parties')
-    // .then(function(res) {
-    //   vm.parties = res.data;
-    // });
   })
-  .controller('MembersCtrl', function($rootScope) {
+  .controller('EditPartyCtrl', function($rootScope, $http, $mdDialog) {
+    $rootScope.active = 'parties';
+    this.cancel = $mdDialog.cancel;
+    this.save = function(cffc, image) {
+      $http.put('/api/parties/' + this.party._id, { cffc, image })
+      .then(function(res) {
+        $mdDialog.hide(cffc);
+      });
+    };
+  })
+  .controller('MembersCtrl', function($rootScope, $http, $mdDialog) {
     $rootScope.active = 'members';
+    var vm = this;
+    $http.get('/api/members')
+    .then(function(res) {
+      vm.members = res.data;
+    });
+    this.maillist = function(ev) {
+      $mdDialog.show($mdDialog.alert()
+      .title('Maillist')
+      .textContent(this.members
+        .filter(function(member) {
+          return member.mail && member.mail.indexOf('@') >= 0;
+        })
+        .map(function(member) {
+          return member.mail;
+        }).join(', '))
+      .ok('ok').targetEvent(ev));
+    };
+    this.add = function(ev) {
+      $location.url('members/new');
+    };
+    this.x = function(year) {
+      var now = new Date();
+      return now.getFullYear() - new Date(year,0,1).getFullYear() -
+        (now.getMonth() < 7 ? 1 : 0);
+    };
   })
   .controller('AboutCtrl', function($rootScope, $http) {
     $rootScope.active = 'about';

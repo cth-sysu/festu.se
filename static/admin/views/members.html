@@ -1,3 +1,27 @@
-<div class="content container">
-  <h1>Members</h1>
+<div layout-padding>
+  <div layout="row" layout-align="center">
+    <md-button class="md-raised md-primary"
+      ng-click="ctrl.maillist($event)">Mail list</md-button>
+  </div>
 </div>
+<md-list>
+  <md-list-item class="md-3-line md-long-text" ng-repeat="member in ctrl.members">
+    <span class="md-avatar-icon">{{member.post.symbol || '?'}}</span>
+    <!-- <img ng-src="/images/members/{{member._id}}.jpg" class="md-avatar" alt="{{member.name}}"/> -->
+    <div class="md-list-item-text">
+      <h3><b>{{member.name}} ({{member.programme.name}})</b></h3>
+      <p>{{member.post.name}} {{member.year - 2000}}/{{member.year - 1999}} - {{'x'.repeat(ctrl.x(member.year))}}{{member.post.symbol}}</p>
+      <p><a ng-href="mailto:{{member.mail}}">{{member.mail}}</a></p>
+      <p>{{member.adress}}</p>
+      <p ng-if="!member.adress">No address record</p>
+    </div>
+    <md-button class="md-secondary md-icon-button" ng-click="ctrl.edit($event, party)">
+      <md-icon>edit</md-icon>
+    </md-button>
+  </md-list-item>
+</md-list>
+
+<md-button class="md-fab md-primary md-fab-bottom-right"
+  ng-click="ctrl.add($event)" aria-label="Add member">
+  <md-icon>add</md-icon>
+</md-button>

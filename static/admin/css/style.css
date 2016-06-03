@@ -66,6 +66,17 @@ md-list-item.active {
   background-color: #bbb;
 }
 
+md-content[ng-view] {
+  position: initial;
+}
+
 img.cffc {
   max-width: 128px;
+}
+
+span.md-avatar-icon {
+  width: 24px;
+  height: 24px;
+  line-height: 26px;
+  text-align: center;
 }
