@@ -12,7 +12,7 @@
 
     <!-- Next party -->
     <div>
-      <a class="card text-center" href="#next-party">
+      <a class="card text-center" href="#next-party" ng-if="ctrl.party">
         <p><span class="h2">{{ctrl.party.name}}</span>
           <span class="h3"> - {{ctrl.party.date | date:'longDate'}}</span></p>
         <p>
@@ -21,11 +21,15 @@
         </p>
       </a>
     </div>
+    <div class="card text-center" ng-if="!ctrl.party">
+      <span class="h3">Check back soon for the upcoming kalas</span>
+    </div>
+
   </div>
 </div>
 
 <!-- Next party details -->
-<div class="content container">
+<div class="content container" ng-if="ctrl.party">
   <a class="anchor" id="next-party"></a>
 
   <div class="text-center">

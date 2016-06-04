@@ -8,6 +8,7 @@ var Post = require('./models/post');
 var StaticString = require('./models/string');
 
 var http = require('http');
+var path = require('path');
 var fs = require('fs');
 
 var router = express.Router();
@@ -24,14 +25,7 @@ router.route('/parties')
     .sort('-date')
     .exec().then(res.json.bind(res), next);
   })
-  .get(function(req, res, next) {
-    Party.find({ cffc: { $exists: true }})
-    .sort('-date')
-    .exec().then(function(parties){
-      res.json(parties);
-    }, next);
-  })
-  .post(function(req, res, next) {
+  .post(auth, function(req, res, next) {
     var name = req.body.name;
     var date = req.body.date;
     var ticketSaleDate = new Date(req.body.ticketSaleDate);
@@ -57,6 +51,24 @@ router.route('/parties')
       res.json(party);
     }, next);
   });
+
+router.route('/parties')
+  .get(function(req, res, next) {
+    Party.find({ cffc: { $exists: true }})
+    .sort('-date')
+    .exec().then(function(parties){
+      res.json(parties);
+    }, next);
+  });
+router.route('/parties/next')
+  .get(function(req, res, next) {
+    Party.findOne({ date: { $gt: new Date() }})
+    .sort('-date')
+    .exec().then(function(party) {
+      res.json(null);
+    }, next);
+  });
+
 router.route('/parties/:party_id')
   .put(function(req, res, next) {
     var cffc = req.body.cffc;
@@ -79,15 +91,6 @@ router.route('/parties/:party_id')
     Party.findByIdAndRemove(req.params.party_id)
     .exec().then(function(party) {
       res.end();
-    }, next);
-  });
-
-router.route('/parties/next')
-  .get(function(req, res, next) {
-    Party.findOne({ date: { $gt: new Date() }})
-    .sort('-date')
-    .exec().then(function(party) {
-      res.json(party);
     }, next);
   });
 
@@ -150,5 +153,13 @@ router.route('/strings/:key')
       res.end();
     }, next);
   });
+
+router.post('/contact', function(req, res, next) {
+  // TODO: Send mail to festu@festu.se
+  // var file = fs.createWriteStream('.misc/messages/' +
+  //   new Date().toISOString() + '.txt');
+  // file.end(JSON.stringify(req.body));
+  res.end();
+});
 
 module.exports = router;
