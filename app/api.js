@@ -17,7 +17,7 @@ var mailTransport = nodemailer.createTransport(sendmailTransport());
 var router = express.Router();
 
 function auth(req, res, next) {
-  // if (req.isAuthenticated())
+  if (req.isAuthenticated())
     return next();
   next('route');
 }
