@@ -160,15 +160,15 @@ router.route('/strings/:key')
   });
 
 router.post('/contact', function(req, res, next) {
-  if (!req.body.mail || req.body.message) return next(500);
+  if (!req.body.mail || !req.body.message) return next(500);
   mailTransport.sendMail({
     from: {
       name: req.body.name,
       address: 'contact@festu.se'
     },
     to: 'angseus@festu.se',
-    subject: 'Website contact form',
-    text: 'From: mailto:' + req.body.mail + '\n\nMessage:\n' + req.body.message
+    subject: 'festu.se - Contact form',
+    text: 'From: ' + req.body.mail + '\n\nMessage:\n' + req.body.message
   }, function(err, info) {
     if (err) return next(err);
     res.json({ response: info.response });
