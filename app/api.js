@@ -160,10 +160,11 @@ router.route('/strings/:key')
 router.post('/contact', function(req, res, next) {
   // TODO: Send mail to info@festu.se
   mailTransport.sendMail({
-    from: {
-      name: req.body.name,
-      address: req.body.email
-    },
+    from: req.body.email,
+    // {
+    //   name: req.body.name,
+    //   address: req.body.email
+    // },
     to: 'angseus@festu.se',
     subject: 'Website contact form',
     text: req.body.message
