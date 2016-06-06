@@ -10,14 +10,9 @@ var StaticString = require('./models/string');
 var http = require('http');
 var fs = require('fs');
 var nodemailer = require('nodemailer');
+var sendmailTransport = require('nodemailer-sendmail-transport');
 
-var mailTransport = nodemailer.createTransport('SMTP', {
-  //TODO: init mailer
-  auth: {
-    user: "info@festu.se",
-    pass: "application-specific-password" 
-  }
-});
+var mailTransport = nodemailer.createTransport(sendmailTransport());
 
 var router = express.Router();
 
