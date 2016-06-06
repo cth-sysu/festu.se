@@ -7,16 +7,28 @@ var Member = require('./models/members');
 var Post = require('./models/post');
 var StaticString = require('./models/string');
 
+var http = require('http');
+var fs = require('fs');
+var nodemailer = require('nodemailer');
+var sendmailTransport = require('nodemailer-sendmail-transport');
+
+var mailTransport = nodemailer.createTransport(sendmailTransport());
+
 var router = express.Router();
 
+function auth(req, res, next) {
+  // if (req.isAuthenticated())
+    return next();
+  next('route');
+}
+
 router.route('/parties')
-  .get(function(req, res, next) {
-    Party.find({ cffc: { $exists: true }})
-    .exec().then(function(parties){
-      res.json(parties);
-    }, next);
+  .get(auth, function(req, res, next) {
+    Party.find()
+    .sort('-date')
+    .exec().then(res.json.bind(res), next);
   })
-  .post(function(req, res, next) {
+  .post(auth, function(req, res, next) {
     var name = req.body.name;
     var date = req.body.date;
     var ticketSaleDate = new Date(req.body.ticketSaleDate);
@@ -42,10 +54,38 @@ router.route('/parties')
       res.json(party);
     }, next);
   });
+
+router.route('/parties')
+  .get(function(req, res, next) {
+    Party.find({ cffc: { $exists: true }})
+    .sort('-date')
+    .exec().then(function(parties){
+      res.json(parties);
+    }, next);
+  });
+router.route('/parties/next')
+  .get(function(req, res, next) {
+    Party.findOne({ date: { $gt: new Date() }})
+    .sort('-date')
+    .exec().then(function(party) {
+      res.json(null);
+    }, next);
+  });
+
 router.route('/parties/:party_id')
   .put(function(req, res, next) {
     var cffc = req.body.cffc;
-    Party.findByIdAndUpdate(req.params.party_id, { cffc })
+    var image = req.body.image;
+    if (cffc && image) {
+      // Download and store image file
+      var file = fs.createWriteStream('./static/images/parties/' +
+        req.params.party_id + '.jpg');
+      var request = http.get(image, function(response) {
+        response.pipe(file);
+      });
+    }
+    Party.findByIdAndUpdate(req.params.party_id,
+      { $set: { cffc } })
     .exec().then(function(party) {
       res.end();
     }, next);
@@ -57,27 +97,26 @@ router.route('/parties/:party_id')
     }, next);
   });
 
-router.route('/parties/next')
-  .get(function(req, res, next) {
-    Party.findOne({ date: { $gt: new Date() }})
-    .sort('-date')
-    .exec().then(function(party) {
-      res.json(party);
-    }, next);
-  });
-
 
 // ?year=2015
+router.route('/posts')
+  .get(auth, function(req, res, next) {
+    Post.find().exec().then(res.json.bind(res), next);
+  });
 router.route('/members')
-  .get(function(req, res, next){
+  .get(auth, function(req, res, next){
     Member.find()
     .select('-__v')
+    .populate({ path: 'post', select: 'symbol name' })
+    .sort('-year')
     .exec().then(function(members){
       res.json(members);
     }, next)
   })
   .put()
-  .post()
+  .post(auth, function(req, res, next) {
+    new Member(req.body).save().then(res.json.bind(res), next);
+  })
   .delete();
 
 router.get('/members/current', function(req, res, next){
@@ -88,8 +127,7 @@ router.get('/members/current', function(req, res, next){
   .populate('post')
   .exec().then(function(members){
     res.json(members);
-  }, next)
-
+  }, next);
 });
 
 // /api/strings/contact_info
@@ -105,8 +143,9 @@ router.route('/strings/:key')
     var key = req.params.key;
     var value = req.body.value;
     if (!value) return res.status(400).end();
-    new StaticString({ key, value })
-    .save().then(function(val) {
+    StaticString.findOneAndUpdate({ key }, { key, value },
+      { upsert: true, new: true })
+    .exec().then(function(val) {
       res.json({ value: val.value });
     }, next);
   })
@@ -117,5 +156,21 @@ router.route('/strings/:key')
       res.end();
     }, next);
   });
+
+router.post('/contact', function(req, res, next) {
+  // TODO: Send mail to info@festu.se
+  mailTransport.sendMail({
+    from: {
+      name: req.body.name,
+      address: req.body.email
+    },
+    to: 'info@festu.se',
+    subject: 'Website contact form',
+    text: req.body.message
+  }, function(err, info) {
+    if (err) return next(err);
+    res.json({ response: info.response });
+  });
+});
 
 module.exports = router;

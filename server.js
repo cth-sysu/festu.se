@@ -1,6 +1,7 @@
 var express         = require('express');
 var bodyParser      = require('body-parser');
 var cookieParser    = require('cookie-parser');
+var session         = require('express-session')
 var passport        = require('passport');
 var path            = require('path');
 var helmet          = require('helmet');
@@ -12,8 +13,7 @@ var https   		= require('https');
 /* Express App */
 var app = express();
 
-// DB connection
-var db = require('./config/db.js');
+var db = require('./config/db');
 mongoose.connect(db);
 
 // Helmet
@@ -23,45 +23,72 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.STRECKUSECRET));
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+
+// Passport.js
+app.use(passport.initialize());
+app.use(passport.session());
+
+var LocalStrategy = require('passport-local').Strategy;
+
+passport.use(new LocalStrategy(
+  function(email, password, callback) {
+    callback(null, email == process.env.ADMIN_USER &&
+      password == process.env.ADMIN_PWD);
+  }
+));
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 // API
 var api = require('./app/api');
 app.use('/api', api);
 
 
+// Auth
+app.route('/login')
+  .get(function(req, res, next){
+    res.sendFile(path.join(__dirname, '/static/public', 'login.html'));
+  })
+  .post(passport.authenticate('local', {
+    failureRedirect: '/login?error',
+    successRedirect: '/admin'
+  }));
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+function auth(req, res, next) {
+  // if (req.isAuthenticated())
+    return next();
+  next('route');
+}
 
-// Public
+// Static
 app.use(express.static(__dirname + '/static/public', { index: false }));
+app.use('/admin', auth, express.static(__dirname + '/static/admin', { index: false }));
 
-// Images
-app.use('/images', express.static(__dirname + '/static/images', { index: false }));
+app.use('/images',
+  express.static(__dirname + '/static/images', { index: false }),
+  function(req, res, next) {
+    res.status(404).end();
+  });
 
-// app.route('/login')
-//     .get(auth.try('jwt', '/'), function(req, res) {
-//         res.sendFile(path.join(__dirname, '/static/public', 'index.html'));
-//     })
-//     .post(passport.authenticate('local-user', {
-//         session: false,
-//         failureRedirect: '/login?error'
-//     }), auth.login, function (req, res) {
-//         res.redirect('/');
-//     });
-// app.get('/logout', auth.logout(true));
-// app.get('*', passport.authenticate('jwt', {
-//     session: false,
-//     failureRedirect: '/login'
-// }));
-
-// ====== PRIVATE ======
-
-// Shared static
-// app.use(express.static(__dirname + '/static/strecku/shared', { index: false }));
-
+// Routes
+app.get('/admin*', auth, function(req, res) {
+  res.sendFile(path.join(__dirname, '/static/admin', 'index.html'));
+});
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '/static/public', 'index.html'));
 });
-
-
 
 // http.createServer(express().use('*', function(req, res){
 //     res.redirect(`https://${req.hostname}${req.originalUrl}`);
