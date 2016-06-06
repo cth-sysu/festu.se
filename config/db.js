@@ -1,1 +1,1 @@
-module.exports = 'mongodb://angseus.ninja:27017/festu';
+module.exports = 'mongodb://127.0.0.1:27017/festu';
