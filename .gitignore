@@ -74,3 +74,5 @@ static/public/libs
 
 # Misc data
 misc/data/
+
+process.json
