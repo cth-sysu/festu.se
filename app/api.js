@@ -8,8 +8,16 @@ var Post = require('./models/post');
 var StaticString = require('./models/string');
 
 var http = require('http');
-var path = require('path');
 var fs = require('fs');
+var nodemailer = require('nodemailer');
+
+var mailTransport = nodemailer.createTransport('SMTP', {
+  //TODO: init mailer
+  auth: {
+    user: "info@festu.se",
+    pass: "application-specific-password" 
+  }
+});
 
 var router = express.Router();
 
@@ -155,11 +163,19 @@ router.route('/strings/:key')
   });
 
 router.post('/contact', function(req, res, next) {
-  // TODO: Send mail to festu@festu.se
-  // var file = fs.createWriteStream('.misc/messages/' +
-  //   new Date().toISOString() + '.txt');
-  // file.end(JSON.stringify(req.body));
-  res.end();
+  // TODO: Send mail to info@festu.se
+  mailTransport.sendMail({
+    from: {
+      name: req.body.name,
+      address: req.body.email
+    },
+    to: 'info@festu.se',
+    subject: 'Website contact form',
+    text: req.body.message
+  }, function(err, info) {
+    if (err) return next(err);
+    res.json({ response: info.response });
+  });
 });
 
 module.exports = router;
