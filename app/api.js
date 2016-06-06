@@ -166,9 +166,9 @@ router.post('/contact', function(req, res, next) {
       name: req.body.name,
       address: 'contact@festu.se'
     },
-    to: 'angseus@festu.se',
+    to: 'festu@festu.se',
     subject: 'festu.se - Contact form',
-    text: 'From: ' + req.body.mail + '\n\nMessage:\n' + req.body.message
+    text: 'From: ' + req.body.name + ' ' + req.body.mail + '\nMessage:\n' + req.body.message
   }, function(err, info) {
     if (err) return next(err);
     res.json({ response: info.response });
