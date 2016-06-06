@@ -75,4 +75,8 @@ static/public/libs
 # Misc data
 misc/data/
 
+# Secure config credentials
+config
+
+# Secure application secrets etc.
 process.json
