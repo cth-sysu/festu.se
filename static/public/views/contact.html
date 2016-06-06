@@ -35,7 +35,7 @@
             <textarea class="form-control" rows="8" id="message" placeholder="Message" name="message" required ng-model="message"></textarea>
             <i class="fa fa-pencil form-control-feedback"></i>
           </div>
-          <input type="submit" value="Send" class="btn btn-primary">
+          <input type="submit" value="Send" class="btn btn-primary" ng-disabled="ctrl.sent">
         </form>
       </div>
     </div>
