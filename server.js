@@ -67,7 +67,7 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 function auth(req, res, next) {
-  // if (req.isAuthenticated())
+  if (req.isAuthenticated())
     return next();
   next('route');
 }

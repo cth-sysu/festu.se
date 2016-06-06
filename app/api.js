@@ -73,7 +73,7 @@ router.route('/parties/next')
   });
 
 router.route('/parties/:party_id')
-  .put(function(req, res, next) {
+  .put(auth, function(req, res, next) {
     var cffc = req.body.cffc;
     var image = req.body.image;
     if (cffc && image) {
@@ -90,7 +90,7 @@ router.route('/parties/:party_id')
       res.end();
     }, next);
   })
-  .delete(function(req, res, next) {
+  .delete(auth, function(req, res, next) {
     Party.findByIdAndRemove(req.params.party_id)
     .exec().then(function(party) {
       res.end();
@@ -113,22 +113,24 @@ router.route('/members')
       res.json(members);
     }, next)
   })
-  .put()
+  // .put()
   .post(auth, function(req, res, next) {
     new Member(req.body).save().then(res.json.bind(res), next);
   })
-  .delete();
+  // .delete()
+  ;
 
-router.get('/members/current', function(req, res, next){
-  var now = new Date();
-  var year = now.getMonth() < 6 ? now.getFullYear() - 1 : now.getFullYear();
-  Member.find({ year })
-  .select('-__v -mail -address')
-  .populate('post')
-  .exec().then(function(members){
-    res.json(members);
-  }, next);
-});
+router.route('/members/current')
+  .get(function(req, res, next){
+    var now = new Date();
+    var year = now.getMonth() < 6 ? now.getFullYear() - 1 : now.getFullYear();
+    Member.find({ year })
+    .select('-__v -mail -address')
+    .populate('post')
+    .exec().then(function(members){
+      res.json(members);
+    }, next);
+  });
 
 // /api/strings/contact_info
 router.route('/strings/:key')
@@ -139,7 +141,7 @@ router.route('/strings/:key')
       res.json({ value: val.value });
     }, next);
   })
-  .post(function(req, res, next) {
+  .post(auth, function(req, res, next) {
     var key = req.params.key;
     var value = req.body.value;
     if (!value) return res.status(400).end();
@@ -149,7 +151,7 @@ router.route('/strings/:key')
       res.json({ value: val.value });
     }, next);
   })
-  .delete(function(req, res, next) {
+  .delete(auth, function(req, res, next) {
     var key = req.params.key;
     StaticString.findOneAndRemove({ key })
     .exec(function(val) {
@@ -158,6 +160,7 @@ router.route('/strings/:key')
   });
 
 router.post('/contact', function(req, res, next) {
+  if (!req.body.email || req.body.message) return next(500);
   // TODO: Send mail to info@festu.se
   mailTransport.sendMail({
     from: req.body.email,
