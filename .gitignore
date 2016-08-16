@@ -76,7 +76,7 @@ static/public/libs
 misc/data/
 
 # Secure config credentials
-config/db.js
+config/
 
 # Secure application secrets etc.
 process.json
