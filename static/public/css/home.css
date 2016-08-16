@@ -12,6 +12,9 @@
   background-image: url(/images/banner.jpg);
   color: #fff;
 }
+.banner.party {
+  padding-top: 1px;
+}
 .banner::before {
   content: "";  
   position: absolute;
@@ -29,11 +32,13 @@
   margin: auto;
 }
 
+.banner .card-wrapper {
+  padding: 8px;
+}
 .banner .card {
   display: block;
-  max-width: 400px;
+  max-width: 600px;
   margin: auto;
-  margin-top: 32px;
   padding: 16px;
   background-color: rgba(32,32,32,0.8);
   color: #CCC;
@@ -47,11 +52,6 @@
   -ms-transition: all 0.1s ease-in-out;
   -o-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
-}
-.banner .card:hover { 
-  background-color: rgba(64,32,32,0.8);
-  color: white !important;
-  border-color: #f44;
 }
 
 a.anchor {
