@@ -190,6 +190,9 @@ img.party-poster {
   padding-right: 0px !important;  
   padding: 4px !important;
 }
+.partywall img {
+  border-radius: 8px;
+}
 
 .partywall a:after {
   content: attr(title);
