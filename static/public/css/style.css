@@ -158,6 +158,7 @@ div.content {
 img.party-poster {
   width: 100%;
   max-width: 140px;
+  margin-top: 26px;
 }
 
 .fullscreen-poster {
