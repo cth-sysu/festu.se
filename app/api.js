@@ -68,7 +68,7 @@ router.route('/parties/next')
     Party.findOne({ date: { $gt: new Date() }})
     .sort('-date')
     .exec().then(function(party) {
-      res.json(null);
+      res.json(party);
     }, next);
   });
 
