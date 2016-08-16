@@ -70,6 +70,7 @@ button.navbar-toggle {
   float: none;
 }
 .navbar .navbar-collapse {
+  background: white;
   text-align: center;
 }
 
@@ -77,8 +78,13 @@ button.navbar-toggle {
 .nav.navbar-nav > li {
   width: 128px;
 }
-.nav.navbar-nav > li:not(.brand) {
-  padding-top: 26px;
+@media(min-width: 768px) {
+  .navbar .navbar-collapse {
+    max-height: 92px !important;
+  }
+  .nav.navbar-nav > li:not(.brand) {
+    padding-top: 26px;
+  }
 }
 .nav.navbar-nav > li a {
   font-size: 16px;
