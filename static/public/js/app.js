@@ -27,6 +27,11 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
         controller: 'ContactCtrl',
         controllerAs: 'ctrl'
     })
+        .when('/puffa', {
+        templateUrl: 'views/puffa.html',
+        controller: 'PuffaCtrl',
+        controllerAs: 'ctrl'
+    })
     .otherwise('/');
     $locationProvider.html5Mode(true);
   })
@@ -62,6 +67,9 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
     });
   })
   .controller('AspaCtrl', function(){
+    
+  })
+  .controller('PuffaCtrl', function(){
     
   })
   .controller('AboutCtrl', function($rootScope, $http) {
