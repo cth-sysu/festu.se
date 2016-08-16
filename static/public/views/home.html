@@ -1,62 +1,50 @@
 <script src="/js/home.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/home.css">
 
-<div banner-image class="banner">
+<div banner-image class="banner" ng-class="{ party: ctrl.party }">
   <div class="banner-content">
     
     <!-- Description -->
     <div>
-      <h1 class="text-center">Festkommittén <span>FestU</span></h1>
+      <div class="text-center"
+          ng-class="{ h1: !ctrl.party, h3: ctrl.party }">Festkommittén <span>FestU</span></h1>
       <p class="lead text-center">The FestU committee arranges huge parties in the Chalmers Student Union building. Valborgskalaset is the biggest one and counts as one of the biggest reoccuring indoor parties in northen Europe.</p>
     </div>
 
     <!-- Next party -->
-    <div>
-      <a class="card text-center" href="#next-party" ng-if="ctrl.party">
-        <p><span class="h2">{{ctrl.party.name}}</span>
-          <span class="h3"> - {{ctrl.party.date | date:'longDate'}}</span></p>
-        <p>
-          <span class="h4">Tickets:</span>
-          <span>{{ ctrl.dates(ctrl.party.ticketSale.sales).join(' & ') }}</span>
-        </p>
-      </a>
+    <div class="card-wrapper">
+    <div class="card">
+      <div class="text-center">
+        <div class="h3">{{ctrl.party.name}}</div>
+        <div class="h4">{{ctrl.party.date | date:'MMMM d, yyyy HH:mm'}}-03:00</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 text-center">
+          <img class="party-poster" ng-src="/images/parties/{{ctrl.party._id}}_small.jpg" ng-click="showPoster=true">
+        </div>
+        <div class="col-xs-12 col-sm-8">
+          <h3>Ticket sale</h3>
+            <div class="row" ng-repeat="sale in ctrl.party.ticketSale.sales">
+              <h5 class="col-xs-4">{{sale.startTime | date:'EEEE d/M H:mm'}}-{{sale.endTime | date:'H:mm'}} *</h5>
+              <h5 class="col-xs-8">
+                <p>{{sale.locations.join(', ')}}</p>
+                <p ng-repeat="line in (lines = sale.info.split('\n'))">
+                  {{line}}
+                <p/>
+              </h5>
+            </div>
+            <h5>* {{ctrl.party.ticketSale.note}}</h5>
+            <br>
+            <div>
+              <span class="h4">Earn a free ticket! - </span>
+              <span class="h5"><a href="/puffa">Help us with the preparations or tearing down and get a free ticket!</a></span>
+            </div>
+        </div>
+      </div>
+    </div>
     </div>
     <div class="card text-center" ng-if="!ctrl.party">
       <span class="h3">Check back soon for the upcoming kalas</span>
     </div>
-
   </div>
-</div>
-
-<!-- Next party details -->
-<div class="content container" ng-if="ctrl.party">
-  <a class="anchor" id="next-party"></a>
-
-  <div class="text-center">
-    <h2>{{ctrl.party.name}}</h2>
-    <h4>{{ctrl.party.date | date:'longDate'}}</h4>
-  </div>
-  <div class="text-center">
-    <img class="party-poster" ng-src="/images/parties/{{ctrl.party._id}}_small.jpg"
-      ng-click="showPoster=true">
-  </div>
-  
-  <h3>Ticket sale</h3>
-  <div class="row" ng-repeat="sale in ctrl.party.ticketSale.sales">
-    <h4 class="col-xs-4">{{sale.startTime | date:'EEEE d/M H:mm'}}-{{sale.endTime | date:'H:mm'}} *</h4>
-    <h4 class="col-xs-8">
-      <p>{{sale.locations.join(', ')}}</p>
-      <p ng-repeat="line in (lines = sale.info.split('\n'))">
-        {{line}}
-      <p/>
-    </h4>
-  </div>
-  <h5>* {{ctrl.party.ticketSale.note}}</h5>
-  <br>
-
-  <div>
-    <span class="h3">Earn a free ticket! - </span>
-    <span class="h4"><a href="/puffa">Help us with the preparations or tearing down and get a free ticket!</a></span>
-  </div>
-  <br>
 </div>
