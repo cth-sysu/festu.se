@@ -1,10 +1,15 @@
 {
   "name": "festu",
   "main": "server.js",
+  "private": true,
   "author": {
     "name": "Johan Angséus & Markus Hultman",
     "email": "festu@festu.se",
     "url": "http://festu.se"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/angseus/festu.se.git"
   },
   "license": "MIT",
   "dependencies": {
