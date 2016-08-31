@@ -13,7 +13,7 @@
 
     <!-- Next party -->
     <div class="card-wrapper">
-    <div class="card">
+    <div class="card" ng-if="ctrl.party">
       <div class="text-center">
         <div class="h3">{{ctrl.party.name}}</div>
         <div class="h4">{{ctrl.party.date | date:'MMMM d, yyyy HH:mm'}}-03:00</div>
