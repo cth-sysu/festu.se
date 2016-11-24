@@ -20,17 +20,21 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
     .primaryPalette('red')
     .accentPalette('purple');
   })
-  .controller('MembersCtrl', function($rootScope, $http, $location, $mdDialog) {
+  .controller('MembersCtrl', function($rootScope, $http, $location, $mdDialog, $filter) {
     $rootScope.active = 'members';
     var vm = this;
     $http.get('/api/members')
     .then(function(res) {
       vm.members = res.data;
     });
-    this.maillist = function(ev) {
+    $http.get('/api/posts')
+    .then(function(res) {
+      vm.posts = res.data;
+    });
+    this.maillist = function(ev, filter) {
       $mdDialog.show($mdDialog.alert()
       .title('Maillist')
-      .textContent(this.members
+      .textContent($filter('filter')(this.members, filter)
         .filter(function(member) {
           return member.mail && member.mail.indexOf('@') >= 0;
         })
