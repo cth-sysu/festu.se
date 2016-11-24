@@ -1,14 +1,29 @@
 <div layout-padding>
   <div layout="row" layout-align="center">
-    <md-button class="md-raised md-primary"
-      ng-click="ctrl.maillist($event)">Mail list</md-button>
+    <md-input-container class="md-block">
+      <label>Name</label>
+      <input ng-model="filter.name" placeholder="Search name">
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label>Post</label>
+      <md-select ng-model="filter.post.symbol">
+        <md-option ng-repeat="post in ctrl.posts" value="{{post.symbol}}">
+          {{post.symbol}} - {{post.name}}
+        </md-option>
+      </md-select>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <md-button class="md-primary" ng-click="ctrl.maillist($event, filter)">
+        Generate mailing list
+      </md-button>
+    </md-input-container>
   </div>
 </div>
 <div layout="row" layout-align="center" ng-if="!ctrl.members">
   <md-progress-circular md-mode="indeterminate"></md-progress-circular>
 </div>
 <md-list>
-  <md-list-item class="md-3-line md-long-text" ng-repeat="member in ctrl.members">
+  <md-list-item class="md-3-line md-long-text" ng-repeat="member in ctrl.members | filter: filter">
     <span class="md-avatar-icon">{{member.post.symbol || '?'}}</span>
     <!-- <img ng-src="/images/members/{{member._id}}.jpg" class="md-avatar" alt="{{member.name}}"/> -->
     <div class="md-list-item-text">
