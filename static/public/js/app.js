@@ -37,7 +37,7 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
   })
   .run(function($rootScope, $location) {
     $('.nav a').on('click', function(){
-      $('.navbar-toggle').click();
+      $('#navbar').collapse('hide');
     });
   })
   .controller('MainCtrl', function() {
