@@ -1,6 +1,23 @@
 <script src="/js/home.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/home.css">
 
+<div id="partyModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">{{ctrl.party.name}}</h4>
+        </div>
+        <div class="modal-body">
+          <img class="party-poster" ng-src="/images/parties/{{ctrl.party._id}}_small.jpg" ng-click="show()">  
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+
 <div banner-image class="banner" ng-class="{ party: ctrl.party }">
   <div class="banner-content">
     
@@ -20,7 +37,7 @@
       </div>
       <div class="row">
         <div class="col-xs-12 col-sm-4 text-center">
-          <img class="party-poster" ng-src="/images/parties/{{ctrl.party._id}}_small.jpg" ng-click="showPoster=true">
+          <img class="party-poster" ng-src="/images/parties/{{ctrl.party._id}}_small.jpg" ng-click="show()">
         </div>
         <div class="col-xs-12 col-sm-8">
           <h3>Ticket sale</h3>

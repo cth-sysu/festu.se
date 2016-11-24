@@ -42,13 +42,16 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
   })
   .controller('MainCtrl', function() {
   })
-  .controller('HomeCtrl', function($rootScope, $http, $filter) {
+  .controller('HomeCtrl', function($rootScope, $scope, $http, $filter) {
     $rootScope.active = null;
     this.dates = function(sales) {
       return sales && sales.map(function(sale) {
         return $filter('date')(sale.startTime, 'd/M');
       });
     };
+    $scope.show = function(){
+      $("#partyModal").modal('show');
+    }
     var vm = this;
     $http.get('/api/parties/next')
     .then(function(res) {
