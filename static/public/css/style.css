@@ -93,6 +93,10 @@ button.navbar-toggle {
   text-shadow: 0 4px 6px rgba(20,20,20,0.2);
   text-decoration: none !important;
 }
+.nav.navbar-nav > li a:hover {
+  color: #444;
+  transform: scale(1.1);
+}
 .nav.navbar-nav > li a.active {
   color: #000;
   text-shadow: 0 6px 5px #aaa;
