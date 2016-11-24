@@ -16,11 +16,11 @@ var mailTransport = nodemailer.createTransport(sendmailTransport());
 
 var router = express.Router();
 
-// function auth(req, res, next) {
-//   if (req.isAuthenticated())
-//     return next();
-//   next('route');
-// }
+function auth(req, res, next) {
+  if (req.isAuthenticated())
+    return next();
+  next('route');
+}
 
 // router.route('/parties')
 //   .get(auth, function(req, res, next) {
@@ -97,28 +97,31 @@ router.route('/parties/next')
 //     }, next);
 //   });
 
-
-// ?year=2015
-// router.route('/posts')
-//   .get(auth, function(req, res, next) {
-//     Post.find().exec().then(res.json.bind(res), next);
-//   });
-// router.route('/members')
-//   .get(auth, function(req, res, next){
-//     Member.find()
-//     .select('-__v')
-//     .populate({ path: 'post', select: 'symbol name' })
-//     .sort('-year')
-//     .exec().then(function(members){
-//       res.json(members);
-//     }, next)
-//   })
-  // .put()
-  // .post(auth, function(req, res, next) {
-  //   new Member(req.body).save().then(res.json.bind(res), next);
-  // })
-  // .delete()
-  ;
+router.route('/posts')
+  .get(auth, function(req, res, next) {
+    Post.find().exec().then(res.json.bind(res), next);
+  });
+router.route('/members')
+  .get(auth, function(req, res, next){
+    Member.find()
+    .select('-__v')
+    .populate({ path: 'post', select: 'symbol name' })
+    .sort('-year')
+    .exec().then(function(members){
+      res.json(members);
+    }, next)
+  })
+  .put(auth, function(req, res, next) {
+    Member.findByIdAndUpdate(req.body.member._id,
+      req.body.member)
+    .exec().then(function(member) {
+      res.end();
+    }, next);
+  })
+  .post(auth, function(req, res, next) {
+    new Member(req.body).save().then(res.json.bind(res), next);
+  })
+  .delete()
 
 router.route('/members/current')
   .get(function(req, res, next){
@@ -131,33 +134,6 @@ router.route('/members/current')
       res.json(members);
     }, next);
   });
-
-// /api/strings/contact_info
-// router.route('/strings/:key')
-//   .get(function(req, res, next) {
-//     StaticString.findOne({ key: req.params.key})
-//     .then(function(val) {
-//       if (!val) return res.status(404).end();
-//       res.json({ value: val.value });
-//     }, next);
-//   })
-  // .post(auth, function(req, res, next) {
-  //   var key = req.params.key;
-  //   var value = req.body.value;
-  //   if (!value) return res.status(400).end();
-  //   StaticString.findOneAndUpdate({ key }, { key, value },
-  //     { upsert: true, new: true })
-  //   .exec().then(function(val) {
-  //     res.json({ value: val.value });
-  //   }, next);
-  // })
-  // .delete(auth, function(req, res, next) {
-  //   var key = req.params.key;
-  //   StaticString.findOneAndRemove({ key })
-  //   .exec(function(val) {
-  //     res.end();
-  //   }, next);
-  // });
 
 router.post('/contact', function(req, res, next) {
   if (!req.body.mail || !req.body.message) return next(500);

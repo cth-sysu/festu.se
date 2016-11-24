@@ -1,0 +1,82 @@
+/*
+ * Base structure
+ */
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+
+/*.navbar.navbar-default {
+  margin: 0;
+  background-image: none;
+  background-color: white;
+  border: none;
+  box-shadow: none;
+}
+.navbar .navbar-container {
+  height: 50px;
+  border: 0;
+  border-image: linear-gradient(to right, red, purple, orange) 1 0 100;
+  border-bottom: 3px solid;
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+
+.sidebar {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-right: 1px solid #eee;
+}*/
+
+/* Sidebar navigation */
+/*.nav-sidebar {
+  margin-top: 0px;
+  margin-right: -21px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}*/
+
+
+/*
+ * Main content
+ */
+/*div[ng-view] {
+  padding-top: 50px;
+  min-height: calc(100% - 80px);
+}
+div.content {
+  padding: 0 16px;
+}*/
+
+md-list-item a.md-button {
+  margin: 0;
+}
+md-list-item.active {
+  background-color: #bbb;
+}
+
+md-content[ng-view] {
+  position: initial;
+}
+
+img.cffc {
+  max-width: 128px;
+}
+
+span.md-avatar-icon {
+  width: 24px;
+  height: 24px;
+  line-height: 26px;
+  text-align: center;
+}

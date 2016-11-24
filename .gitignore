@@ -80,3 +80,5 @@ config/
 
 # Secure application secrets etc.
 process.json
+
+static/images/
