@@ -8,9 +8,10 @@
   max-width: 100%;
   border-radius: 50%;
 }
-.card a {
+a, a:hover {
   color: #000;
   text-decoration: none;
+  cursor: text;
 }
 .card .col-xs-4 {
   padding: 0;
