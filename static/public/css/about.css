@@ -33,3 +33,6 @@
 .card h4 span {
   font-size: 14px;
 }
+.card p.personal-description {
+  font-style: italic;
+}
