@@ -29,7 +29,7 @@
     <div class="md-list-item-text">
       <h3><b>{{member.name}} ({{member.programme.name}})</b></h3>
       <p ng-if="member.post">{{member.post.name}} {{member.year.toString().substr(-2)}}/{{(member.year + 1).toString().substr(-2)}} - {{'x'.repeat(ctrl.x(member.year))}}{{member.post.symbol}}</p>
-      <p><a ng-href="mailto:{{member.mail}}">{{member.mail}}</a></p>
+      <p><a ng-href="mailto:{{member.mail}}">{{member.mail}}</a> <span ng-if="member.phone"><md-icon>phone</md-icon><a ng-href="tel:{{member.phone}}">{{member.phone}}</a><span></p>
       <p>{{member.adress}}</p>
       <p ng-if="!member.adress">No address record</p>
     </div>
