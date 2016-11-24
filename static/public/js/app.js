@@ -87,7 +87,14 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
     this.festuYear = 
       (year - 1).toString().substr(-2) + '/' + 
       (year).toString().substr(-2);
-
+    this.a = this.x = '';
+    this.poke = function(post) {
+      if ((this.a += post) == 'AAA') {
+        window.location.href = 'http://a.festu.se';
+      } else if ((this.x += post) == 'XXX') {
+        window.location.href = 'http://x.festu.se';
+      }
+    }
     var vm = this;
     $http.get('/api/members/current')
     .then(function(res) {

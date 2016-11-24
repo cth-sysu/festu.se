@@ -2,11 +2,11 @@
 <div class="content container">
   
   <h2>About FestU</h2>
-  <p> The FestU committee arranges huge parties in the Chalmers Student Union building. Valborgskalaset is the biggest one and counts as one of the biggest reccuring indoor parties in northen Europe. The committee consists of six dedicated students who strive for bigger and better parties at Chalmers University. You can read more about them below!</p>
+  <p> The FestU committee arranges huge parties in the Chalmers Student Union building. Valborgskalaset is the biggest one and counts as one of the biggest reccuring indoor parties in northen Europe. The committee consists of <a href="http://6.festu.se">six</a> dedicated students who strive for bigger and better parties at Chalmers University. You can read more about them below!</p>
 
-  <p> FestU parties usually have thousands of visitors. At the parties you are most likely to encounter live acts, a lot of funny toys, a jumping castle and a lot of bars and dance floors! </p>
+  <p> FestU parties usually have thousands of visitors. At the parties you are most likely to encounter live acts, a lot of funny <a href="http://66.festu.se">toys</a>, a jumping castle and a lot of <a href="http://bacchus.festu.se">bars</a> and dance floors! </p>
 
-  <p> FestU parties demands a lot of hard work and time, which is why FestU needs a lot of help from other committees from around the campus. Any student who wants can also help out by "Puffing", which will also grant them a free ticket to the party!</p>
+  <p> FestU parties demands a lot of hard work and time, which is why FestU needs a lot of help from other committees from around the campus. Any student who wants can also help out by "Puffing", which will also grant them a <a href="http://cash.festu.se">free</a> ticket to the party!</p>
 
   <h2>FestU {{ctrl.festuYear}}</h2>
   <div class="row"></div>
@@ -14,7 +14,7 @@
     <div class="col-xs-4 text-center">
       <div class="picture">
         <img ng-src="/images/members/{{member._id}}.jpg">
-        <div class="avatar">{{member.post.symbol}}</div>
+        <div class="avatar" ng-click="ctrl.poke(member.post.symbol)">{{member.post.symbol}}</div>
       </div>
       <p class="h5">{{member.post.name}}</p>
       <p class="h5"><a ng-href="mailto:{{member.post.mail}}">{{member.post.mail}}</a></p>
