@@ -12,16 +12,19 @@
   color: #000;
   text-decoration: none;
 }
+.card .col-xs-4 {
+  padding: 0;
+}
 .card .avatar {
   position: absolute;
   right: 5%;
   bottom: 5%;
-  width: 42px;
-  height: 42px;
-  line-height: 42px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
   background-color: rgba(128,0,0,0.8);
   border-radius: 50%;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 500;
   color: white;
   text-align: center;
