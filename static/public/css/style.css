@@ -209,15 +209,16 @@ img.party-poster {
   left: 4px;
   bottom: 4px;
   padding: 0.5em 20px;
-  background: rgba(0,0,0,0.55); /* Text box background */
-  border-top-right-radius: 8px; /* Smooth edge in top right corner */
+  background: rgba(0,0,0,0.55); 
+  border-top-right-radius: 8px; 
+  border-bottom-left-radius: 8px;
   text-decoration: none !important;
   color: #fff;
   opacity: 1;
 }
 
 .partywall .ng-enter {
-  -webkit-transition: 1.5s linear all; /* Chrome */
+  -webkit-transition: 1.5s linear all;
   transition: 1.5s linear all;
   opacity: 0;
 }
