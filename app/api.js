@@ -22,39 +22,6 @@ function auth(req, res, next) {
   next('route');
 }
 
-// router.route('/parties')
-//   .get(auth, function(req, res, next) {
-//     Party.find()
-//     .sort('-date')
-//     .exec().then(res.json.bind(res), next);
-//   })
-//   .post(auth, function(req, res, next) {
-//     var name = req.body.name;
-//     var date = req.body.date;
-//     var ticketSaleDate = new Date(req.body.ticketSaleDate);
-//     var ticketSaleDate2 = new Date(ticketSaleDate.getTime() + 86400000);
-//     new Party({
-//       name, date,
-//       ticketSale: {
-//         sales: [{
-//           startTime: ticketSaleDate,
-//           endTime: new Date(ticketSaleDate.getTime() + 3600000),
-//           locations: [ 'Teknologgården (Johanneberg)', 'Jupiter (Lindholmen)' ],
-//           info: 'Chalmerist with valid student ID only\nMax 1+7 tickets/person'
-//         }, {
-//           startTime: ticketSaleDate2,
-//           endTime: new Date(ticketSaleDate2.getTime() + 3600000),
-//           locations: [ 'Teknologgården (Johanneberg)' ],
-//           info: 'Anyone can buy\nMax 8 tickets/person'
-//         }],
-//         note: 'Reserve for changes, >= 18 years'
-//       }
-//     })
-//     .save().then(function(party) {
-//       res.json(party);
-//     }, next);
-//   });
-
 router.route('/parties')
   .get(function(req, res, next) {
     Party.find({ cffc: { $exists: true }})
@@ -71,31 +38,6 @@ router.route('/parties/next')
       res.json(party);
     }, next);
   });
-
-// router.route('/parties/:party_id')
-//   .put(auth, function(req, res, next) {
-//     var cffc = req.body.cffc;
-//     var image = req.body.image;
-//     if (cffc && image) {
-//       // Download and store image file
-//       var file = fs.createWriteStream('./static/images/parties/' +
-//         req.params.party_id + '.jpg');
-//       var request = http.get(image, function(response) {
-//         response.pipe(file);
-//       });
-//     }
-//     Party.findByIdAndUpdate(req.params.party_id,
-//       { $set: { cffc } })
-//     .exec().then(function(party) {
-//       res.end();
-//     }, next);
-//   })
-//   .delete(auth, function(req, res, next) {
-//     Party.findByIdAndRemove(req.params.party_id)
-//     .exec().then(function(party) {
-//       res.end();
-//     }, next);
-//   });
 
 router.route('/posts')
   .get(function(req, res, next) {
