@@ -69,9 +69,10 @@ button.navbar-toggle {
   display: inline-block;
   float: none;
 }
-.navbar .navbar-collapse {
+#navbar {
   background: white;
   text-align: center;
+  border-bottom: 1px solid #e7e7e7;
 }
 
 /*List item style*/

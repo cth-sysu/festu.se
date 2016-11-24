@@ -35,6 +35,11 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
     .otherwise('/');
     $locationProvider.html5Mode(true);
   })
+  .run(function($rootScope, $location) {
+    $('.nav a').on('click', function(){
+      $('.navbar-toggle').click();
+    });
+  })
   .controller('MainCtrl', function() {
   })
   .controller('HomeCtrl', function($rootScope, $http, $filter) {
