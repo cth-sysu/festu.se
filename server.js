@@ -37,7 +37,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy(
 	function(email, password, callback) {
-    callback(null, email == process.env.ADMIN_USER && password == process.env.ADMIN_PWD);
+    callback(null, email == process.env.ORV_USERNAME && password == process.env.ORV_PASSWORD);
 }));
 passport.serializeUser(function(user, done) {
 	done(null, user);
