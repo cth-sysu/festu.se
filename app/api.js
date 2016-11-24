@@ -98,7 +98,7 @@ router.route('/parties/next')
 //   });
 
 router.route('/posts')
-  .get(auth, function(req, res, next) {
+  .get(function(req, res, next) {
     Post.find().exec().then(res.json.bind(res), next);
   });
 router.route('/members')
