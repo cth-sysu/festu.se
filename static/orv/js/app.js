@@ -43,6 +43,9 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
         }).join(', '))
       .ok('ok').targetEvent(ev));
     };
+    this.memberOrder = function(member) {
+      return member.year * 6 - (member.post ? ['6','66','$','‰','A','X'].indexOf(member.post.symbol) : 0);
+    };
     this.x = function(year) {
       var now = new Date();
       return now.getFullYear() - new Date(year,0,1).getFullYear() -
