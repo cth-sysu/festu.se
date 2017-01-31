@@ -34,7 +34,7 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
     this.maillist = function(ev, filter) {
       $mdDialog.show($mdDialog.alert()
       .title('Maillist')
-      .textContent($filter('filter')(this.members, filter)
+      .textContent($filter('filter')(this.members, filter, true)
         .filter(function(member) {
           return member.mail && member.mail.indexOf('@') >= 0;
         })
