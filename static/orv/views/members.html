@@ -7,6 +7,7 @@
     <md-input-container class="md-block">
       <label>Post</label>
       <md-select ng-model="filter.post.symbol">
+        <md-option value="">None</md-option>
         <md-option ng-repeat="post in ctrl.posts" value="{{post.symbol}}">
           {{post.symbol}} - {{post.name}}
         </md-option>
@@ -23,7 +24,7 @@
   <md-progress-circular md-mode="indeterminate"></md-progress-circular>
 </div>
 <md-list>
-  <md-list-item class="md-3-line md-long-text" ng-repeat="member in ctrl.members | filter:filter:true | orderBy:ctrl.memberOrder:1">
+  <md-list-item class="md-3-line md-long-text" ng-repeat="member in ctrl.members | filter:filter:ctrl.filter | orderBy:ctrl.memberOrder:1">
     <span class="md-avatar-icon">{{member.post.symbol || '?'}}</span>
     <!-- <img ng-src="/images/members/{{member._id}}.jpg" class="md-avatar" alt="{{member.name}}"/> -->
     <div class="md-list-item-text">

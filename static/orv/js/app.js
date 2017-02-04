@@ -62,6 +62,9 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
         bindToController: true
       })
     };
+    this.filter = function(actual, expected) {
+      return !expected || angular.equals(actual, expected);
+    };
   })
   .controller('EditMemberCtrl', function($rootScope, $http, $mdDialog, member) {
     $rootScope.active = 'members';
