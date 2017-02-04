@@ -99,7 +99,7 @@ app.get('*', function(req, res) {
 // http.createServer(express().use('*', function(req, res){
 //     res.redirect(`https://${req.hostname}${req.originalUrl}`);
 // })).listen(3000);
-http.createServer(app).listen(5000);
+http.createServer(app).listen(5000, 'localhost');
 
 // TODO: SSL
 // var options = {
