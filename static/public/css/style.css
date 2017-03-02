@@ -360,3 +360,95 @@ textarea {
   background-color: #CC0000;
   border-color: #CC0000;
 }
+
+
+/* --------------------- */
+/* Banner                */
+/* --------------------- */
+
+.banner {
+  position: relative;
+  min-height: calc(100vh - 96px);
+  padding: 10vh 0;
+  background-position: center;
+  background-size: cover;
+  background-image: url(/images/banner.jpg);
+  color: #fff;
+}
+.banner.party {
+  padding-top: 1px;
+}
+.banner::before {
+  content: "";  
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.banner-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: auto;
+}
+
+.banner .card-wrapper {
+  padding: 8px;
+}
+.banner .card {
+  display: block;
+  max-width: 600px;
+  margin: auto;
+  padding: 16px;
+  background-color: rgba(32,32,32,0.8);
+  color: #CCC;
+  text-decoration: none !important;
+  border: 1px solid #ccc;
+  border-radius: 4px; 
+}
+.banner .card {
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+a.anchor {
+  display: block;
+  position: relative;
+  top: -96px;
+  visibility: hidden;
+}
+
+#partyModal .btn {
+  padding: 8px 15px !important;
+  font-size: 14px ;
+  line-height: 1.42857143;
+  min-width: 160px;
+  text-align: center;
+  border-radius: 0;
+  text-transform: uppercase;
+  background-color: #FFFFFF;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+#partyModal .btn-primary {
+  color: #CC0000;
+  border: 1px solid #cccccc;
+}
+#partyModal .btn-primary:hover {
+  color: #ffffff;
+  background-color: #CC0000;
+  border-color: #CC0000;
+}
+
+#partyModal .party-poster {
+  max-width: 100%;
+}
