@@ -22,6 +22,12 @@ function auth(req, res, next) {
   next('route');
 }
 
+function token(req, res, next) {
+  if (req.get('Authorization') === process.env.SECRET)
+    return next();
+  next('route');
+}
+
 router.route('/parties')
   .get(function(req, res, next) {
     Party.find({ cffc: { $exists: true }})
@@ -75,6 +81,20 @@ router.route('/members/current')
     .exec().then(function(members){
       res.json(members);
     }, next);
+  });
+
+router.route('/members/name')
+  .get(token, (req, res, next) => {
+    Member.findOne({mail: req.query.mail}).populate('post').exec()
+    .then(member => member || Promise.reject())
+    .catch(() => res.status(404).end())
+    .then(member => {
+      const years = member.year
+          ? Math.floor((new Date() - new Date(parseInt(member.year), 6, 1)) / 31540000000)
+          : 0;
+      const name = member.post ? ('x'.repeat(years) + member.post.symbol) : member.name;
+      res.json({name});
+    })
   });
 
 router.post('/contact', function(req, res, next) {
