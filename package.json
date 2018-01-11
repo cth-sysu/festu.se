@@ -7,6 +7,9 @@
     "email": "festu@festu.se",
     "url": "http://festu.se"
   },
+  "scripts": {
+    "dev": "nodemon --watch app & webpack-dev-server --hot"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/angseus/festu.se.git"
@@ -16,6 +19,7 @@
     "bluebird": "^3.5.1",
     "body-parser": "*",
     "browserify": "*",
+    "clean-webpack-plugin": "^0.1.17",
     "cookie-parser": "*",
     "dotenv": "^4.0.0",
     "express": "*",
@@ -24,6 +28,7 @@
     "gulp-nodemon": "*",
     "gulp-notify": "*",
     "helmet": "*",
+    "html-webpack-plugin": "^2.30.1",
     "jsonwebtoken": "*",
     "method-override": "*",
     "mongodb": "2.2.24",
@@ -33,7 +38,8 @@
     "nodemailer-sendmail-transport": "*",
     "passport": "*",
     "passport-jwt": "*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "webpack": "^3.10.0"
   },
   "devDependencies": {
     "browser-sync": "latest",
@@ -48,6 +54,8 @@
     "gulp-nodemon": "latest",
     "gulp-notify": "latest",
     "gulp-server-livereload": "latest",
-    "jshint": "latest"
+    "jshint": "latest",
+    "nodemon": "^1.14.11",
+    "webpack-dev-server": "^2.10.1"
   }
 }
