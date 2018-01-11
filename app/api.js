@@ -1,33 +1,33 @@
+// Core
 var express = require('express');
-
+var router = express.Router();
 var mongoose = require('mongoose');
+var http = require('http');
+var fs = require('fs');
 
+// Mail
+var nodemailer = require('nodemailer');
+var sendmailTransport = require('nodemailer-sendmail-transport');
+var mailTransport = nodemailer.createTransport(sendmailTransport());
+
+// Models
 var Party = require('./models/parties');
 var Member = require('./models/members');
 var Post = require('./models/post');
-var StaticString = require('./models/string');
 
-var http = require('http');
-var fs = require('fs');
-var nodemailer = require('nodemailer');
-var sendmailTransport = require('nodemailer-sendmail-transport');
-
-var mailTransport = nodemailer.createTransport(sendmailTransport());
-
-var router = express.Router();
-
+// Auth functions
 function auth(req, res, next) {
   if (req.isAuthenticated())
     return next();
   next('route');
 }
-
 function token(req, res, next) {
   if (req.get('Authorization') === process.env.SECRET)
     return next();
   next('route');
 }
 
+// API Routes
 router.route('/parties')
   .get(function(req, res, next) {
     Party.find({ cffc: { $exists: true }})
@@ -36,6 +36,7 @@ router.route('/parties')
       res.json(parties);
     }, next);
   });
+
 router.route('/parties/next')
   .get(function(req, res, next) {
     Party.findOne({ date: { $gt: new Date() }})
@@ -49,6 +50,7 @@ router.route('/posts')
   .get(function(req, res, next) {
     Post.find().exec().then(res.json.bind(res), next);
   });
+
 router.route('/members')
   .get(auth, function(req, res, next){
     Member.find()
