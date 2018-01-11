@@ -12,6 +12,7 @@ const dotenv          = require('dotenv').config()
 // Express and DB
 const app   = express();
 const db    = require('./config/db');
+mongoose.Promise = require('bluebird');
 mongoose.connect(db);
 
 // Helmet for secure HTTP headers
@@ -34,7 +35,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true, httpOnly: true },
+    cookie: { secure: process.env.NODE_ENV === 'production', httpOnly: true },
 }));
 
 // Passport.js
