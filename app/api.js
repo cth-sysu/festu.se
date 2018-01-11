@@ -1,19 +1,20 @@
 // Core
-var express = require('express');
-var router = express.Router();
-var mongoose = require('mongoose');
-var http = require('http');
-var fs = require('fs');
+var express   = require('express');
+var router    = express.Router();
+var mongoose  = require('mongoose');
+var http      = require('http');
+var fs        = require('fs');
+var http      = require('http');
 
 // Mail
-var nodemailer = require('nodemailer');
+var nodemailer        = require('nodemailer');
 var sendmailTransport = require('nodemailer-sendmail-transport');
-var mailTransport = nodemailer.createTransport(sendmailTransport());
+var mailTransport     = nodemailer.createTransport(sendmailTransport());
 
 // Models
-var Party = require('./models/parties');
-var Member = require('./models/members');
-var Post = require('./models/post');
+var Party   = require('./models/parties');
+var Member  = require('./models/members');
+var Post    = require('./models/post');
 
 // Auth functions
 function auth(req, res, next) {
@@ -40,11 +41,33 @@ router.route('/parties')
     Party.findByIdAndUpdate(req.body.party._id,
       req.body.party)
     .exec().then(function(party) {
+      /* Download image from CFFC if there is a supplied URL */
+      if(req.body.party.cffcImage){
+        const url = "http://cffc.se/thumbnail/thumb/" + req.body.party.cffcImage.split("/")[5] + "/big.jpg";
+        const fileName = "static/images/parties/" + req.body.party._id + ".jpg";
+        var fileStream = fs.createWriteStream(fileName);
+        var request = http.get(url, function(response) {
+          response.pipe(fileStream);
+        });  
+      }
       res.end();
     }, next);
   })
   .post(auth, function(req, res, next) {
-    new Party(req.body).save().then(res.json.bind(res), next);
+    var partyId;
+    new Party(req.body).save(function(err, party){
+      partyId = party.id;
+    }).then(function(){
+      if(req.body.cffcImage){
+        const url = "http://cffc.se/thumbnail/thumb/" + req.body.cffcImage.split("/")[5] + "/big.jpg";
+        const fileName = "static/images/parties/" + partyId + ".jpg";
+        var fileStream = fs.createWriteStream(fileName);
+        var request = http.get(url, function(response) {
+          response.pipe(fileStream);
+        });
+      }
+      res.end();
+    }, next);
   })
   .delete()
 

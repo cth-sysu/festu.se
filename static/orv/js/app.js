@@ -15,6 +15,11 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
       controller: 'PartiesCtrl',
       controllerAs: 'ctrl'
     })
+    .when('/parties/new', {
+      templateUrl: 'views/add_party.html',
+      controller: 'AddPartyCtrl',
+      controllerAs: 'ctrl'
+    })
     .otherwise('/');
     $locationProvider.html5Mode({
       enabled: true,
@@ -110,6 +115,16 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
     .then(function(res) {
       vm.parties = res.data;
     });
+    this.add = function(ev) {
+      $mdDialog.show({
+        controller: 'AddPartyCtrl',
+        controllerAs: 'ctrl',
+        templateUrl: '/orv/views/add_party.html',
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        bindToController: true
+      })
+    };
     this.edit = function(ev, party) {
       $mdDialog.show({
         controller: 'EditPartyCtrl',
@@ -134,4 +149,16 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
         $mdDialog.hide(party);
       });
     };
-});
+  })
+  .controller('AddPartyCtrl', function($rootScope, $http, $mdDialog, $location) {
+    $rootScope.active = 'parties';
+    this.save = function(ev) {
+      console.log(this.party);
+      $http.post('/api/parties/', this.party)
+      .then(function(res) {
+        $mdDialog.hide(ev);
+        $location.url('parties');
+      });
+    };
+    this.cancel = $mdDialog.cancel;
+  });
