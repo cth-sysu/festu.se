@@ -86,3 +86,6 @@ static/images/
 
 # Webstorm
 .idea/
+
+# package.json lock
+package-lock.json
