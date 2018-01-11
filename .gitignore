@@ -81,4 +81,8 @@ config/
 # Secure application secrets etc.
 process.json
 
+# Static images
 static/images/
+
+# Webstorm
+.idea/
