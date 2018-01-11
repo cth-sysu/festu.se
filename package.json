@@ -15,6 +15,7 @@
   "dependencies": {
     "body-parser": "*",
     "browserify": "*",
+    "clean-webpack-plugin": "^0.1.17",
     "cookie-parser": "*",
     "express": "*",
     "express-session": "*",
@@ -22,6 +23,7 @@
     "gulp-nodemon": "*",
     "gulp-notify": "*",
     "helmet": "*",
+    "html-webpack-plugin": "^2.30.1",
     "jsonwebtoken": "*",
     "method-override": "*",
     "mongo-express": "0.38.0",
@@ -32,7 +34,8 @@
     "nodemailer-sendmail-transport": "*",
     "passport": "*",
     "passport-jwt": "*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "webpack": "^3.10.0"
   },
   "devDependencies": {
     "browser-sync": "latest",
