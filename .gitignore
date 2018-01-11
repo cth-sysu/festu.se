@@ -78,7 +78,9 @@ misc/data/
 # Secure application secrets etc.
 process.json
 
-# Static images
+# Static content
+static/public/*.html
+static/public/js
 static/images/
 
 # Webstorm
