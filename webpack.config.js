@@ -24,6 +24,7 @@ const config = {
       'angular-messages',
       'angular-route',
       'ng-infinite-scroll',
+      'bootstrap',
     ],
     index: './main.js',
     orv: './orv.js',
@@ -64,7 +65,7 @@ const config = {
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.html'),
-      excludeChunks: ['orv', 'vendor'],
+      excludeChunks: ['orv'],
     }),
     new HtmlWebpackPlugin({
       filename: 'login.html',

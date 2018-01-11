@@ -1,15 +1,11 @@
-<div class="content container partywall">
-  <h2 class="text-center">Previous Kalas</h2>
-  <div class="row">
-    <div infinite-scroll="fetchMoreParties()" infinite-scroll-immediate-check="1" infinite-scroll-distance="1">
-      <div ng-repeat="party in ctrl.parties" ng-animate="{enter: 'animate-enter'}">
-        <div class="clearfix" ng-if="$index % (windowWidth > 992 ? 3:2) == 0"></div>
-        <div class="col-md-4 col-sm-6">
-          <a href="{{party.cffc}}" title="{{party.name}} {{party.date | date:'yyyy'}}">
-            <img ng-src="/images/parties/{{party._id}}.jpg" class="img-responsive">
-          </a>
-        </div>
-      </div>
-    </div>
+<h2 class="mt-3 mb-2 text-center">Previous Kalas</h2>
+<div class="content partywall row"
+    infinite-scroll="fetchMoreParties()"
+    infinite-scroll-immediate-check="1"
+    infinite-scroll-distance="1">
+  <div ng-repeat="party in ctrl.parties" ng-animate="{enter: 'animate-enter'}" class="col-md-4 col-sm-6">
+    <a href="{{party.cffc}}" title="{{party.name}} {{party.date | date:'yyyy'}}">
+      <img ng-src="/images/parties/{{party._id}}.jpg" class="img-responsive">
+    </a>
   </div>
 </div>
