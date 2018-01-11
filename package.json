@@ -7,6 +7,9 @@
     "email": "festu@festu.se",
     "url": "http://festu.se"
   },
+  "scripts": {
+    "dev": "nodemon --watch app & webpack-dev-server --hot"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/angseus/festu.se.git"
@@ -50,6 +53,8 @@
     "gulp-nodemon": "latest",
     "gulp-notify": "latest",
     "gulp-server-livereload": "latest",
-    "jshint": "latest"
+    "jshint": "latest",
+    "nodemon": "^1.14.11",
+    "webpack-dev-server": "^2.10.1"
   }
 }
