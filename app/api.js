@@ -1,20 +1,19 @@
 // Core
-var express   = require('express');
-var router    = express.Router();
-var mongoose  = require('mongoose');
-var http      = require('http');
-var fs        = require('fs');
-var http      = require('http');
+const express   = require('express');
+const router    = express.Router();
+const mongoose  = require('mongoose');
+const http      = require('http');
+const fs        = require('fs');
 
 // Mail
-var nodemailer        = require('nodemailer');
-var sendmailTransport = require('nodemailer-sendmail-transport');
-var mailTransport     = nodemailer.createTransport(sendmailTransport());
+const nodemailer        = require('nodemailer');
+const sendmailTransport = require('nodemailer-sendmail-transport');
+const mailTransport     = nodemailer.createTransport(sendmailTransport());
 
 // Models
-var Party   = require('./models/parties');
-var Member  = require('./models/members');
-var Post    = require('./models/post');
+const Party   = require('./models/parties');
+const Member  = require('./models/members');
+const Post    = require('./models/post');
 
 // Auth functions
 function auth(req, res, next) {
