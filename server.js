@@ -7,6 +7,7 @@ var passport        = require('passport');
 var path            = require('path');
 var helmet          = require('helmet');
 var mongoose        = require('mongoose');
+var dotenv          = require('dotenv').config()
 
 // Express and DB
 var app = express();
@@ -28,12 +29,12 @@ app.use(helmet.contentSecurityPolicy({
 // Parser middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser(process.env.STRECKUSECRET));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
-	secret: process.env.SECRET,
-	resave: false,
+    secret: process.env.SESSION_SECRET,
+    resave: false,
     saveUninitialized: true,
-    cookie: { secure: true, httpOnly: true }
+    cookie: { secure: true, httpOnly: true },
 }));
 
 // Passport.js

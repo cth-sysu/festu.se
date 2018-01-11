@@ -92,3 +92,6 @@ package-lock.json
 
 # OS X files
 .DS_Store
+
+# Environment variables
+.env

@@ -16,6 +16,7 @@
     "body-parser": "*",
     "browserify": "*",
     "cookie-parser": "*",
+    "dotenv": "^4.0.0",
     "express": "*",
     "express-session": "*",
     "gulp-minify": "*",
