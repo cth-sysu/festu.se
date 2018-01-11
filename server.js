@@ -1,17 +1,17 @@
-var express         = require('express');
-var http    		= require('http');
-var bodyParser      = require('body-parser');
-var cookieParser    = require('cookie-parser');
-var session         = require('express-session')
-var passport        = require('passport');
-var path            = require('path');
-var helmet          = require('helmet');
-var mongoose        = require('mongoose');
-var dotenv          = require('dotenv').config()
+const express         = require('express');
+const http    		= require('http');
+const bodyParser      = require('body-parser');
+const cookieParser    = require('cookie-parser');
+const session         = require('express-session')
+const passport        = require('passport');
+const path            = require('path');
+const helmet          = require('helmet');
+const mongoose        = require('mongoose');
+const dotenv          = require('dotenv').config()
 
 // Express and DB
-var app = express();
-var db = require('./config/db');
+const app   = express();
+const db    = require('./config/db');
 mongoose.connect(db);
 
 // Helmet for secure HTTP headers
