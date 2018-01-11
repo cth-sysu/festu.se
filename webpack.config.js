@@ -16,6 +16,15 @@ const config = {
   devtool,
   context: path.join(__dirname, 'src'),
   entry: {
+    vendor: [
+      'jquery',
+      'angular',
+      'angular-animate',
+      'angular-aria',
+      'angular-messages',
+      'angular-route',
+      'ng-infinite-scroll',
+    ],
     index: './main.js',
     orv: './orv.js',
   },
@@ -46,7 +55,7 @@ const config = {
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.html'),
-      excludeChunks: ['orv'],
+      excludeChunks: ['orv', 'vendor'],
     }),
     new HtmlWebpackPlugin({
       filename: 'login.html',
