@@ -89,3 +89,6 @@ static/images/
 
 # package.json lock
 package-lock.json
+
+# OS X files
+.DS_Store
