@@ -23,6 +23,16 @@ const config = {
     path: path.join(__dirname, 'static', 'public'),
     publicPath: '/',
   },
+  module: {
+    rules: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader',
+      options: {
+        presets: ['env'],
+      },
+    }]
+  },
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development'
