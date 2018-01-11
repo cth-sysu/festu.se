@@ -1,6 +1,6 @@
 <md-dialog flex layout-padding>
-    <h2>Editing {{ctrl.party.name}} {{ctrl.party.date | limitTo:4}}</h2>
-    <form ng-submit="ctrl.save(ctrl.party)" name="form">
+    <h2>Adding party {{ctrl.party.name}} {{ctrl.party.date | limitTo:4}}</h2>
+    <form ng-submit="ctrl.save($event)" name="form">
         <h3>General</h3>
         <div layout-gt-xs="row">
             <md-input-container class="md-block" flex="25">
