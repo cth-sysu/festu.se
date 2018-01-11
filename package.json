@@ -8,7 +8,8 @@
     "url": "http://festu.se"
   },
   "scripts": {
-    "dev": "nodemon --watch app & webpack-dev-server --hot"
+    "dev": "nodemon --watch app & webpack-dev-server --hot",
+    "build": "NODE_ENV=production webpack -p"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,9 @@
   },
   "license": "MIT",
   "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
     "bluebird": "^3.5.1",
     "body-parser": "*",
     "browserify": "*",
