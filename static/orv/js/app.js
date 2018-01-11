@@ -31,10 +31,23 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
     .then(function(res) {
       vm.posts = res.data;
     });
+
     this.maillist = function(ev, filter) {
+      var membersFiltered = [];
+
+      if(!filter){
+        membersFiltered = $filter('filter')(this.members, filter, false);
+      }
+      else if(filter.post.symbol == ''){
+        membersFiltered = $filter('filter')(this.members, filter.name, false);
+      }
+      else{
+        membersFiltered = $filter('filter')($filter('filter')(this.members, filter.name, false), filter.post.symbol, true);
+      }
+
       $mdDialog.show($mdDialog.alert()
       .title('Maillist')
-      .textContent($filter('filter')(this.members, filter, true)
+      .textContent(membersFiltered
         .filter(function(member) {
           return member.mail && member.mail.indexOf('@') >= 0;
         })
@@ -43,14 +56,17 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
         }).join(', '))
       .ok('ok').targetEvent(ev));
     };
+
     this.memberOrder = function(member) {
       return member.year * 6 - (member.post ? ['6','66','$','‰','A','X'].indexOf(member.post.symbol) : 0);
     };
+
     this.x = function(year) {
       var now = new Date();
       return now.getFullYear() - new Date(year,0,1).getFullYear() -
         (now.getMonth() < 7 ? 1 : 0);
     };
+
     this.edit = function(ev, member) {
       $mdDialog.show({
         controller: 'EditMemberCtrl',
@@ -62,6 +78,7 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
         bindToController: true
       })
     };
+
     this.filter = function(actual, expected) {
       return !expected || angular.equals(actual, expected);
     };
