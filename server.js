@@ -1,4 +1,5 @@
 var express         = require('express');
+var http    		= require('http');
 var bodyParser      = require('body-parser');
 var cookieParser    = require('cookie-parser');
 var session         = require('express-session')
@@ -7,17 +8,22 @@ var path            = require('path');
 var helmet          = require('helmet');
 var mongoose        = require('mongoose');
 
-var http    		= require('http');
-var https   		= require('https');
-
-/* Express App */
+// Express and DB
 var app = express();
-
 var db = require('./config/db');
 mongoose.connect(db);
 
-// Helmet
+// Helmet for secure HTTP headers
 app.use(helmet());
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com', "'unsafe-inline'"],
+      scriptSrc: ["'self'"],
+      imgSrc: ["'self'"],
+      fontSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com;']
+    }
+}))
 
 // Parser middlewares
 app.use(bodyParser.json());
@@ -46,10 +52,6 @@ passport.deserializeUser(function(user, done) {
 	done(null, user);
 });
 
-// API
-var api = require('./app/api');
-app.use('/api', api);
-
 // Auth
 app.route('/login')
     .get(function(req, res, next){
@@ -72,6 +74,10 @@ function auth(req, res, next) {
     }
 }
 
+// API
+var api = require('./app/api');
+app.use('/api', api);
+
 // Static
 app.use(express.static(__dirname + '/static/public', { index: false }));
 app.use('/orv', auth, express.static(__dirname + '/static/orv', { index: false }));
@@ -91,4 +97,3 @@ app.get('*', function(req, res) {
 });
 
 http.createServer(app).listen(5000, 'localhost');
-
