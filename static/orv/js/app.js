@@ -10,6 +10,11 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
       controller: 'MembersCtrl',
       controllerAs: 'ctrl'
     })
+    .when('/parties', {
+      templateUrl: 'views/parties.html',
+      controller: 'PartiesCtrl',
+      controllerAs: 'ctrl'
+    })
     .otherwise('/');
     $locationProvider.html5Mode({
       enabled: true,
@@ -95,6 +100,38 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
       $http.put('/api/members/', { member })
       .then(function(res) {
         $mdDialog.hide(member);
+      });
+    };
+  })
+  .controller('PartiesCtrl', function($rootScope, $http, $location, $mdDialog) {
+    $rootScope.active = 'parties';
+    var vm = this;
+    $http.get('/api/parties')
+    .then(function(res) {
+      vm.parties = res.data;
+    });
+    this.edit = function(ev, party) {
+      $mdDialog.show({
+        controller: 'EditPartyCtrl',
+        controllerAs: 'ctrl',
+        templateUrl: '/orv/views/edit_party.html',
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        locals: { party },
+        bindToController: true
+      })
+    };
+  })
+  .controller('EditPartyCtrl', function($rootScope, $http, $mdDialog, party) {
+    $rootScope.active = 'parties';
+    var vm = this;
+    this.party = party;
+
+    this.cancel = $mdDialog.cancel;
+    this.save = function(party) {
+      $http.put('/api/parties/', { party })
+      .then(function(res) {
+        $mdDialog.hide(party);
       });
     };
 });

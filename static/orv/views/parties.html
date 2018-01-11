@@ -1,0 +1,15 @@
+<div layout-padding>
+  <div layout="row" layout-align="center" ng-if="!ctrl.parties">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+  </div>
+  <md-list>
+    <md-list-item class="md-3-line md-long-text"  ng-repeat="party in ctrl.parties">
+      <img ng-src="/images/parties/{{party._id}}.jpg" class="md-avatar" alt="?"/>
+      <div class="md-list-item-text">
+        <h3><b>{{party.name}} {{party.date | limitTo:4}}</b></h3>
+      </div>
+      <md-button class="md-secondary md-icon-button" ng-click="ctrl.edit($event, party)">
+        <md-icon>edit</md-icon>
+      </md-button>
+    </md-list-item>
+  </md-list>

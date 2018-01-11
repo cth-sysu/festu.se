@@ -35,7 +35,18 @@ router.route('/parties')
     .exec().then(function(parties){
       res.json(parties);
     }, next);
-  });
+  })
+  .put(auth, function(req, res, next) {
+    Party.findByIdAndUpdate(req.body.party._id,
+      req.body.party)
+    .exec().then(function(party) {
+      res.end();
+    }, next);
+  })
+  .post(auth, function(req, res, next) {
+    new Party(req.body).save().then(res.json.bind(res), next);
+  })
+  .delete()
 
 router.route('/parties/next')
   .get(function(req, res, next) {
