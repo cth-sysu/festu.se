@@ -1,3 +1,5 @@
+import './script';
+
 /* app.js with site functionality */
 angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
   .config(function($routeProvider, $locationProvider) {
