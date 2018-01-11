@@ -50,11 +50,6 @@ passport.deserializeUser(function(user, done) {
 var api = require('./app/api');
 app.use('/api', api);
 
-var mongo_express = require('mongo-express/lib/middleware')
-var mongo_express_admin = require('./config/mongo_express')
-
-app.use('/admin', mongo_express(mongo_express_admin))
-
 // Auth
 app.route('/login')
     .get(function(req, res, next){
