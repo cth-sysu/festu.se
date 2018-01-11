@@ -13,6 +13,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "*",
     "browserify": "*",
     "cookie-parser": "*",

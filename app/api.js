@@ -54,7 +54,7 @@ router.route('/parties')
   })
   .post(auth, function(req, res, next) {
     var partyId;
-    new Party(req.body).save(function(err, party){
+    new Party(req.body).save().then(function(party){
       partyId = party.id;
     }).then(function(){
       if(req.body.cffcImage){

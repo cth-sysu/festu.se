@@ -150,7 +150,7 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
       });
     };
   })
-  .controller('AddPartyCtrl', function($rootScope, $http, $mdDialog, $location) {
+  .controller('AddPartyCtrl', function($rootScope, $http, $mdDialog, $location, $route) {
     $rootScope.active = 'parties';
     this.save = function(ev) {
       console.log(this.party);
@@ -158,6 +158,7 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
       .then(function(res) {
         $mdDialog.hide(ev);
         $location.url('parties');
+        $route.reload();
       });
     };
     this.cancel = $mdDialog.cancel;
