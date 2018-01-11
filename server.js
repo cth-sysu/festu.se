@@ -32,7 +32,8 @@ app.use(cookieParser(process.env.STRECKUSECRET));
 app.use(session({
 	secret: process.env.SECRET,
 	resave: false,
-	saveUninitialized: true
+    saveUninitialized: true,
+    cookie: { secure: true, httpOnly: true }
 }));
 
 // Passport.js
