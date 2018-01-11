@@ -52,7 +52,6 @@ app.use('/api', api);
 
 var mongo_express = require('mongo-express/lib/middleware')
 var mongo_express_admin = require('./config/mongo_express')
-var mongo_express_orv = require('./config/mongo_express_orv')
 
 app.use('/admin', mongo_express(mongo_express_admin))
 
@@ -96,14 +95,5 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '/static/public', 'index.html'));
 });
 
-// http.createServer(express().use('*', function(req, res){
-//     res.redirect(`https://${req.hostname}${req.originalUrl}`);
-// })).listen(3000);
 http.createServer(app).listen(5000, 'localhost');
 
-// TODO: SSL
-// var options = {
-//     key: fs.readFileSync('config/privkey.pem'),
-//     cert: fs.readFileSync('config/fullchain.pem')
-// };
-//var server = https.createServer(options, app).listen(443);
