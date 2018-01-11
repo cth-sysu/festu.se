@@ -1,0 +1,71 @@
+<md-dialog flex layout-padding>
+    <h2>Edit {{ctrl.party.name}} {{ctrl.party.date | limitTo:4}}</h2>
+    <form ng-submit="ctrl.save(ctrl.party)" name="form">
+        <h3>General</h3>
+        <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex="25">
+                <label>Name</label>
+                <input ng-model="ctrl.party.name">
+            </md-input-container>
+            <md-input-container class="md-block" flex="50">
+                <label>CFFC Link</label>
+                <input ng-model="ctrl.party.cffc">
+            </md-input-container>
+        </div>
+        <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex="50">
+                <label>Date</label>
+                <input ng-model="ctrl.party.date">
+            </md-input-container>
+        </div>
+
+        <h3>TicketSale Day 1</h3>
+        <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex="40">
+                <label>Starttime</label>
+                <input ng-model="ctrl.party.ticketSale.sales[0].startTime">
+            </md-input-container>
+            <md-input-container class="md-block" flex="40">
+                <label>Endtime</label>
+                <input ng-model="ctrl.party.ticketSale.sales[0].endTime">
+            </md-input-container>
+        </div>
+        <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex="40">
+                <label>Location 1</label>
+                <input ng-model="ctrl.party.ticketSale.sales[0].locations[0]">
+            </md-input-container>
+            <md-input-container class="md-block" flex="40">
+                <label>Location 2</label>
+                <input ng-model="ctrl.party.ticketSale.sales[0].locations[1]">
+            </md-input-container>
+        </div>
+
+        <h3>TicketSale Day 2</h3>
+        <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex="40">
+                <label>Starttime</label>
+                <input ng-model="ctrl.party.ticketSale.sales[1].startTime">
+            </md-input-container>
+            <md-input-container class="md-block" flex="40">
+                <label>Endtime</label>
+                <input ng-model="ctrl.party.ticketSale.sales[1].endTime">
+            </md-input-container>
+        </div>
+        <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex="40">
+                <label>Location 1</label>
+                <input ng-model="ctrl.party.ticketSale.sales[1].locations[0]">
+            </md-input-container>
+            <md-input-container class="md-block" flex="40">
+                <label>Location 2</label>
+                <input ng-model="ctrl.party.ticketSale.sales[1].locations[1]">
+            </md-input-container>
+        </div>
+
+        <div layout-gt-xs="row">
+            <md-button class="md-raised md-primary" type="submit">Save</md-button>
+            <md-button ng-click="ctrl.cancel()">Cancel</md-button>
+        </div>
+    </form>
+</md-dialog>
