@@ -1,3 +1,5 @@
+import './css/style.css';
+
 /* app.js with site functionality */
 angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
   .config(function($routeProvider, $locationProvider) {
