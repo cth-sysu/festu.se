@@ -43,6 +43,11 @@ const config = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.html')
     }),
+    new HtmlWebpackPlugin({
+      filename: 'login.html',
+      template: path.join(__dirname, 'src', 'login.html'),
+      chunks: [],
+    }),
   ],
   devServer: {
     historyApiFallback: true,
