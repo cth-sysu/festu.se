@@ -17,6 +17,7 @@ const config = {
   context: path.join(__dirname, 'src'),
   entry: {
     index: './main.js',
+    orv: './orv.js',
   },
   output: {
     filename: `js/${filename}`,
@@ -44,17 +45,26 @@ const config = {
       name: 'runtime'
     }),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.html')
+      template: path.join(__dirname, 'src', 'index.html'),
+      excludeChunks: ['orv'],
     }),
     new HtmlWebpackPlugin({
       filename: 'login.html',
       template: path.join(__dirname, 'src', 'login.html'),
       chunks: [],
     }),
+    new HtmlWebpackPlugin({
+      filename: 'orv.html',
+      template: path.join(__dirname, 'src', 'orv.html'),
+      chunks: ['runtime', 'orv'],
+    }),
   ],
   devServer: {
     historyApiFallback: true,
-    contentBase: path.join(__dirname, 'static', 'public'),
+    contentBase: [
+      path.join(__dirname, 'static', 'public'),
+      path.join(__dirname, 'static'),
+    ],
     proxy: {'/api': 'http://localhost:5000'},
   }
 };
