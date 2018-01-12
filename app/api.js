@@ -17,6 +17,9 @@ const Post    = require('./models/post');
 
 // Auth functions
 function auth(req, res, next) {
+  if (process.env.NODE_ENV === 'development') {
+    return next();
+  }
   if (req.isAuthenticated())
     return next();
   next('route');
