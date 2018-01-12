@@ -50,6 +50,10 @@ const config = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development'
     }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'runtime'
     }),
