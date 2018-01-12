@@ -79,7 +79,8 @@ misc/data/
 process.json
 
 # Static content
-static/public/*.html
+static/public/index.html
+static/public/login.html
 static/public/js
 static/images/
 

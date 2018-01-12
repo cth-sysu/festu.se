@@ -1,4 +1,7 @@
 import './script';
+import './css/about.css';
+import './css/home.css';
+import './css/style.css';
 
 /* app.js with site functionality */
 angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])

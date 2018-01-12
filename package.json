@@ -25,6 +25,7 @@
     "browserify": "*",
     "clean-webpack-plugin": "^0.1.17",
     "cookie-parser": "*",
+    "css-loader": "^0.28.8",
     "dotenv": "^4.0.0",
     "express": "*",
     "express-session": "*",
@@ -43,6 +44,7 @@
     "passport": "*",
     "passport-jwt": "*",
     "passport-local": "*",
+    "style-loader": "^0.19.1",
     "webpack": "^3.10.0"
   },
   "devDependencies": {
