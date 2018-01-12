@@ -31,6 +31,9 @@ const config = {
       options: {
         presets: ['env'],
       },
+    }, {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader']
     }]
   },
   plugins: [
