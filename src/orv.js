@@ -1,4 +1,4 @@
-import './css/style.css';
+import './css/orv.css';
 
 /* app.js with site functionality */
 angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
