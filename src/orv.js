@@ -1,3 +1,4 @@
+import 'angular-material/angular-material.min.css';
 import './css/orv.css';
 
 /* app.js with site functionality */

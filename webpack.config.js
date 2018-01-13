@@ -22,6 +22,7 @@ const config = {
       'angular-animate',
       'angular-aria',
       'angular-messages',
+      'angular-material',
       'angular-route',
       'ng-infinite-scroll',
       'bootstrap',
@@ -75,7 +76,7 @@ const config = {
     new HtmlWebpackPlugin({
       filename: 'orv.html',
       template: path.join(__dirname, 'src', 'orv.html'),
-      chunks: ['runtime', 'orv'],
+      excludeChunks: ['index'],
     }),
   ],
   devServer: {
