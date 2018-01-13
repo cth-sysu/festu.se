@@ -33,7 +33,7 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
     .primaryPalette('red')
     .accentPalette('purple');
   }])
-  .controller('MembersCtrl', ['$rootScope', '$http', '$location', '$mdDialog', '$filter, 'function($rootScope, $http, $location, $mdDialog, $filter) {
+  .controller('MembersCtrl', ['$rootScope', '$http', '$location', '$mdDialog', '$filter', function($rootScope, $http, $location, $mdDialog, $filter) {
     $rootScope.active = 'members';
     var vm = this;
     $http.get('/api/members')
