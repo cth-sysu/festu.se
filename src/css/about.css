@@ -1,22 +1,25 @@
-.card {
-  padding: 8px;
-}
-.card .picture {
-  position: relative;
-}
-.card img {
-  max-width: 100%;
-  border-radius: 50%;
-}
-a, a:hover {
+.about-description a,
+.about-description a:hover {
   color: #000;
   text-decoration: none;
   cursor: text;
 }
-.card .col-xs-4 {
-  padding: 0;
+.member {
+  padding: 8px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
-.card .avatar {
+.member > div {
+  max-width: 100%;
+  overflow: hidden;
+}
+.member .picture {
+  position: relative;
+}
+.member img {
+  max-width: 100%;
+}
+.member .avatar {
   position: absolute;
   right: 5%;
   bottom: 5%;
@@ -30,10 +33,4 @@ a, a:hover {
   color: white;
   text-align: center;
   vertical-align: middle;
-}
-.card h4 span {
-  font-size: 14px;
-}
-.card p.personal-description {
-  font-style: italic;
 }

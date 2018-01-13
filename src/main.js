@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './script';
 import './css/about.css';
 import './css/home.css';

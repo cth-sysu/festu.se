@@ -14,14 +14,12 @@ Node backend. Throw files and data on everyone!
 This is a simple guide describing how to get started.
 
 ### Running for the first time
-If you are running for the first time you have to install the dependencies from both npm and bower. 
+If you are running for the first time you have to install the dependencies from npm:
 
-* npm install && bower install
+`npm install`
 
-### Starting the server.
-The provided gulpfile.js will run a Node server on port 5000 and a BrowserSync server on port 3000.
-If you only want to run the Node server you can just run node server.js which will start a server 
-on port 5000.
+### Development.
+We use Webpack DevServer during development. The dev server runs on port 8080 and expects a backend
+proxy on port 5000. Run nodemon and webpack dev server simultaneously with:
 
-* node server.js
-
+`npm run dev`

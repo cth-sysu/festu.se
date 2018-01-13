@@ -16,6 +16,17 @@ const config = {
   devtool,
   context: path.join(__dirname, 'src'),
   entry: {
+    vendor: [
+      'jquery',
+      'angular',
+      'angular-animate',
+      'angular-aria',
+      'angular-messages',
+      'angular-material',
+      'angular-route',
+      'ng-infinite-scroll',
+      'bootstrap',
+    ],
     index: './main.js',
     orv: './orv.js',
   },
@@ -34,12 +45,25 @@ const config = {
       },
     }, {
       test: /\.css$/,
+      exclude: /node_modules/,
       use: ['style-loader', 'css-loader']
+    }, {
+      test: /\.css$/,
+      include: /node_modules/,
+      use: ['style-loader/url', 'file-loader']
     }]
   },
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development'
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity,
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'runtime'
@@ -56,7 +80,7 @@ const config = {
     new HtmlWebpackPlugin({
       filename: 'orv.html',
       template: path.join(__dirname, 'src', 'orv.html'),
-      chunks: ['runtime', 'orv'],
+      excludeChunks: ['index'],
     }),
   ],
   devServer: {
@@ -65,7 +89,13 @@ const config = {
       path.join(__dirname, 'static', 'public'),
       path.join(__dirname, 'static'),
     ],
-    proxy: {'/api': 'http://localhost:5000'},
+    proxy: {
+      '/api': 'http://localhost:5000',
+      '/images': {
+        target: 'https://festu.se',
+        changeOrigin: true,
+      },
+    },
   }
 };
 
