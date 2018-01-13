@@ -3,7 +3,7 @@ import './css/orv.css';
 
 /* app.js with site functionality */
 angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
-  .config(function($routeProvider, $locationProvider) {
+  .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
       redirectTo: '/members'
@@ -27,13 +27,13 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
     $locationProvider.html5Mode({
       enabled: true,
     });
-  })
-  .config(function($mdThemingProvider) {
+  }])
+  .config(['$mdThemingProvider', function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
     .primaryPalette('red')
     .accentPalette('purple');
-  })
-  .controller('MembersCtrl', function($rootScope, $http, $location, $mdDialog, $filter) {
+  }])
+  .controller('MembersCtrl', ['$rootScope', '$http', '$location', '$mdDialog', '$filter, 'function($rootScope, $http, $location, $mdDialog, $filter) {
     $rootScope.active = 'members';
     var vm = this;
     $http.get('/api/members')
@@ -95,8 +95,8 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
     this.filter = function(actual, expected) {
       return !expected || angular.equals(actual, expected);
     };
-  })
-  .controller('EditMemberCtrl', function($rootScope, $http, $mdDialog, member) {
+  }])
+  .controller('EditMemberCtrl', ['$rootScope', '$http', '$mdDialog', 'member', function($rootScope, $http, $mdDialog, member) {
     $rootScope.active = 'members';
     var vm = this;
   
@@ -110,8 +110,8 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
         $mdDialog.hide(member);
       });
     };
-  })
-  .controller('PartiesCtrl', function($rootScope, $http, $location, $mdDialog) {
+  }])
+  .controller('PartiesCtrl', ['$rootScope', '$http', '$location', '$mdDialog', function($rootScope, $http, $location, $mdDialog) {
     $rootScope.active = 'parties';
     var vm = this;
     $http.get('/api/parties')
@@ -139,8 +139,8 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
         bindToController: true
       })
     };
-  })
-  .controller('EditPartyCtrl', function($rootScope, $http, $mdDialog, party) {
+  }])
+  .controller('EditPartyCtrl', ['$rootScope', '$http', '$mdDialog', 'party', function($rootScope, $http, $mdDialog, party) {
     $rootScope.active = 'parties';
     var vm = this;
     this.party = party;
@@ -152,8 +152,8 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
         $mdDialog.hide(party);
       });
     };
-  })
-  .controller('AddPartyCtrl', function($rootScope, $http, $mdDialog, $location, $route) {
+  }])
+  .controller('AddPartyCtrl', ['$rootScope', '$http', '$mdDialog', '$location', '$route', function($rootScope, $http, $mdDialog, $location, $route) {
     $rootScope.active = 'parties';
     this.save = function(ev) {
       console.log(this.party);
@@ -165,4 +165,4 @@ angular.module('festu-orv', ['ngRoute', 'ngMaterial'])
       });
     };
     this.cancel = $mdDialog.cancel;
-  });
+  }]);
