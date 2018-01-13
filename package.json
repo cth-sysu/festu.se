@@ -8,7 +8,7 @@
     "url": "http://festu.se"
   },
   "scripts": {
-    "dev": "nodemon --watch app & webpack-dev-server --hot",
+    "dev": "concurrently --kill-others \"nodemon --watch app\" \"webpack-dev-server --hot\"",
     "build": "NODE_ENV=production webpack -p"
   },
   "repository": {
@@ -41,6 +41,7 @@
     "mustache": "*",
     "nodemailer": "*",
     "nodemailer-sendmail-transport": "*",
+    "nodemon": "^1.14.11",
     "passport": "*",
     "passport-jwt": "*",
     "passport-local": "*",
@@ -50,6 +51,7 @@
   "devDependencies": {
     "browser-sync": "latest",
     "browserify": "latest",
+    "concurrently": "^3.5.1",
     "gulp": "latest",
     "gulp-bower": "latest",
     "gulp-concat": "latest",
@@ -61,7 +63,6 @@
     "gulp-notify": "latest",
     "gulp-server-livereload": "latest",
     "jshint": "latest",
-    "nodemon": "^1.14.11",
     "webpack-dev-server": "^2.10.1"
   }
 }
