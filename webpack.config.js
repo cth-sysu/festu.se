@@ -65,7 +65,13 @@ const config = {
       path.join(__dirname, 'static', 'public'),
       path.join(__dirname, 'static'),
     ],
-    proxy: {'/api': 'http://localhost:5000'},
+    proxy: {
+      '/api': 'http://localhost:5000',
+      '/images': {
+        target: 'https://festu.se',
+        changeOrigin: true,
+      },
+    },
   }
 };
 
