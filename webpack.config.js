@@ -62,6 +62,10 @@ const config = {
       jQuery: 'jquery',
     }),
     new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity,
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
       name: 'runtime'
     }),
     new HtmlWebpackPlugin({
