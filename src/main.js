@@ -6,7 +6,7 @@ import './css/style.css';
 
 /* app.js with site functionality */
 angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
-  .config(function($routeProvider, $locationProvider) {
+  .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
         templateUrl: 'views/home.html',
@@ -40,15 +40,15 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
     })
     .otherwise('/');
     $locationProvider.html5Mode(true);
-  })
-  .run(function($rootScope, $location) {
+  }])
+  .run(['$rootScope', '$location', function($rootScope, $location) {
     $('.nav a').on('click', function(){
       $('#navbar').collapse('hide');
     });
-  })
+  }])
   .controller('MainCtrl', function() {
   })
-  .controller('HomeCtrl', function($rootScope, $scope, $http, $filter) {
+  .controller('HomeCtrl', ['$rootScope', '$scope', '$http', '$filter', function($rootScope, $scope, $http, $filter) {
     $rootScope.active = null;
     this.dates = function(sales) {
       return sales && sales.map(function(sale) {
@@ -63,8 +63,8 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
     .then(function(res) {
       vm.party = res.data;
     });
-  })
-  .controller('PartiesCtrl', function($rootScope, $scope, $window, $timeout, $http) {
+  }])
+  .controller('PartiesCtrl', ['$rootScope', '$scope', '$window', '$timeout', '$http', function($rootScope, $scope, $window, $timeout, $http) {
     $rootScope.active = 'parties';
 
     $scope.windowWidth = $window.innerWidth;
@@ -79,14 +79,14 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
     .then(function(res) {
       vm.parties = res.data;
     });
-  })
+  }])
   .controller('AspaCtrl', function(){
     
   })
   .controller('PuffaCtrl', function(){
     
   })
-  .controller('AboutCtrl', function($rootScope, $http) {
+  .controller('AboutCtrl', ['$rootScope', '$http', function($rootScope, $http) {
     $rootScope.active = 'about';
     var now = new Date();
     var year = now.getMonth() < 6 ? now.getFullYear() : now.getFullYear() + 1;
@@ -106,8 +106,8 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
     .then(function(res) {
       vm.members = res.data;
     });
-  })
-  .controller('ContactCtrl', function($http) {
+  }])
+  .controller('ContactCtrl', ['$http', function($http) {
     this.send = function(name, mail, message) {
       var vm = this;
       $http.post('/api/contact', { name, mail, message })
@@ -117,4 +117,4 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
         alert('Thank you! We will get back to you soon.');
       });
     };
-  });
+  }]);
