@@ -94,7 +94,7 @@ app.use('/images',
 
 // Routes
 app.get('/orv*', auth, function(req, res) {
-	res.sendFile(path.join(__dirname, '/static/orv', 'index.html'));
+  res.sendFile(path.join(__dirname, '/static/public', 'orv.html'));
 });
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '/static/public', 'index.html'));
