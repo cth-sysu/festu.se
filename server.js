@@ -31,6 +31,7 @@ app.use(helmet.contentSecurityPolicy({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
++app.set('trust proxy', 1);
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -93,7 +94,7 @@ app.use('/images',
 
 // Routes
 app.get('/orv*', auth, function(req, res) {
-	res.sendFile(path.join(__dirname, '/static/orv', 'index.html'));
+  res.sendFile(path.join(__dirname, '/static/public', 'orv.html'));
 });
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '/static/public', 'index.html'));
