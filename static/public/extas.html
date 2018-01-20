@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>
+  Hej</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+@keyframes saser {
+  0% {transform: translate(-15px, -5px)}
+  25% {transform: translate(15px, 5px)}
+  50% {transform: translate(-0px, -10px)}
+  75% {transform: translate(8px, -12px)}
+  100% {transform: translate(-20px, 15px)}
+}
+@keyframes saserText {
+  0% {transform: translate(8px, -12px)}
+  25% {transform: translate(-20px, 15px)}
+  50% {transform: translate(-15px, -5px)}
+  75% {transform: translate(15px, 5px)}
+  100% {transform: translate(-0px, -10px)}
+}
+  .extas {
+    width: 100%;
+    height: 100%;
+    animation: saser 100ms infinite;
+  }
+  h1 {
+    color: white;
+    position: absolute; top: 50px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    animation: saserText 500ms infinite;
+  }
+  </style>
+</head>
+
+<body>
+  <img class="extas" src="_extas.jpg"/>
+  <h1>LoB light?</h1>
+</body>
+
+</html>
