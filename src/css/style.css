@@ -106,7 +106,6 @@ div[ng-view] {
 /* --------------------- */
 img.party-poster {
   width: 100%;
-  max-width: 140px;
   margin-top: 26px;
 }
 
