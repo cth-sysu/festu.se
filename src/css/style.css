@@ -137,18 +137,24 @@ img.party-poster {
   border-radius: 8px;
 }
 
-.partywall a:after {
-  content: attr(title);
+.partywall span {
   position: absolute;
   left: 4px;
   bottom: 4px;
-  padding: 0.5em 20px;
+  padding: 4px;
+  padding-left: 20px;
   background: rgba(0,0,0,0.55); 
   border-top-right-radius: 8px; 
   border-bottom-left-radius: 8px;
   text-decoration: none !important;
   color: #fff;
   opacity: 1;
+}
+.partywall button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 14px;
 }
 
 .partywall .ng-enter {

@@ -79,6 +79,11 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
     .then(function(res) {
       vm.parties = res.data;
     });
+    $scope.openPartyPoster = function(e, party) {
+      e.preventDefault();
+      vm.party = party;
+      $("#posterModal").modal('show');
+    };
   }])
   .controller('AspaCtrl', function(){
     
