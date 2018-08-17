@@ -8,7 +8,8 @@ var MemberSchema = new mongoose.Schema({
   adress      : { type: String},
   programme   : { name: { type: String}, year: { type: Number} },
   year        : { type: Number},
-  description : { type: String}
+  description : { type: String},
+  has_image   : { type: Boolean}
 });
 
 module.exports = mongoose.model('Member', MemberSchema);
