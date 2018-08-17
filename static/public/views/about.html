@@ -10,7 +10,7 @@
     <div ng-repeat="member in ctrl.members" class="member col-xs-12 col-sm-6">
       <div class="text-center">
         <div class="picture">
-          <img ng-src="/images/members/{{member._id}}.jpg">
+          <img ng-src="{{ctrl.memberImage(member)}}">
           <div class="avatar" ng-click="ctrl.poke(member.post.symbol)">{{member.post.symbol}}</div>
         </div>
         <h6>{{member.post.name}}</h6>

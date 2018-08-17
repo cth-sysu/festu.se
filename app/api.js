@@ -116,7 +116,8 @@ router.route('/members/current')
     Member.find({ year })
     .select('-__v -mail -address')
     .populate('post')
-    .exec().then(function(members){
+    .exec().then(function(members) {
+      members.sort((lhs, rhs) => lhs.post.order - rhs.post.order);
       res.json(members);
     }, next);
   });

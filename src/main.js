@@ -106,6 +106,9 @@ angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
         window.location.href = 'http://x.festu.se';
       }
     }
+    this.memberImage = function(member) {
+      return member.has_image ? `/images/members/${member._id}.jpg` : `/images/members/fallback.png`;
+    };
     var vm = this;
     $http.get('/api/members/current')
     .then(function(res) {
