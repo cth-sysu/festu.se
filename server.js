@@ -23,7 +23,8 @@ app.use(helmet.contentSecurityPolicy({
       styleSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com', 'use.fontawesome.com', "'unsafe-inline'"],
       scriptSrc: ["'self'"],
       imgSrc: ["'self'", "data:"],
-      fontSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com', 'use.fontawesome.com']
+      fontSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com', 'use.fontawesome.com'],
+      frameSrc: ["'self'", 'www.facebook.com']
     }
 }))
 
