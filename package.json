@@ -31,6 +31,7 @@
     "bootstrap": "^4.0.0-beta.3",
     "clean-webpack-plugin": "^0.1.17",
     "cookie-parser": "*",
+    "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^0.28.8",
     "dotenv": "^4.0.0",
     "express": "*",

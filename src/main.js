@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/about.css';
 import './css/home.css';
-import './css/style.css';
 
 /* app.js with site functionality */
 angular.module('festu', ['ngRoute', 'infinite-scroll', 'ngAnimate'])
