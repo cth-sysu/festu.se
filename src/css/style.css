@@ -109,21 +109,6 @@ img.party-poster {
   margin-top: 26px;
 }
 
-.fullscreen-poster {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  background: rgba(0,0,0,0.7);
-}
-.fullscreen-poster img {
-  width: 80%;
-  padding: 32px;
-}
-
-
 /* --------------------- */
 /* Party photos          */
 /* --------------------- */
@@ -167,32 +152,6 @@ img.party-poster {
   opacity: 1;
 }
 
-/* --------------------- */
-/* CHS colors            */
-/* --------------------- */
-.bg-chs-white {
-    background: #FFFFFF;
-}
-
-.bg-chs-blue {
-    background: #00a8ff;
-    color: white;
-}
-
-.bg-chs-green {
-    background: #4AB08C;
-    color: white;
-}
-
-.bg-chs-red {
-    background: #D5767E;
-    color: white;
-}
-
-.bg-chs-purple {
-    background: #8F76AA;
-    color: white;
-}
 /* --------------------- */
 /* Contact form          */
 /* --------------------- */
