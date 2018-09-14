@@ -3,6 +3,7 @@ const webpack = require('webpack');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 let filename = '[name].dev.js';
 let devtool = 'eval-source-map';
@@ -82,6 +83,7 @@ const config = {
       template: path.join(__dirname, 'src', 'orv.html'),
       excludeChunks: ['index'],
     }),
+    new CopyWebpackPlugin(['css/style.css']),
   ],
   devServer: {
     historyApiFallback: true,
