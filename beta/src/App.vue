@@ -5,12 +5,15 @@
       <router-link to="/"><img src="/images/logo_header.png"></router-link>
       <router-link to="/about">About FestU</router-link>
     </div>
-    <router-view/>
+    <div id="wrapper">
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('assets/style.scss');
 
 body {
   margin: 0;
@@ -54,5 +57,8 @@ body {
       & img { -webkit-filter: opacity(1); }
     }
   }
+}
+#wrapper {
+  margin-top: 80px;
 }
 </style>

@@ -1,18 +1,69 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="description">
+      <h2>Festkommittén FestU</h2>
+      <span>The FestU committee arranges huge parties in the Chalmers Student Union building. Valborgskalaset is the biggest one and counts as one of the biggest reccuring indoor parties in northen Europe.</span>
+    </div>
+    <div v-if="loading" class="placeholder card">
+      <div class="loader"></div>
+    </div>
+    <NextParty v-else-if="party" :party="party"/>
+    <div v-else class="placeholder card">Check back soon for the upcoming party</div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import NextParty from '@/components/NextParty.vue';
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
-  }
+    NextParty
+  },
+  data() {
+    return {
+      loading: true,
+      party: null,
+    };
+  },
+  async mounted () {
+    const res = await fetch('/api/parties/next');
+    this.party = await res.json();
+    this.loading = false;
+  },
 }
 </script>
+
+<style scoped lang="scss">
+.home {
+  min-height: calc(100vh - 80px);
+  background: url(../assets/home-background.png);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 8px;
+}
+.description {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 24px;
+  color: white;
+  & h2 { margin: 8px 0; }
+}
+.loader {
+  margin: 8px auto;
+  border: 4px solid #888;
+  border-top: 4px solid #fff;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+}
+.next-party, .placeholder {
+  margin: 0 auto;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
