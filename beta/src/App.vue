@@ -37,6 +37,7 @@ body {
   top: 0;
   width: 100%;
   height: 77px;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
