@@ -5,6 +5,9 @@ module.exports = {
     proxy: {
       '/api': {
         target: 'https://festu.se'
+      },
+      '/images': {
+        target: 'https://festu.se'
       }
     }
   }
