@@ -8,6 +8,13 @@
     <div id="wrapper">
       <router-view/>
     </div>
+    <div id="footer">
+      <a href="http://www.ljudobildgruppen.se/"><img src="/images/committees/lob.png"></a>
+      <a href="http://www.svea.chs.chalmers.se"><img src="/images/committees/svea.png"></a>
+      <a href="http://www.pu.se"><img src="/images/committees/pu.png"></a>
+      <a href="http://www.cffc.se"><img src="/images/committees/cffc.png"></a>
+      <a href="http://www.chs.chalmers.se"><img src="/images/committees/chs.png"></a>
+    </div>
   </div>
 </template>
 
@@ -60,5 +67,19 @@ body {
 }
 #wrapper {
   margin-top: 80px;
+}
+#footer {
+  overflow: hidden;
+  padding: 8px;
+
+  background-color: #f8f9fa;
+  border-top: 3px solid;
+  border-image: linear-gradient(to right, red, purple, orange) 1;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  & a { flex: 1; }
+  & img { max-width: 100%; }
 }
 </style>
