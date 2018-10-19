@@ -50,20 +50,7 @@ export default {
   color: white;
   & h2 { margin: 8px 0; }
 }
-.loader {
-  margin: 8px auto;
-  border: 4px solid #888;
-  border-top: 4px solid #fff;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  animation: spin 1s linear infinite;
-}
 .next-party, .placeholder {
   margin: 0 auto;
-}
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }
 </style>
