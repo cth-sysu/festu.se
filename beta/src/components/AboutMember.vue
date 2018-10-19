@@ -2,7 +2,7 @@
   <div class="about-member">
     <div class="post">
       <div class="image">
-        <img :src="image">
+        <img :src="image" @load="$emit('load')">
         <div class="avatar" @click="poke(member.post.symbol)">{{ member.post.symbol }}</div>
       </div>
       <div>{{ member.post.name }}</div>

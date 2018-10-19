@@ -11,8 +11,10 @@
       <a href="mailto:festu@festu.se">festu@festu.se</a>
     </div>
     <h2>FestU {{ year | format }}</h2>
-    <div class="members">
-      <AboutMember v-for="member in  members" :key="member._id" :member="member"/>
+    <div v-if="loading" class="loader"></div>
+    <div class="members" v-show="!loading">
+      <AboutMember v-for="member in  members" :key="member._id"
+          :member="member" @load="--loading"/>
     </div>
   </div>
 </template>
@@ -30,12 +32,14 @@ export default {
     const now = new Date();
     return {
       year: now.getMonth() < 6 ? moment(now).subtract(1, 'year') : moment(now),
-      members: []
+      members: [],
+      loading: 1,
     };
   },
   async mounted() {
     const res = await fetch('/api/members/current');
     this.members = await res.json();
+    this.loading = this.members.length;
   },
   filters: {
     format: (date) => moment(date).format('YY') + '/' + moment(date).add(1, 'year').format('YY'),
