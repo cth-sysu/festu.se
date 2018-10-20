@@ -1,8 +1,10 @@
 <template>
-  <a class="party" :href="party.cffc">
-    <img :src="`/images/parties/${party._id}.jpg`">
-    <div>{{ party.name }} {{ party.date | date }}</div>
-  </a>
+  <transition name="fade">
+    <a class="party" :href="party.cffc" v-show="!loading">
+      <img :src="image" @load="done">
+      <div>{{ party.name }} {{ party.date | date }}</div>
+    </a>
+  </transition>
 </template>
 
 <script>
@@ -12,6 +14,21 @@ export default {
   name: 'Party',
   props: {
     party: Object
+  },
+  data() {
+    return {
+      loading: true,
+    };
+  },
+  computed: {
+    image() {
+      return `/images/parties/${this.party._id}.jpg`;
+    }
+  },
+  methods: {
+    done() {
+      this.loading = false;
+    },
   },
   filters: {
     date: (date) => moment(date).format('YYYY'),
@@ -46,5 +63,11 @@ export default {
 }
 @media (max-width: 480px) {
   .party { width: 100%; }
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>
