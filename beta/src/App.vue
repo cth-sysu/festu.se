@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/parties">Kalas</router-link>
-      <router-link to="/"><img src="/images/logo_header.png"></router-link>
+      <router-link to="/"><img src="./assets/logo_header.png"></router-link>
       <router-link to="/about">About FestU</router-link>
     </div>
     <div id="wrapper">
