@@ -83,11 +83,11 @@ const api = require('./app/api');
 app.use('/api', api);
 
 // Static
-app.use(express.static(__dirname + '/static/misc', { index: false }));
+app.use(express.static(__dirname + '/static/misc'));
 app.use(express.static(__dirname + '/static/beta', { index: false }));
-app.use('/orv', auth, express.static(__dirname + '/static/orv', { index: false }));
+app.use('/orv', auth, express.static(__dirname + '/static/orv'));
 
-app.use('/images', express.static(__dirname + '/static/images', { index: false }), function(req, res, next) {
+app.use('/images', express.static(__dirname + '/static/images'), function(req, res, next) {
   res.status(404).end();
 });
 
