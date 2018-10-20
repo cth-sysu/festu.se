@@ -84,6 +84,7 @@ var api = require('./app/api');
 app.use('/api', api);
 
 // Static
+app.use(express.static(__dirname + '/static/misc', { index: false }));
 app.use(express.static(__dirname + '/static/public', { index: false }));
 app.use('/orv', auth, express.static(__dirname + '/static/orv', { index: false }));
 
