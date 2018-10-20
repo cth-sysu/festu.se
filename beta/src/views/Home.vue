@@ -7,23 +7,28 @@
     <div v-if="loading" class="placeholder card">
       <div class="loader"></div>
     </div>
-    <NextParty v-else-if="party" :party="party"/>
+    <NextParty v-else-if="party" :party="party"
+        @show-poster="poster = party._id"/>
     <div v-else class="placeholder card">Check back soon for the upcoming party</div>
+    <PosterModal v-if="poster" :poster="poster" @dismiss="poster = null"/>
   </div>
 </template>
 
 <script>
 import NextParty from '@/components/NextParty.vue';
+import PosterModal from '@/components/PosterModal.vue';
 
 export default {
   name: 'home',
   components: {
-    NextParty
+    NextParty,
+    PosterModal
   },
   data() {
     return {
       loading: true,
       party: null,
+      poster: null,
     };
   },
   async mounted () {

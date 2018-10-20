@@ -4,7 +4,7 @@
       <div class="h3">{{ party.name }}</div>
       <div class="h4">{{ party.date | start }}-{{ party.date | end }}</div>
     </div>
-    <div class="poster">
+    <div class="poster" @click="$emit('show-poster')">
       <img :src="`/images/parties/${party._id}_small.jpg`">
     </div>
     <div class="description">{{ party.description }}</div>
