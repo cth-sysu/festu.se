@@ -9,11 +9,11 @@
       <router-view/>
     </div>
     <div id="footer">
-      <a href="http://www.ljudobildgruppen.se/"><img src="/images/committees/lob.png"></a>
-      <a href="http://www.svea.chs.chalmers.se"><img src="/images/committees/svea.png"></a>
-      <a href="http://www.pu.se"><img src="/images/committees/pu.png"></a>
-      <a href="http://www.cffc.se"><img src="/images/committees/cffc.png"></a>
-      <a href="http://www.chs.chalmers.se"><img src="/images/committees/chs.png"></a>
+      <a href="http://www.ljudobildgruppen.se/"><img src="./assets/committees/lob.png"></a>
+      <a href="http://www.svea.chs.chalmers.se"><img src="./assets/committees/svea.png"></a>
+      <a href="http://www.pu.se"><img src="./assets/committees/pu.png"></a>
+      <a href="http://www.cffc.se"><img src="./assets/committees/cffc.png"></a>
+      <a href="http://www.chs.chalmers.se"><img src="./assets/committees/chs.png"></a>
     </div>
   </div>
 </template>
