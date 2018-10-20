@@ -32,7 +32,7 @@ export default {
   bottom: 0;
   display: flex;
   justify-content: center;
-  background: rgba(0, 0, 0, .4);
+  background: linear-gradient(rgba(0, 0, 0, .4) 80%, transparent);
   padding: 8px;
   & img { max-height: 100%; }
 }
