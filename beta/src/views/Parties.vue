@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>Previous Kalas</h2>
     <div class="wall">
       <Party v-for="party in parties" :key="party._id" :party="party"/>
     </div>
