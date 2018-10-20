@@ -68,6 +68,7 @@ body {
 }
 #wrapper {
   margin-top: 80px;
+  min-height: calc(100vh - 83px);
 }
 #footer {
   overflow: hidden;

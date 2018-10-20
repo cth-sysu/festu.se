@@ -36,7 +36,8 @@ export default {
 
 <style scoped lang="scss">
 .home {
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 83px);
+  box-sizing: border-box;
   background: url(../assets/home-background.png);
   background-size: cover;
   background-position: center;
