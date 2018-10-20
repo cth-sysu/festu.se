@@ -12,7 +12,6 @@ const dotenv          = require('dotenv').config()
 // Express and DB
 const app   = express();
 const db    = require('./config/db');
-mongoose.Promise = require('bluebird');
 mongoose.connect(db);
 
 // Helmet for secure HTTP headers
