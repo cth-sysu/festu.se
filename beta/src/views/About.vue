@@ -6,9 +6,17 @@
       <p>FestU parties usually have thousands of visitors. At the parties you are most likely to encounter live acts, a lot of funny <a href="http://66.festu.se">toys</a>, a jumping castle and a lot of <a href="http://bacchus.festu.se">bars</a> and dance floors!</p>
       <p>FestU parties demands a lot of hard work and time, which is why FestU needs a lot of help from other committees from around the campus. Any student who wants can also help out by "Puffing", which will also grant them a <a href="http://cash.festu.se">free</a> ticket to the party!</p>
     </div>
-    <div>
-      <span>Contact us at</span>&nbsp;
-      <a href="mailto:festu@festu.se">festu@festu.se</a>
+    <div class="contact">
+      <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffestuchalmers&tabs&width=340&height=154&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=299455150478039" width="340" height="154" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+      <div>
+        <p>
+          Festkommittén FestU<br>
+          Chalmers Studentkår<br>
+          Teknologgården 2<br>
+          412 58 Göteborg
+        </p>
+        <a href="mailto:festu@festu.se">festu@festu.se</a>
+      </div>
     </div>
     <h2>FestU {{ year | format }}</h2>
     <div v-if="loading" class="loader"></div>
@@ -61,6 +69,10 @@ export default {
     text-decoration: none;
     cursor: text;
   }
+}
+.contact {
+  display: flex;
+  & iframe { margin-right: 16px; }
 }
 h2 {
   font-weight: normal;
