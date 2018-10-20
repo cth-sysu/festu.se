@@ -1,9 +1,15 @@
 <template>
   <transition name="fade">
-    <a class="party" :href="party.cffc" v-show="!loading">
+    <div class="party" v-show="!loading" @click="show_links = !show_links">
       <img :src="image" @load="done">
-      <div>{{ party.name }} {{ party.date | date }}</div>
-    </a>
+      <transition name="flip">
+        <div v-if="!show_links" key="name">{{ party.name }} {{ party.date | date }}</div>
+        <div v-else class="links" key="links">
+          <h3>{{ party.name }} {{ party.date | date }}</h3>
+          <a :href="party.cffc">CFFC</a>
+        </div>
+      </transition>
+    </div>
   </transition>
 </template>
 
@@ -18,6 +24,7 @@ export default {
   data() {
     return {
       loading: true,
+      show_links: false,
     };
   },
   computed: {
@@ -57,6 +64,22 @@ export default {
     background: rgba(0, 0, 0, .5);
     color: white;
   }
+  & .links {
+    top: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    & a {
+      padding: 8px 16px;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
 }
 @media (max-width: 720px) {
   .party { width: 50%; }
@@ -70,4 +93,12 @@ export default {
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
+.links.flip-enter-active, .links.flip-leave-active {
+  transition: all .3s;
+}
+.links.flip-enter, .links.flip-leave-to {
+  transform: rotateY(90deg);
+  opacity: 0;
+}
+
 </style>
