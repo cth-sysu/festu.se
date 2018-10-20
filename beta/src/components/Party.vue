@@ -7,6 +7,7 @@
         <div v-else class="links" key="links">
           <h3>{{ party.name }} {{ party.date | date }}</h3>
           <a :href="party.cffc">CFFC</a>
+          <a @click="$emit('show-poster')">Poster</a>
         </div>
       </transition>
     </div>
