@@ -3,9 +3,9 @@
     <div class="party" v-show="!loading" @click="show_links = !show_links">
       <img :src="image" @load="done">
       <transition name="flip">
-        <div v-if="!show_links" key="name">{{ party.name }} {{ party.date | date }}</div>
+        <div v-if="!show_links" key="name">{{ party.name }} {{ party.date | year }}</div>
         <div v-else class="links" key="links">
-          <h3>{{ party.name }} {{ party.date | date }}</h3>
+          <h3>{{ party.name }} {{ party.date | year }}</h3>
           <a :href="party.cffc">CFFC</a>
           <a @click="$emit('show-poster')">Poster</a>
         </div>
@@ -39,7 +39,7 @@ export default {
     },
   },
   filters: {
-    date: (date) => moment(date).format('YYYY'),
+    year: (date) => moment(date).format('YYYY'),
   },
 }
 </script>
