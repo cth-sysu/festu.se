@@ -5,6 +5,12 @@ require('dotenv').config({
 module.exports = {
   lintOnSave: false,
   outputDir: '../static/beta',
+  pages: {
+    index: {
+      title: 'Festkommittén FestU',
+      entry: 'src/main.js'
+    },
+  },
   devServer: {
     proxy: {
       '/api': {
