@@ -39,6 +39,7 @@ router.route('/parties')
       res.json(parties);
     }, next);
   })
+  // DEPRECATED
   .put(auth, function(req, res, next) {
     Party.findByIdAndUpdate(req.body.party._id,
       req.body.party)
@@ -81,6 +82,19 @@ router.route('/parties/next')
       res.json(party);
     }, next);
   });
+
+router.route('/parties/:id')
+  .get((req, res, next) => {
+    Party.findById(req.params.id).exec()
+    .then(party => res.json(party))
+    .catch(err => next(err));
+  })
+  .put((req, res, next) => {
+    Party.findByIdAndUpdate(req.params.id, req.body).exec()
+    .then(party => res.end())
+    .catch(err => next(err));
+  })
+  .delete((req, res, next) => res.status(501).end());
 
 router.route('/posts')
   .get(function(req, res, next) {
