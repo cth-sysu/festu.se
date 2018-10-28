@@ -5,6 +5,9 @@ const mongoose  = require('mongoose');
 const http      = require('http');
 const fs        = require('fs');
 
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/' })
+
 // Mail
 const nodemailer        = require('nodemailer');
 const sendmailTransport = require('nodemailer-sendmail-transport');
@@ -95,6 +98,20 @@ router.route('/parties/:id')
     .catch(err => next(err));
   })
   .delete((req, res, next) => res.status(501).end());
+
+router.route('/parties/:id/poster')
+  .put(upload.single('poster'), (req, res, next) => {
+    if (!req.file) {
+      return res.status(400).end();
+    }
+    const filename = `static/images/parties/${req.params.id}_small.jpg`;
+    fs.rename(req.file.path, filename, (err) => {
+      if (err) {
+        throw err;
+      }
+      res.end();
+    });
+  });
 
 router.route('/posts')
   .get(function(req, res, next) {

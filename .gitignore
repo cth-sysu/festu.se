@@ -81,6 +81,8 @@ static/public/login.html
 static/public/js
 static/images/
 
+uploads/
+
 # Webstorm
 .idea/
 
