@@ -24,7 +24,7 @@ export default {
     };
   },
   async mounted () {
-    const res = await fetch('/api/parties');
+    const res = await fetch('/api/parties?cffc=true');
     this.parties = await res.json();
   },
 }

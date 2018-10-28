@@ -32,12 +32,12 @@ function token(req, res, next) {
 
 // API Routes
 router.route('/parties')
-  .get(function(req, res, next) {
-    Party.find({ cffc: { $exists: true }})
+  .get((req, res, next) => {
+    const cffc = (req.query.cffc === 'true');
+    Party.find(cffc ? { cffc: { $exists: true }} : {})
     .sort('-date')
-    .exec().then(function(parties){
-      res.json(parties);
-    }, next);
+    .exec().then(parties => res.json(parties))
+    .catch(err => next(err));
   })
   // DEPRECATED
   .put(auth, function(req, res, next) {
