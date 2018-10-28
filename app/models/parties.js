@@ -13,7 +13,9 @@ var PartySchema = new mongoose.Schema({
     note: { type: String }
   },
   cffc: { type: String },
-  cffcImage: { type: String}
+  cffcImage: { type: String},
+  description: { type: String},
+  soldOut: { type: Boolean }
 });
 
 module.exports = mongoose.model('Party', PartySchema);
