@@ -54,6 +54,8 @@
     "passport-jwt": "*",
     "passport-local": "*",
     "popper.js": "^1.12.9",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
     "style-loader": "^0.19.1",
     "webpack": "^3.10.0"
   },

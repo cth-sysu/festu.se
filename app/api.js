@@ -4,6 +4,7 @@ const router    = express.Router();
 const mongoose  = require('mongoose');
 const http      = require('http');
 const fs        = require('fs');
+const request = require('request-promise-native');
 
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
@@ -34,6 +35,19 @@ function token(req, res, next) {
 }
 
 // API Routes
+
+router.route('/cffc')
+  .get((req, res, next) => {
+    const url = decodeURIComponent(req.query.url);
+    request(url).then(html => {
+      html = html.substring(html.indexOf('<ul class="photos">') + 19);
+      html = html.substring(0, html.indexOf('</ul>'));
+      const images = html.match(/http:\/\/cffc.se\/thumbnail\/thumb\/\d+\/small\.jpg/g);
+      res.json({ images });
+    })
+    .catch(() => res.status(404).end());
+  });
+
 router.route('/parties')
   .get((req, res, next) => {
     const cffc = (req.query.cffc === 'true');
@@ -93,8 +107,13 @@ router.route('/parties/:id')
     .catch(err => next(err));
   })
   .put((req, res, next) => {
-    Party.findByIdAndUpdate(req.params.id, req.body).exec()
-    .then(party => res.end())
+    Party.findByIdAndUpdate(req.params.id, req.body).exec().then(party => {
+      if (req.body.image) {
+        const filename = `static/images/parties/${party.id}.jpg`;
+        request(req.body.image).pipe(fs.createWriteStream(filename));
+      }
+      res.end();
+    })
     .catch(err => next(err));
   })
   .delete((req, res, next) => res.status(501).end());
