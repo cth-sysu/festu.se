@@ -14,6 +14,7 @@ dotenv.config();
 // Express and DB
 const app = express();
 const db = require('./config/db');
+mongoose.Promise = global.Promise;
 mongoose.connect(db);
 
 // Helmet for secure HTTP headers
