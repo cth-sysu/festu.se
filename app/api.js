@@ -106,7 +106,7 @@ router.route('/parties/:id')
     .then(party => res.json(party))
     .catch(err => next(err));
   })
-  .put((req, res, next) => {
+  .put(auth, (req, res, next) => {
     Party.findByIdAndUpdate(req.params.id, req.body).exec().then(party => {
       if (req.body.image) {
         const filename = `static/images/parties/${party.id}.jpg`;
@@ -119,7 +119,7 @@ router.route('/parties/:id')
   .delete((req, res, next) => res.status(501).end());
 
 router.route('/parties/:id/poster')
-  .put(upload.single('poster'), (req, res, next) => {
+  .put(auth, upload.single('poster'), (req, res, next) => {
     if (!req.file) {
       return res.status(400).end();
     }
