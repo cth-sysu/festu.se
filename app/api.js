@@ -103,7 +103,12 @@ router.route('/parties/next')
 router.route('/parties/:id')
   .get((req, res, next) => {
     Party.findById(req.params.id).exec()
-    .then(party => res.json(party))
+    .then(party => {
+      if (!party) {
+        return res.status(404).end();
+      }
+      res.json(party);
+    })
     .catch(err => next(err));
   })
   .put(auth, (req, res, next) => {
