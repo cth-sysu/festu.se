@@ -16,6 +16,10 @@ module.exports = {
     },
   },
   devServer: {
+    index: 'admin.html',
+    historyApiFallback: {
+      index: '/admin.html'
+    },
     proxy: {
       '/api': {
         target: 'https://festu.se',
