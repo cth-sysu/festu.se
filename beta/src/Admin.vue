@@ -14,6 +14,7 @@
 @import url('https://use.fontawesome.com/releases/v5.4.2/css/regular.css');
 @import url('https://use.fontawesome.com/releases/v5.4.2/css/solid.css');
 @import url('https://use.fontawesome.com/releases/v5.4.2/css/fontawesome.css');
+@import 'assets/admin-style.scss';
 @import 'assets/style.scss';
 
 body {
