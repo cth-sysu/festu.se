@@ -236,4 +236,6 @@ router.post('/contact', function(req, res, next) {
   });
 });
 
+router.use((req, res) => res.status(404).end());
+
 module.exports = router;
