@@ -10,6 +10,10 @@ module.exports = {
       title: 'Festkommittén FestU',
       entry: 'src/main.js'
     },
+    admin: {
+      title: 'FestU | Admin',
+      entry: 'src/admin.js'
+    },
   },
   devServer: {
     proxy: {
