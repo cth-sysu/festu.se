@@ -121,7 +121,12 @@ router.route('/parties/:id')
     })
     .catch(err => next(err));
   })
-  .delete((req, res, next) => res.status(501).end());
+  .delete(auth, (req, res, next) => {
+    Party.findByIdAndRemove(req.params.id).exec().then(party => {
+      res.end();
+    })
+    .catch(err => next(err));
+  });
 
 router.route('/parties/:id/poster')
   .put(auth, upload.single('poster'), (req, res, next) => {
