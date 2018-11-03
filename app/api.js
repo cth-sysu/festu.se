@@ -6,6 +6,8 @@ const http      = require('http');
 const fs        = require('fs');
 const request = require('request-promise-native');
 
+const jwt = require('express-jwt');
+
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
 
@@ -35,6 +37,11 @@ function token(req, res, next) {
 }
 
 // API Routes
+
+router.use(jwt({
+  secret: process.env.SESSION_SECRET,
+  credentialsRequired: false,
+}));
 
 router.route('/cffc')
   .get((req, res, next) => {
