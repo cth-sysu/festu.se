@@ -8,6 +8,7 @@ var MemberSchema = new mongoose.Schema({
   adress      : { type: String},
   programme   : { name: { type: String}, year: { type: Number} },
   year        : { type: Number},
+  deceased    : { type: Boolean},
   description : { type: String},
   has_image   : { type: Boolean}
 });
