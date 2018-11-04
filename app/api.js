@@ -198,6 +198,28 @@ router.route('/members/name')
     })
   });
 
+router.route('/members/:id')
+  .get(auth, (req, res, next) => {
+    Member.findById(req.params.id).exec()
+    .then(member => {
+      if (!member) {
+        return res.status(404).end();
+      }
+      res.json(member);
+    })
+    .catch(err => next(err));
+  })
+  .put(auth, (req, res, next) => {
+    Member.findByIdAndUpdate(req.params.id, req.body).exec()
+    .then(() => res.end())
+    .catch(err => next(err));
+  })
+  .delete(auth, (req, res, next) => {
+    Member.findByIdAndRemove(req.params.id).exec()
+    .then(() => res.end())
+    .catch(err => next(err));
+  });
+
 router.post('/contact', function(req, res, next) {
   if (!req.body.mail || !req.body.message) return next(500);
   mailTransport.sendMail({
