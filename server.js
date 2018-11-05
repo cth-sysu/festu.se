@@ -2,8 +2,8 @@ const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const session = require('express-session')
-const passport = require('passport');
+const expressJwt = require('express-jwt');
+const jwt = require('jsonwebtoken');
 const path = require('path');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
@@ -34,46 +34,46 @@ app.use(helmet.contentSecurityPolicy({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
-+app.set('trust proxy', 1);
-app.use(session({
+app.set('trust proxy', 1);
+
+app.use(expressJwt({
   secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: process.env.NODE_ENV === 'production', httpOnly: true },
+  credentialsRequired: false,
+  getToken(req) {
+    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+      return req.headers.authorization.split(' ')[1];
+    } else if (req.signedCookies && req.signedCookies.token) {
+      return req.signedCookies.token;
+    }
+    return null;
+  }
 }));
-
-// Passport.js
-app.use(passport.initialize());
-app.use(passport.session());
-
-var LocalStrategy = require('passport-local').Strategy;
-
-passport.use(new LocalStrategy(function(email, password, callback) {
-  callback(null, email == process.env.ORV_USERNAME && password == process.env.ORV_PASSWORD);
-}));
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
 
 // Auth
-app.route('/login').get(function(req, res, next) {
-  res.sendFile(path.join(__dirname, '/static/public', 'login.html'));
-}).post(passport.authenticate('local', {
-  failureRedirect: '/login?error',
-  successRedirect: '/orv'
-}));
+app.route('/login')
+  .get((req, res, next) => res.sendFile(path.join(__dirname, '/static/public', 'login.html')))
+  .post((req, res, next) => {
+    if (req.body.username == process.env.ORV_USERNAME &&
+        req.body.password == process.env.ORV_PASSWORD) {
+      res.cookie('token', jwt.sign(true, process.env.SESSION_SECRET), {
+        secure: process.env.NODE_ENV === 'production',
+        httpOnly: true,
+        signed: true
+      });
+      res.redirect('/orv');
+    } else {
+      res.redirect('/login?error');
+    }
+  });
 
 app.get('/logout', function(req, res) {
-  req.logout();
+  res.clearCookie('token');
   res.redirect('/');
 });
 
 function auth(req, res, next) {
-  if (req.isAuthenticated()){
-    return next();
+  if (req.user) {
+    next();
   } else {
     res.redirect("/login");
   }

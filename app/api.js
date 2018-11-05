@@ -6,8 +6,6 @@ const http      = require('http');
 const fs        = require('fs');
 const request = require('request-promise-native');
 
-const jwt = require('express-jwt');
-
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
 
@@ -26,22 +24,21 @@ function auth(req, res, next) {
   if (process.env.NODE_ENV === 'development') {
     return next();
   }
-  if (req.isAuthenticated())
-    return next();
-  next('route');
+  if (req.user) {
+    next();
+  } else {
+    next('route');
+  }
 }
 function token(req, res, next) {
-  if (req.get('Authorization') === process.env.SECRET)
-    return next();
-  next('route');
+  if (req.get('Authorization') === process.env.SECRET) {
+    next();
+  } else {
+    next('route');
+  }
 }
 
 // API Routes
-
-router.use(jwt({
-  secret: process.env.SESSION_SECRET,
-  credentialsRequired: false,
-}));
 
 router.route('/cffc')
   .get((req, res, next) => {
