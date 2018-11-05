@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import EditMember from '../views/EditMember.vue'
+import EditMembers from '../views/EditMembers.vue'
 import EditParties from '../views/EditParties.vue'
 import EditParty from '../views/EditParty.vue'
 
@@ -22,6 +24,12 @@ export default new Router({
     {
       path: '/orv',
       name: 'orv',
+      component: EditMembers
+    },
+    {
+      path: '/orv/:id',
+      name: 'orv-edit',
+      component: EditMember
     },
     { 
       path: '*',
