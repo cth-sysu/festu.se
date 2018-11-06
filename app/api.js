@@ -9,11 +9,6 @@ const request = require('request-promise-native');
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
 
-// Mail
-const nodemailer        = require('nodemailer');
-const sendmailTransport = require('nodemailer-sendmail-transport');
-const mailTransport     = nodemailer.createTransport(sendmailTransport());
-
 // Models
 const Party   = require('./models/parties');
 const Member  = require('./models/members');
@@ -180,22 +175,6 @@ router.route('/members/:id/image')
     const filename = `static/images/members/${req.params.id}.jpg`;
     fs.rename(req.file.path, filename, err => err ? next(err) : res.end());
   });
-
-router.post('/contact', function(req, res, next) {
-  if (!req.body.mail || !req.body.message) return next(500);
-  mailTransport.sendMail({
-    from: {
-      name: req.body.name,
-      address: 'contact@festu.se'
-    },
-    to: 'festu@festu.se',
-    subject: 'festu.se - Contact form',
-    text: 'From: ' + req.body.name + ' ' + req.body.mail + '\nMessage:\n' + req.body.message
-  }, function(err, info) {
-    if (err) return next(err);
-    res.json({ response: info.response });
-  });
-});
 
 router.use((req, res) => res.status(404).end());
 
