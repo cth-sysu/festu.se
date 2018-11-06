@@ -141,7 +141,7 @@ export default {
         return;
       }
       const body = new FormData();
-      body.append('poster', files[0]);
+      body.append('image', files[0]);
       await fetch(`/api/members/${this.id}/image`, { method: 'PUT', body });
     },
     async deleteMember() {
