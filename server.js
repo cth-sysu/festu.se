@@ -18,17 +18,18 @@ mongoose.Promise = global.Promise;
 mongoose.connect(db);
 
 // Helmet for secure HTTP headers
-app.use(helmet());
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'"],
-    styleSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com', 'use.fontawesome.com', "'unsafe-inline'"],
-    scriptSrc: ["'self'"],
-    imgSrc: ["'self'", "data:", 'http://cffc.se'],
-    fontSrc: ["'self'", 'data:', 'fonts.googleapis.com', 'fonts.gstatic.com', 'use.fontawesome.com'],
-    frameSrc: ["'self'", 'www.facebook.com']
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com', 'use.fontawesome.com', "'unsafe-inline'"],
+      scriptSrc: ["'self'"],
+      imgSrc: ["'self'", "data:", 'http://cffc.se'],
+      fontSrc: ["'self'", 'data:', 'fonts.googleapis.com', 'fonts.gstatic.com', 'use.fontawesome.com'],
+      frameSrc: ["'self'", 'www.facebook.com']
+    }
   }
-}))
+}));
 
 // Parser middlewares
 app.use(bodyParser.json());
