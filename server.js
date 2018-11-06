@@ -51,7 +51,7 @@ app.use(expressJwt({
 
 // Auth
 app.route('/login')
-  .get((req, res, next) => res.sendFile(path.join(__dirname, '/static/public', 'login.html')))
+  .get((req, res, next) => res.sendFile(path.join(__dirname, '/static/beta', 'login.html')))
   .post((req, res, next) => {
     if (req.body.username == process.env.ORV_USERNAME &&
         req.body.password == process.env.ORV_PASSWORD) {
@@ -95,7 +95,7 @@ app.use('/images', express.static(__dirname + '/static/images'), function(req, r
 
 // Routes
 app.get('/orv*', auth, function(req, res) {
-  res.sendFile(path.join(__dirname, '/static/public', 'orv.html'));
+  res.sendFile(path.join(__dirname, '/static/beta', 'admin.html'));
 });
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '/static/beta', 'index.html'));
