@@ -59,41 +59,7 @@ router.route('/parties')
     .sort('-date')
     .exec().then(parties => res.json(parties))
     .catch(err => next(err));
-  })
-  // DEPRECATED
-  .put(auth, function(req, res, next) {
-    Party.findByIdAndUpdate(req.body.party._id,
-      req.body.party)
-    .exec().then(function(party) {
-      /* Download image from CFFC if there is a supplied URL */
-      if(req.body.party.cffcImage){
-        const url = "http://cffc.se/thumbnail/thumb/" + req.body.party.cffcImage.split("/")[5] + "/big.jpg";
-        const fileName = "static/images/parties/" + req.body.party._id + ".jpg";
-        var fileStream = fs.createWriteStream(fileName);
-        var request = http.get(url, function(response) {
-          response.pipe(fileStream);
-        });  
-      }
-      res.end();
-    }, next);
-  })
-  .post(auth, function(req, res, next) {
-    var partyId;
-    new Party(req.body).save().then(function(party){
-      partyId = party.id;
-    }).then(function(){
-      if(req.body.cffcImage){
-        const url = "http://cffc.se/thumbnail/thumb/" + req.body.cffcImage.split("/")[5] + "/big.jpg";
-        const fileName = "static/images/parties/" + partyId + ".jpg";
-        var fileStream = fs.createWriteStream(fileName);
-        var request = http.get(url, function(response) {
-          response.pipe(fileStream);
-        });
-      }
-      res.end();
-    }, next);
-  })
-  .delete()
+  });
 
 router.route('/parties/next')
   .get(function(req, res, next) {
@@ -155,18 +121,7 @@ router.route('/members')
     .exec().then(function(members){
       res.json(members);
     }, next)
-  })
-  .put(auth, function(req, res, next) {
-    Member.findByIdAndUpdate(req.body.member._id,
-      req.body.member)
-    .exec().then(function(member) {
-      res.end();
-    }, next);
-  })
-  .post(auth, function(req, res, next) {
-    new Member(req.body).save().then(res.json.bind(res), next);
-  })
-  .delete()
+  });
 
 router.route('/members/current')
   .get(function(req, res, next){
