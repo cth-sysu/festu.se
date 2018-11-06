@@ -10,15 +10,19 @@ module.exports = {
       title: 'Festkommittén FestU',
       entry: 'src/main.js'
     },
+    login: {
+      title: 'FestU | Login',
+      entry: 'src/login.js'
+    },
     admin: {
       title: 'FestU | Admin',
       entry: 'src/admin.js'
     },
   },
   devServer: {
-    index: 'admin.html',
+    index: 'login.html',
     historyApiFallback: {
-      index: '/admin.html'
+      index: '/login.html'
     },
     proxy: {
       '/api': {
