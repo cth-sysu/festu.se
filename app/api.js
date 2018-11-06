@@ -1,18 +1,12 @@
-// Core
-const express   = require('express');
-const router    = express.Router();
-const fs        = require('fs');
+const express = require('express');
+const fs = require('fs');
+const multer = require('multer')
 const request = require('request-promise-native');
 
-const multer = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const Party = require('./models/parties');
+const Member = require('./models/members');
+const Post = require('./models/post');
 
-// Models
-const Party   = require('./models/parties');
-const Member  = require('./models/members');
-const Post    = require('./models/post');
-
-// Auth functions
 function auth(req, res, next) {
   if (process.env.NODE_ENV === 'development') {
     return next();
@@ -31,7 +25,8 @@ function token(req, res, next) {
   }
 }
 
-// API Routes
+const router = express.Router();
+const upload = multer({ dest: 'uploads/' })
 
 router.route('/cffc')
   .get((req, res, next) => {
