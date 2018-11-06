@@ -20,10 +20,6 @@ module.exports = {
     },
   },
   devServer: {
-    index: 'login.html',
-    historyApiFallback: {
-      index: '/login.html'
-    },
     proxy: {
       '/api': {
         target: 'https://festu.se',
