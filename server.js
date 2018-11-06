@@ -11,11 +11,10 @@ const path = require('path');
 
 dotenv.config();
 
-// Express and DB
-const app = express();
-const db = require('./config/db');
 mongoose.Promise = global.Promise;
-mongoose.connect(db);
+mongoose.connect(require('./config/db'));
+
+const app = express();
 
 // Helmet for secure HTTP headers
 app.use(helmet({
@@ -31,14 +30,20 @@ app.use(helmet({
   }
 }));
 
-// Parser middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.set('trust proxy', 1);
 
+const tokenSecret = process.env.SESSION_SECRET;
+const tokenOptions = {
+  secure: process.env.NODE_ENV === 'production',
+  httpOnly: true,
+  signed: true
+};
+
 app.use(expressJwt({
-  secret: process.env.SESSION_SECRET,
+  secret: tokenSecret,
   credentialsRequired: false,
   getToken(req) {
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
@@ -50,54 +55,30 @@ app.use(expressJwt({
   }
 }));
 
-// Auth
 app.route('/login')
-  .get((req, res, next) => res.sendFile(path.join(__dirname, '/static/beta', 'login.html')))
-  .post((req, res, next) => {
+  .get((req, res) => res.sendFile(path.join(__dirname, '/static/beta', 'login.html')))
+  .post((req, res) => {
     if (req.body.username == process.env.ORV_USERNAME &&
         req.body.password == process.env.ORV_PASSWORD) {
-      res.cookie('token', jwt.sign(true, process.env.SESSION_SECRET), {
-        secure: process.env.NODE_ENV === 'production',
-        httpOnly: true,
-        signed: true
-      });
-      res.redirect('/orv');
+      res.cookie('token', jwt.sign(true, tokenSecret), tokenOptions).redirect('/orv');
     } else {
       res.redirect('/login?error');
     }
   });
 
-app.get('/logout', function(req, res) {
-  res.clearCookie('token');
-  res.redirect('/');
-});
+app.get('/logout', (req, res) => res.clearCookie('token').redirect('/'));
 
-function auth(req, res, next) {
-  if (req.user) {
-    next();
-  } else {
-    res.redirect("/login");
-  }
-}
+app.use('/api', require('./app/api'));
 
-// API
-const api = require('./app/api');
-app.use('/api', api);
-
-// Static
 app.use(express.static(__dirname + '/static/misc'));
 app.use(express.static(__dirname + '/static/beta'));
 
-app.use('/images', express.static(__dirname + '/static/images'), function(req, res, next) {
-  res.status(404).end();
-});
+app.use('/images', express.static(__dirname + '/static/images', { fallthrough: false }));
 
-// Routes
-app.get('/orv*', auth, function(req, res) {
-  res.sendFile(path.join(__dirname, '/static/beta', 'admin.html'));
-});
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, '/static/beta', 'index.html'));
-});
+app.get('/orv*',
+  (req, res, next) => req.user ? next() : res.redirect('/login'),
+  (req, res) => res.sendFile(path.join(__dirname, 'static', 'beta', 'admin.html')));
+
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'static', 'beta', 'index.html')));
 
 http.createServer(app).listen(5000, 'localhost');
