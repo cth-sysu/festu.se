@@ -1,8 +1,6 @@
 // Core
 const express   = require('express');
 const router    = express.Router();
-const mongoose  = require('mongoose');
-const http      = require('http');
 const fs        = require('fs');
 const request = require('request-promise-native');
 
