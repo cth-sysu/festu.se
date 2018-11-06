@@ -53,12 +53,15 @@ export default {
 .about-member {
   display: flex;
   max-width: 400px;
+  overflow: hidden;
 }
 .post {
   flex: 1 120px;
   padding: 8px;
   text-align: center;
   font-size: 14px;
+  overflow: hidden;
+  word-wrap: break-word;
 }
 .image {
   position: relative;

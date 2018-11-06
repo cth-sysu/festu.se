@@ -72,7 +72,11 @@ export default {
 }
 .contact {
   display: flex;
-  & iframe { margin-right: 16px; }
+  flex-wrap: wrap;
+  & iframe {
+    margin-right: 16px;
+    max-width: 100%;
+  }
 }
 h2 {
   font-weight: normal;
