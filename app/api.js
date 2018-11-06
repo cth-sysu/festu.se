@@ -217,6 +217,15 @@ router.route('/members/:id')
     .catch(err => next(err));
   });
 
+router.route('/members/:id/image')
+  .put(auth, upload.single('image'), (req, res, next) => {
+    if (!req.file) {
+      return res.status(400).end();
+    }
+    const filename = `static/images/members/${req.params.id}.jpg`;
+    fs.rename(req.file.path, filename, err => err ? next(err) : res.end());
+  });
+
 router.post('/contact', function(req, res, next) {
   if (!req.body.mail || !req.body.message) return next(500);
   mailTransport.sendMail({
