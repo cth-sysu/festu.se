@@ -35,32 +35,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.set('trust proxy', 1);
 
-const tokenSecret = process.env.SESSION_SECRET;
+const secret = process.env.SESSION_SECRET;
 const tokenOptions = {
   secure: process.env.NODE_ENV === 'production',
   httpOnly: true,
   signed: true
 };
-
-app.use(expressJwt({
-  secret: tokenSecret,
-  credentialsRequired: false,
-  getToken(req) {
-    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-      return req.headers.authorization.split(' ')[1];
-    } else if (req.signedCookies && req.signedCookies.token) {
-      return req.signedCookies.token;
-    }
-    return null;
-  }
-}));
+const authToken = expressJwt({ secret, getToken: (req) => (req.signedCookies || {}).token });
 
 app.route('/login')
   .get((req, res) => res.sendFile(path.join(__dirname, '/static/beta', 'login.html')))
   .post((req, res) => {
     if (req.body.username == process.env.ORV_USERNAME &&
         req.body.password == process.env.ORV_PASSWORD) {
-      res.cookie('token', jwt.sign(true, tokenSecret), tokenOptions).redirect('/orv');
+      res.cookie('token', jwt.sign(true, secret), tokenOptions).redirect('/orv');
     } else {
       res.redirect('/login?error');
     }
@@ -76,8 +64,8 @@ app.use(express.static(__dirname + '/static/beta'));
 app.use('/images', express.static(__dirname + '/static/images', { fallthrough: false }));
 
 app.get('/orv*',
-  (req, res, next) => req.user ? next() : res.redirect('/login'),
-  (req, res) => res.sendFile(path.join(__dirname, 'static', 'beta', 'admin.html')));
+  authToken, (req, res, next) => res.sendFile(path.join(__dirname, 'static', 'beta', 'admin.html')),
+  (err, req, res, next) => res.redirect('/login'));
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'static', 'beta', 'index.html')));
 

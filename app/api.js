@@ -1,4 +1,5 @@
 const express = require('express');
+const expressJwt = require('express-jwt');
 const fs = require('fs');
 const multer = require('multer')
 const request = require('request-promise-native');
@@ -20,6 +21,19 @@ function auth(req, res, next) {
 
 const router = express.Router();
 const upload = multer({ dest: 'uploads/' })
+
+router.use(expressJwt({
+  secret: process.env.SESSION_SECRET,
+  credentialsRequired: false,
+  getToken(req) {
+    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+      return req.headers.authorization.split(' ')[1];
+    } else if (req.signedCookies && req.signedCookies.token) {
+      return req.signedCookies.token;
+    }
+    return null;
+  }
+}));
 
 router.route('/cffc')
   .get((req, res, next) => {
