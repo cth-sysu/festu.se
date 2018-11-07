@@ -17,13 +17,6 @@ function auth(req, res, next) {
     next('route');
   }
 }
-function token(req, res, next) {
-  if (req.get('Authorization') === process.env.SECRET) {
-    next();
-  } else {
-    next('route');
-  }
-}
 
 const router = express.Router();
 const upload = multer({ dest: 'uploads/' })
@@ -125,7 +118,7 @@ router.route('/members/current')
   });
 
 router.route('/members/name')
-  .get(token, (req, res, next) => {
+  .get(auth, (req, res, next) => {
     Member.findOne({mail: req.query.mail}).populate('post').exec()
     .then(member => member || Promise.reject())
     .catch(() => res.status(404).end())
