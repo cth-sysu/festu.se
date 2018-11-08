@@ -86,9 +86,6 @@ uploads/
 # Webstorm
 .idea/
 
-# package.json lock
-package-lock.json
-
 # OS X files
 .DS_Store
 
