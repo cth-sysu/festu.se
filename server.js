@@ -59,6 +59,7 @@ app.get('/logout', (req, res) => res.clearCookie('token').redirect('/'));
 app.use('/api', require('./app/api'));
 
 app.use(express.static(__dirname + '/static/misc'));
+app.use(express.static(__dirname + '/static/misc/secret'));
 app.use(express.static(__dirname + '/static/beta'));
 
 app.use('/images', express.static(__dirname + '/static/images', { fallthrough: false }));
