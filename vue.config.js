@@ -1,10 +1,6 @@
-require('dotenv').config({
-  path: require('path').resolve(process.cwd(), '..', '.env')
-});
-
 module.exports = {
   lintOnSave: false,
-  outputDir: '../static/beta',
+  outputDir: 'static/beta',
   pages: {
     index: {
       title: 'Festkommittén FestU',

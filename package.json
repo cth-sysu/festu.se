@@ -1,15 +1,17 @@
 {
   "name": "festu.se",
+  "version": "2.0.0",
   "main": "server.js",
-  "private": true,
   "author": {
     "name": "SysU",
     "email": "sysu@festu.se",
     "url": "https://festu.se"
   },
   "scripts": {
-    "dev": "concurrently --kill-others \"nodemon --watch app\" \"webpack-dev-server --hot\"",
-    "build": "NODE_ENV=production webpack -p"
+    "serve": "vue-cli-service serve",
+    "serve:backend": "concurrently --kill-others \"vue-cli-service serve\" \"nodemon --watch app\"",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "repository": {
     "type": "git",
@@ -24,13 +26,46 @@
     "express-jwt": "^5.3.1",
     "helmet": "*",
     "jsonwebtoken": "^8.3.0",
+    "moment": "^2.22.2",
     "mongoose": "4.8.5",
     "multer": "^1.4.1",
     "request": "^2.88.0",
-    "request-promise-native": "^1.0.5"
+    "request-promise-native": "^1.0.5",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.1",
+    "@vue/cli-plugin-eslint": "^3.0.1",
+    "@vue/cli-service": "^3.0.1",
     "concurrently": "^3.5.1",
-    "nodemon": "^1.14.11"
-  }
+    "node-sass": "^4.9.0",
+    "nodemon": "^1.14.11",
+    "sass-loader": "^7.0.1",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
