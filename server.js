@@ -60,7 +60,7 @@ app.use('/api', require('./app/api'));
 
 app.use(express.static(__dirname + '/static/misc'));
 app.use(express.static(__dirname + '/static/misc/secret'));
-app.use(express.static(__dirname + '/static/dist'));
+app.use('/static', express.static(__dirname + '/static/dist/static'));
 
 app.use('/images', express.static(__dirname + '/static/images', { fallthrough: false }));
 
