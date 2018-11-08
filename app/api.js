@@ -24,6 +24,8 @@ const auth = expressJwt({
   }
 });
 
+const kNotFound = new Error('Not Found');
+
 router.route('/cffc')
   .get((req, res, next) => {
     const url = decodeURIComponent(req.query.url);
@@ -39,34 +41,29 @@ router.route('/cffc')
 router.route('/parties')
   .get((req, res, next) => {
     const cffc = (req.query.cffc === 'true');
-    Party.find(cffc ? { cffc: { $exists: true }} : {})
-    .sort('-date')
-    .exec().then(parties => res.json(parties))
+    Party.find(cffc ? { cffc: { $exists: true }} : {}).sort('-date').exec()
+    .then(parties => res.json(parties))
     .catch(err => next(err));
   });
 
 router.route('/parties/next')
-  .get(function(req, res, next) {
-    Party.findOne({ date: { $gt: new Date() }})
-    .sort('date')
-    .exec().then(function(party) {
-      res.json(party);
-    }, next);
+  .get((req, res, next) => {
+    Party.findOne({ date: { $gt: new Date() }}).sort('date').exec()
+    .then(party => res.json(party))
+    .catch(err => next(err));
   });
 
 router.route('/parties/:id')
   .get((req, res, next) => {
     Party.findById(req.params.id).exec()
-    .then(party => {
-      if (!party) {
-        return res.status(404).end();
-      }
-      res.json(party);
-    })
+    .then(party => party || Promise.reject(kNotFound))
+    .then(party => res.json(party))
     .catch(err => next(err));
   })
   .put(auth, (req, res, next) => {
-    Party.findByIdAndUpdate(req.params.id, req.body).exec().then(party => {
+    Party.findByIdAndUpdate(req.params.id, req.body).exec()
+    .then(party => party || Promise.reject(kNotFound))
+    .then(party => {
       if (req.body.image) {
         const filename = `static/images/parties/${party.id}.jpg`;
         request(req.body.image).pipe(fs.createWriteStream(filename));
@@ -76,9 +73,9 @@ router.route('/parties/:id')
     .catch(err => next(err));
   })
   .delete(auth, (req, res, next) => {
-    Party.findByIdAndRemove(req.params.id).exec().then(party => {
-      res.end();
-    })
+    Party.findByIdAndRemove(req.params.id).exec()
+    .then(party => party || Promise.reject(kNotFound))
+    .then(() => res.end())
     .catch(err => next(err));
   });
 
@@ -92,66 +89,64 @@ router.route('/parties/:id/poster')
   });
 
 router.route('/posts')
-  .get(function(req, res, next) {
-    Post.find().exec().then(res.json.bind(res), next);
+  .get((req, res, next) => {
+    Post.find().exec().then(posts => res.json(posts)).catch(err => next(err));
   });
 
 router.route('/members')
-  .get(auth, function(req, res, next){
+  .get(auth, (req, res, next) => {
     Member.find()
     .select('-__v')
     .populate({ path: 'post', select: 'symbol name' })
     .sort('-year')
-    .exec().then(function(members){
-      res.json(members);
-    }, next)
+    .exec().then(members => res.json(members))
+    .catch(err => next(err));
   });
 
 router.route('/members/current')
-  .get(function(req, res, next){
-    var now = new Date();
-    var year = now.getMonth() < 6 ? now.getFullYear() - 1 : now.getFullYear();
+  .get((req, res, next) =>{
+    const now = new Date();
+    const year = now.getFullYear() - (now.getMonth() < 6);
     Member.find({ year })
     .select('-__v -mail -address')
     .populate('post')
-    .exec().then(function(members) {
+    .exec().then(members => {
       members.sort((lhs, rhs) => lhs.post.order - rhs.post.order);
       res.json(members);
-    }, next);
+    })
+    .catch(err => next(err));
   });
 
 router.route('/members/name')
   .get(auth, (req, res, next) => {
-    Member.findOne({mail: req.query.mail}).populate('post').exec()
-    .then(member => member || Promise.reject())
-    .catch(() => res.status(404).end())
+    Member.findOne({ mail: req.query.mail }).populate('post').exec()
+    .then(member => member || Promise.reject(kNotFound))
     .then(member => {
       const years = member.year
           ? Math.floor((new Date() - new Date(parseInt(member.year), 6, 1)) / 31540000000)
           : 0;
       const name = member.post ? ('x'.repeat(years) + member.post.symbol) : member.name;
-      res.json({name});
+      res.json({ name });
     })
+    .catch(err => next(err));
   });
 
 router.route('/members/:id')
   .get(auth, (req, res, next) => {
     Member.findById(req.params.id).exec()
-    .then(member => {
-      if (!member) {
-        return res.status(404).end();
-      }
-      res.json(member);
-    })
+    .then(member => member || Promise.reject(kNotFound))
+    .then(member => res.json(member))
     .catch(err => next(err));
   })
   .put(auth, (req, res, next) => {
     Member.findByIdAndUpdate(req.params.id, req.body).exec()
+    .then(member => member || Promise.reject(kNotFound))
     .then(() => res.end())
     .catch(err => next(err));
   })
   .delete(auth, (req, res, next) => {
     Member.findByIdAndRemove(req.params.id).exec()
+    .then(member => member || Promise.reject(kNotFound))
     .then(() => res.end())
     .catch(err => next(err));
   });
@@ -165,7 +160,15 @@ router.route('/members/:id/image')
     fs.rename(req.file.path, filename, err => err ? next(err) : res.end());
   });
 
-router.use((err, req, res, next) => res.status(403).end());
-router.use((req, res, next) => res.status(404).end());
+router.use((req, res, next) => next(kNotFound));
+router.use((err, req, res, next) => {
+  if (err === kNotFound) {
+    res.status(404).end();
+  } else if (err instanceof expressJwt.UnauthorizedError) {
+    res.status(401).end();
+  } else {
+    res.status(500).end();
+  }
+});
 
 module.exports = router;
