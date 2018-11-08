@@ -1,6 +1,6 @@
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const dotenv = require('dotenv');
+const dotenv = require('dotenv-flow');
 const express = require('express');
 const expressJwt = require('express-jwt');
 const helmet = require('helmet');
