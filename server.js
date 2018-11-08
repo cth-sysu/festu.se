@@ -44,7 +44,7 @@ const tokenOptions = {
 const authToken = expressJwt({ secret, getToken: (req) => (req.signedCookies || {}).token });
 
 app.route('/login')
-  .get((req, res) => res.sendFile(path.join(__dirname, '/static/beta', 'login.html')))
+  .get((req, res) => res.sendFile(path.join(__dirname, '/static/dist', 'login.html')))
   .post((req, res) => {
     if (req.body.username == process.env.ORV_USERNAME &&
         req.body.password == process.env.ORV_PASSWORD) {
@@ -60,14 +60,14 @@ app.use('/api', require('./app/api'));
 
 app.use(express.static(__dirname + '/static/misc'));
 app.use(express.static(__dirname + '/static/misc/secret'));
-app.use(express.static(__dirname + '/static/beta'));
+app.use(express.static(__dirname + '/static/dist'));
 
 app.use('/images', express.static(__dirname + '/static/images', { fallthrough: false }));
 
 app.get('/orv*',
-  authToken, (req, res, next) => res.sendFile(path.join(__dirname, 'static', 'beta', 'admin.html')),
+  authToken, (req, res, next) => res.sendFile(path.join(__dirname, 'static', 'dist', 'admin.html')),
   (err, req, res, next) => res.redirect('/login'));
 
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'static', 'beta', 'index.html')));
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'static', 'dist', 'index.html')));
 
 http.createServer(app).listen(5000, 'localhost');

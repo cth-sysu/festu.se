@@ -1,6 +1,6 @@
 module.exports = {
   lintOnSave: false,
-  outputDir: 'static/beta',
+  outputDir: 'static/dist',
   pages: {
     index: {
       title: 'Festkommittén FestU',
