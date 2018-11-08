@@ -1,11 +1,11 @@
 {
-  "name": "festu",
+  "name": "festu.se",
   "main": "server.js",
   "private": true,
   "author": {
-    "name": "Johan Angséus & Marcus Hultman",
-    "email": "festu@festu.se",
-    "url": "http://festu.se"
+    "name": "SysU",
+    "email": "sysu@festu.se",
+    "url": "https://festu.se"
   },
   "scripts": {
     "dev": "concurrently --kill-others \"nodemon --watch app\" \"webpack-dev-server --hot\"",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/angseus/festu.se.git"
+    "url": "https://github.com/cth-sysu/festu.se.git"
   },
   "license": "MIT",
   "dependencies": {
