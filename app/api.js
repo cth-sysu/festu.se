@@ -8,23 +8,12 @@ const Party = require('./models/parties');
 const Member = require('./models/members');
 const Post = require('./models/post');
 
-function auth(req, res, next) {
-  if (process.env.NODE_ENV === 'development') {
-    return next();
-  }
-  if (req.user) {
-    next();
-  } else {
-    next('route');
-  }
-}
-
 const router = express.Router();
 const upload = multer({ dest: 'uploads/' })
 
-router.use(expressJwt({
+const auth = expressJwt({
   secret: process.env.SESSION_SECRET,
-  credentialsRequired: false,
+  credentialsRequired: process.env.NODE_ENV !== 'development',
   getToken(req) {
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
       return req.headers.authorization.split(' ')[1];
@@ -33,7 +22,7 @@ router.use(expressJwt({
     }
     return null;
   }
-}));
+});
 
 router.route('/cffc')
   .get((req, res, next) => {
@@ -176,6 +165,7 @@ router.route('/members/:id/image')
     fs.rename(req.file.path, filename, err => err ? next(err) : res.end());
   });
 
-router.use((req, res) => res.status(404).end());
+router.use((err, req, res, next) => res.status(403).end());
+router.use((req, res, next) => res.status(404).end());
 
 module.exports = router;
