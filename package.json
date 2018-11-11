@@ -11,7 +11,9 @@
     "serve": "vue-cli-service serve",
     "serve:backend": "concurrently --kill-others \"vue-cli-service serve\" \"nodemon --watch app\"",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start": "pm2 start process.json",
+    "restart": "pm2 reload festu.se"
   },
   "repository": {
     "type": "git",
