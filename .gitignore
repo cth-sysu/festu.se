@@ -19,9 +19,6 @@ yarn-error.log*
 *.sln
 *.sw*
 
-# Secure application secrets etc.
-process.json
-
 # Static images (stored as file database on server)
 static/images/
 static/misc/secret/
