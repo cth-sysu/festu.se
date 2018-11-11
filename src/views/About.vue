@@ -21,7 +21,7 @@
     <h2>FestU {{ year | format }}</h2>
     <div v-if="loading" class="loader"></div>
     <div class="members" v-show="!loading">
-      <AboutMember v-for="member in  members" :key="member._id"
+      <AboutMember v-for="member in members" :key="member._id"
           :member="member" @load="--loading"/>
     </div>
   </div>
@@ -44,7 +44,7 @@ export default {
       loading: 1,
     };
   },
-  async mounted() {
+  async mounted() {
     const res = await fetch('/api/members/current');
     this.members = await res.json();
     this.loading = this.members.length;

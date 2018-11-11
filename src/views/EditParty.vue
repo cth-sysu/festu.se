@@ -106,7 +106,7 @@ export default {
         this.images = images;
       }
     },
-    save() {
+    save() {
       this.savePoster();
       if (this.isNew) {
         this.saveInfo('POST', `/api/parties`);
@@ -114,7 +114,7 @@ export default {
         this.saveInfo('PUT', `/api/parties/${this.id}`);
       }
     },
-    async saveInfo(method, url) {
+    async saveInfo(method, url) {
       const { name, date, description, cffc, studio, image } = this;
       const res = await fetch(url, {
         method,
@@ -126,7 +126,7 @@ export default {
       }
     },
     async savePoster() {
-      const { files } = this.$refs.poster;
+      const { files } = this.$refs.poster;
       if (files.length === 0) {
         return;
       }

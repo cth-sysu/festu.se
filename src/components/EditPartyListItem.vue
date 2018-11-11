@@ -2,7 +2,7 @@
   <div class="list-item" @click="$router.push(editLink)">
     <div class="content">
       <span class="secondary">{{ party.date | date }}</span>
-      <span>&nbsp;-&nbsp;{{ party.name }}</span>
+      <span>&nbsp;-&nbsp;{{ party.name }}</span>
     </div>
     <div class="action">
       <i v-if="isUpcoming" class="fas fa-globe-africa"></i>
@@ -20,7 +20,7 @@ export default {
     party: Object
   },
   computed: {
-    editLink() { return { name: 'kalas-edit', params: { id: this.party._id }}; },
+    editLink() { return { name: 'kalas-edit', params: { id: this.party._id }}; },
     isUpcoming() { return moment(this.party.date).add(6, 'hours').isAfter(); },
     cffcStyle() { return { disabled: !this.party.cffc }; },
   },

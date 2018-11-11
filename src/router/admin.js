@@ -31,7 +31,7 @@ export default new Router({
       name: 'orv-edit',
       component: EditMember
     },
-    { 
+    {
       path: '*',
       redirect: '/kalas'
     }

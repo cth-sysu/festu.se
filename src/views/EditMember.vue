@@ -112,7 +112,7 @@ export default {
         this.$router.push('/orv');
       }
     },
-    save() {
+    save() {
       this.saveImage();
       if (this.isNew) {
         this.saveInfo('POST', `/api/members`);
@@ -120,11 +120,11 @@ export default {
         this.saveInfo('PUT', `/api/members/${this.id}`);
       }
     },
-    markDeceased() {
+    markDeceased() {
       this.deceased = true;
       this.saveInfo('PUT', `/api/members/${this.id}`);
     },
-    async saveInfo(method, url) {
+    async saveInfo(method, url) {
       const { name, post, year, phone, adress, email: mail, programme, deceased } = this;
       const res = await fetch(url, {
         method,
@@ -136,7 +136,7 @@ export default {
       }
     },
     async saveImage() {
-      const { files } = this.$refs.image;
+      const { files } = this.$refs.image;
       if (files.length === 0) {
         return;
       }

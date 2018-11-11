@@ -7,7 +7,7 @@
     <div class="poster" @click="$emit('show-poster')">
       <img :src="`/images/parties/${party._id}_small.jpg`">
     </div>
-    <div class="description">{{ party.description }}</div>
+    <div class="description">{{ party.description }}</div>
   </div>
 </template>
 

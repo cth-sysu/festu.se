@@ -3,8 +3,8 @@
     <div class="content">
       <span class="post">{{ member.post ? member.post.symbol : '?' }}</span>
       <div>
-        <div>{{ member.name }}</div>
-        <div class="secondary">{{ member.adress }}</div>
+        <div>{{ member.name }}</div>
+        <div class="secondary">{{ member.adress }}</div>
       </div>
     </div>
     <div class="action">{{ member.year | year }}</div>
@@ -18,7 +18,7 @@ export default {
     member: Object
   },
   computed: {
-    editLink() { return { name: 'orv-edit', params: { id: this.member._id }}; },
+    editLink() { return { name: 'orv-edit', params: { id: this.member._id }}; },
   },
   filters: {
     year: (year) => `${year.toString().substr(-2)}/${(year + 1).toString().substr(-2)}`,
