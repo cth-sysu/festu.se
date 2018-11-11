@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: "off" */
+
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv-flow');
