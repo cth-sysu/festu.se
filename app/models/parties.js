@@ -4,6 +4,7 @@ const PartySchema = new mongoose.Schema({
   name: { type: String, required: true },
   date: { type: Date, required: true },
   cffc: { type: String },
+  studio: { type: String },
   description: { type: String},
   // todo: implement this in admin interface
   soldOut: { type: Boolean }
