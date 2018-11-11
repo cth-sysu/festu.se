@@ -14,7 +14,7 @@
       <div>
         <select v-model="filter.post">
           <option value>All</option>
-          <option v-for="post in posts" :value="post.symbol">{{ post.symbol }}</option>
+          <option v-for="post in posts" :key="post.symbol" :value="post.symbol">{{ post.symbol }}</option>
         </select>
       </div>
       <div>

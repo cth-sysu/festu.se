@@ -8,7 +8,7 @@
       </div>
       <div class="group">
         <select v-model="post">
-          <option v-for="post in posts" :value="post._id">{{ post.symbol }}</option>
+          <option v-for="post in posts" :key="post._id" :value="post._id">{{ post.symbol }}</option>
         </select>
       </div>
       <div class="group">

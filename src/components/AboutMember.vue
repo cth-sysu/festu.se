@@ -3,7 +3,7 @@
     <div class="post">
       <div class="image">
         <img :src="image" @load="$emit('load')">
-        <div class="avatar" @click="poke(member.post.symbol)">{{ member.post.symbol }}</div>
+        <div class="avatar" @click="poke">{{ member.post.symbol }}</div>
       </div>
       <div>{{ member.post.name }}</div>
       <div><a :href="`mailto:${ member.post.mail }`">{{ member.post.mail }}</a></div>
@@ -18,8 +18,6 @@
 </template>
 
 <script>
-import moment from 'moment';
-
 export default {
   name: 'AboutMember',
   props: {
@@ -39,7 +37,7 @@ export default {
     },
   },
   methods: {
-    poke(member) {
+    poke() {
       if (++this.pokes === 3) {
         const post = this.member.post.symbol.toLowerCase();
         window.location.href = `http://${post}.festu.se`;

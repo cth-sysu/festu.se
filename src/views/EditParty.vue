@@ -26,8 +26,9 @@
       <label>Studio</label>
     </div>
     <div class="group images" v-if="images.length">
-      <span v-for="image, i in images" :class="{ selected: i === selectedImage }"
-          @click="selectedImage = i">
+      <span v-for="(image, index) in images" :key="index"
+          :class="{ selected: index === selectedImage }"
+          @click="selectedImage = index">
         <img :src="image"/>
       </span>
     </div>

@@ -9,7 +9,6 @@
 <script>
 import Party from '@/components/Party.vue';
 import PosterModal from '@/components/PosterModal.vue';
-import moment from 'moment';
 
 export default {
   name: 'parties',
