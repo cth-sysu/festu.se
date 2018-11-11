@@ -21,6 +21,10 @@
       <input type="text" v-model.lazy="cffc">
       <label>CFFC</label>
     </div>
+    <div class="group">
+      <input type="text" v-model="studio">
+      <label>Studio</label>
+    </div>
     <div class="group images" v-if="images.length">
       <span v-for="image, i in images" :class="{ selected: i === selectedImage }"
           @click="selectedImage = i">
@@ -49,6 +53,7 @@ export default {
       date: null,
       description: null,
       cffc: null,
+      studio: null,
       images: [],
       selectedImage: -1,
     };
@@ -78,11 +83,12 @@ export default {
       this.loading = true;
       const res = await fetch(`/api/parties/${this.id}`);
       if (res.ok) {
-        const { name, date, description, cffc } = await res.json();
+        const { name, date, description, cffc, studio } = await res.json();
         this.name = name;
         this.date = moment(date).format('YYYY-MM-DD[T]HH:mm');
         this.description = description;
         this.cffc = cffc;
+        this.studio = studio;
         this.loading = false;
       } else {
         this.$router.push('/kalas');
@@ -109,10 +115,10 @@ export default {
       }
     },
     async saveInfo(method, url) {
-      const { name, date, description, cffc, image } = this;
+      const { name, date, description, cffc, studio, image } = this;
       const res = await fetch(url, {
         method,
-        body: JSON.stringify({ name, date, cffc, description, image }),
+        body: JSON.stringify({ name, date, cffc, studio, description, image }),
         headers: { 'Content-Type': 'application/json' }
       });
       if (res.ok) {
