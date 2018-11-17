@@ -17,21 +17,23 @@
       <textarea v-model="description" rows="8"></textarea>
       <label>Description</label>
     </div>
-    <div class="group">
-      <input type="text" v-model.lazy="cffc">
-      <label>CFFC</label>
-    </div>
-    <div class="group">
-      <input type="text" v-model="studio">
-      <label>Studio</label>
-    </div>
-    <div class="group images" v-if="images.length">
-      <span v-for="(image, index) in images" :key="index"
-          :class="{ selected: index === selectedImage }"
-          @click="selectedImage = index">
-        <img :src="image"/>
-      </span>
-    </div>
+    <template v-if="!isNew">
+      <div class="group">
+        <input type="text" v-model.lazy="cffc">
+        <label>CFFC</label>
+      </div>
+      <div class="group">
+        <input type="text" v-model="studio">
+        <label>Studio</label>
+      </div>
+      <div class="group images" v-if="images.length">
+        <span v-for="(image, index) in images" :key="index"
+            :class="{ selected: index === selectedImage }"
+            @click="selectedImage = index">
+          <img :src="image"/>
+        </span>
+      </div>
+    </template>
     <div class="buttons">
       <button type="button" class="delete" @click.prevent="deleteParty">
         <i class="far fa-lg fa-trash-alt"></i>
