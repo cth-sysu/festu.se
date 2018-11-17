@@ -109,12 +109,16 @@ export default {
         this.images = images;
       }
     },
-    save() {
-      this.savePoster();
+    async save() {
       if (this.isNew) {
-        this.saveInfo('POST', `/api/parties`);
+        const res = await this.saveInfo('POST', `/api/parties`);
+        if (res.ok) {
+          const { _id } = await res.json();
+          this.savePoster(_id);
+        }
       } else {
         this.saveInfo('PUT', `/api/parties/${this.id}`);
+        this.savePoster(this.id);
       }
     },
     async saveInfo(method, url) {
@@ -127,15 +131,16 @@ export default {
       if (res.ok) {
         this.$router.push('/kalas');
       }
+      return res;
     },
-    async savePoster() {
+    async savePoster(id) {
       const { files } = this.$refs.poster;
       if (files.length === 0) {
         return;
       }
       const body = new FormData();
       body.append('poster', files[0]);
-      await fetch(`/api/parties/${this.id}/poster`, { method: 'PUT', body });
+      await fetch(`/api/parties/${id}/poster`, { method: 'PUT', body });
     },
     async deleteParty() {
       const res = await fetch(`/api/parties/${this.id}`, { method: 'DELETE' });
