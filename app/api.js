@@ -44,6 +44,9 @@ router.route('/parties')
     Party.find(cffc ? { cffc: { $exists: true }} : {}).sort('-date').exec()
     .then(parties => res.json(parties))
     .catch(err => next(err));
+  })
+  .post(auth, (req, res, next) => {
+    new Party(req.body).save().then(party => res.json(party)).catch(err => next(err));
   });
 
 router.route('/parties/next')
@@ -101,6 +104,9 @@ router.route('/members')
     .sort('-year')
     .exec().then(members => res.json(members))
     .catch(err => next(err));
+  })
+  .post(auth, (req, res, next) => {
+    new Member(req.body).save().then(member => res.json(member)).catch(err => next(err));
   });
 
 router.route('/members/current')
