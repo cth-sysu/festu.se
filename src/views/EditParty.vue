@@ -110,28 +110,28 @@ export default {
       }
     },
     async save() {
+      let res;
       if (this.isNew) {
-        const res = await this.saveInfo('POST', `/api/parties`);
+        res = await this.saveInfo('POST', `/api/parties`);
         if (res.ok) {
-          const { _id } = await res.json();
-          this.savePoster(_id);
+          const party = await res.json();
+          this.savePoster(party._id);
         }
       } else {
-        this.saveInfo('PUT', `/api/parties/${this.id}`);
+        res = await this.saveInfo('PUT', `/api/parties/${this.id}`);
         this.savePoster(this.id);
       }
+      if (res.ok) {
+        this.$router.push('/kalas');
+      }
     },
-    async saveInfo(method, url) {
+    saveInfo(method, url) {
       const { name, date, description, cffc, studio, image } = this;
-      const res = await fetch(url, {
+      return fetch(url, {
         method,
         body: JSON.stringify({ name, date, cffc, studio, description, image }),
         headers: { 'Content-Type': 'application/json' }
       });
-      if (res.ok) {
-        this.$router.push('/kalas');
-      }
-      return res;
     },
     async savePoster(id) {
       const { files } = this.$refs.poster;
