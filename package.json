@@ -43,7 +43,7 @@
     "@vue/cli-service": "^3.0.1",
     "concurrently": "^3.5.1",
     "node-sass": "^4.9.0",
-    "nodemon": "^1.14.11",
+    "nodemon": "^1.18.6",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17"
   },
