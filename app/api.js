@@ -15,7 +15,8 @@ const auth = expressJwt({
   secret: process.env.SESSION_SECRET,
   credentialsRequired: process.env.NODE_ENV !== 'development',
   getToken(req) {
-    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+    if (req.headers.authorization &&
+        req.headers.authorization.split(' ')[0].toLowerCase() === 'bearer') {
       return req.headers.authorization.split(' ')[1];
     } else if (req.signedCookies && req.signedCookies.token) {
       return req.signedCookies.token;
