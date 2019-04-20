@@ -25,6 +25,16 @@ const auth = expressJwt({
   }
 });
 
+function authOrStaticSecret(req, res, next) {
+  if (req.headers.authorization && process.env.STATIC_SECRET) {
+    const [type, credentials] = req.headers.authorization.split(' ');
+    if (type.toLowerCase() === 'bearer' && credentials === process.env.STATIC_SECRET) {
+      return next();
+    }
+  }
+  auth(req, res, next);
+};
+
 const kNotFound = new Error('Not Found');
 
 router.route('/cffc')
@@ -125,7 +135,7 @@ router.route('/members/current')
   });
 
 router.route('/members/name')
-  .get(auth, (req, res, next) => {
+  .get(authOrStaticSecret, (req, res, next) => {
     Member.findOne({ mail: req.query.mail }).populate('post').exec()
     .then(member => member || Promise.reject(kNotFound))
     .then(member => {
