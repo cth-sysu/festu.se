@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv-flow');
 const express = require('express');
 const expressJwt = require('express-jwt');
+const fs = require('fs');
 const helmet = require('helmet');
 const http = require('http');
 const jwt = require('jsonwebtoken');
@@ -64,6 +65,15 @@ app.use(express.static(__dirname + '/static/misc'));
 app.use(express.static(__dirname + '/static/misc/secret'));
 app.use('/static', express.static(__dirname + '/static/dist/static'));
 
+app.get('/images/members/:id.:ext', (req, res, next) => {
+    fs.stat(`${__dirname}/static/images/members/${req.params.id}.${req.params.ext}`, (err, stats) => {
+        if (err.code === 'ENOENT') {
+            res.sendFile(`${__dirname}/static/images/members/fallback.png`);
+            return;
+        }
+        next();
+    })
+})
 app.use('/images', express.static(__dirname + '/static/images', { fallthrough: false }));
 
 app.get('/orv*',
