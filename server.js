@@ -67,7 +67,7 @@ app.use('/static', express.static(__dirname + '/static/dist/static'));
 
 app.get('/images/members/:id.:ext', (req, res, next) => {
     fs.stat(`${__dirname}/static/images/members/${req.params.id}.${req.params.ext}`, (err, stats) => {
-        if (err.code === 'ENOENT') {
+        if (err && err.code === 'ENOENT') {
             res.sendFile(`${__dirname}/static/images/members/fallback.png`);
             return;
         }
