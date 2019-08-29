@@ -28,8 +28,7 @@ export default {
   },
   computed: {
     image() {
-      return this.member.has_image ? `/images/members/${this.member._id}.jpg`
-                                   : `/images/members/fallback.png`;
+      return `/images/members/${this.member._id}.jpg`;
     },
     programme() {
       const { name, year } = this.member.programme;
