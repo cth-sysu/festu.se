@@ -10,7 +10,6 @@ var MemberSchema = new mongoose.Schema({
   year        : { type: Number},
   deceased    : { type: Boolean},
   description : { type: String},
-  has_image   : { type: Boolean}
 });
 
 module.exports = mongoose.model('Member', MemberSchema);
