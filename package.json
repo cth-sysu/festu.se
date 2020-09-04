@@ -42,7 +42,7 @@
     "@vue/cli-plugin-eslint": "^3.4.0",
     "@vue/cli-service": "^3.4.0",
     "concurrently": "^3.5.1",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "nodemon": "^1.18.10",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.6.6"
