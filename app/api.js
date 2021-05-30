@@ -13,6 +13,7 @@ const upload = multer({ dest: 'uploads/' })
 
 const auth = expressJwt({
   secret: process.env.SESSION_SECRET,
+  algorithms: ['HS256'],
   credentialsRequired: process.env.NODE_ENV !== 'development',
   getToken(req) {
     if (req.headers.authorization &&
