@@ -44,7 +44,11 @@ const tokenOptions = {
   httpOnly: true,
   signed: true
 };
-const authToken = expressJwt({ secret, getToken: (req) => (req.signedCookies || {}).token });
+const authToken = expressJwt({
+  secret,
+  algorithms: ['HS256'],
+  getToken: (req) => (req.signedCookies || {}).token,
+});
 
 app.route('/login')
   .get((req, res) => res.sendFile(path.join(__dirname, '/static/dist', 'login.html')))
