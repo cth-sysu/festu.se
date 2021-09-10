@@ -21,7 +21,7 @@ export default {
   },
   filters: {
     start: (date) => moment(date).format('MMMM D, YYYY HH:mm'),
-    end: (date) => moment(date).add(6, 'hours').format('HH:mm')
+    end: (date) => moment(date).add(10, 'hours').format('HH:mm')
   },
 }
 </script>
