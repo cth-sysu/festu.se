@@ -44,7 +44,7 @@ router.route('/cffc')
     request(url).then(html => {
       html = html.substring(html.indexOf('<ul class="photos">') + 19);
       html = html.substring(0, html.indexOf('</ul>'));
-      const images = html.match(/http:\/\/cffc.se\/thumbnail\/thumb\/\d+\/small\.jpg/g);
+      const images = html.match(/https:\/\/cffc.se\/thumbnail\/thumb\/\d+\/small\.jpg/g);
       res.json({ images });
     })
     .catch(() => res.status(404).end());
