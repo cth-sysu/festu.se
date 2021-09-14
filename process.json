@@ -1,6 +1,9 @@
 {
   "apps": [{
     "name": "festu.se",
-    "script": "server.js"
+    "script": "server.js",
+    "env": {
+      "NODE_ENV": "production"
+    }
   }]
 }
