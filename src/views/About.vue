@@ -2,9 +2,9 @@
   <div class="about">
     <div class="description">
       <h2>About FestU</h2>
-      <p>The FestU committee arranges huge parties in the Chalmers Student Union building. Valborgskalaset is the biggest one and counts as one of the biggest reccuring indoor parties in northen Europe. The committee consists of <a href="http://6.festu.se">six</a> dedicated students who strive for bigger and better parties at Chalmers University. You can read more about them below!</p>
-      <p>FestU parties usually have thousands of visitors. At the parties you are most likely to encounter live acts, a lot of funny <a href="http://66.festu.se">toys</a>, a jumping castle and a lot of <a href="http://bacchus.festu.se">bars</a> and dance floors!</p>
-      <p>FestU parties demands a lot of hard work and time, which is why FestU needs a lot of help from other committees from around the campus. Any student who wants can also help out by "Puffing", which will also grant them a <a href="http://cash.festu.se">free</a> ticket to the party!</p>
+      <p>The FestU committee arranges huge parties in the Chalmers Student Union building. Valborgskalaset is the biggest one and counts as one of the biggest reccuring indoor parties in northen Europe. The committee consists of <a href="https://6.festu.se">six</a> dedicated students who strive for bigger and better parties at Chalmers University. You can read more about them below!</p>
+      <p>FestU parties usually have thousands of visitors. At the parties you are most likely to encounter live acts, a lot of funny <a href="https://66.festu.se">toys</a>, a jumping castle and a lot of <a href="https://bacchus.festu.se">bars</a> and dance floors!</p>
+      <p>FestU parties demands a lot of hard work and time, which is why FestU needs a lot of help from other committees from around the campus. Any student who wants can also help out by "Puffing", which will also grant them a <a href="https://cash.festu.se">free</a> ticket to the party!</p>
     </div>
     <div class="contact">
       <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffestuchalmers&tabs&width=340&height=154&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=299455150478039" width="340" height="154" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>

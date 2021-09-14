@@ -39,7 +39,7 @@ export default {
     poke() {
       if (++this.pokes === 3) {
         const post = this.member.post.symbol.toLowerCase();
-        window.location.href = `http://${post}.festu.se`;
+        window.location.href = `https://${post}.festu.se`;
       }
     }
   },
