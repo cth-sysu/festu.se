@@ -126,7 +126,8 @@ export default {
       }
     },
     saveInfo(method, url) {
-      const { name, date, description, cffc, studio, image } = this;
+      const { name, description, cffc, studio, image } = this;
+      const date = new Date(this.date).toISOString();
       return fetch(url, {
         method,
         body: JSON.stringify({ name, date, cffc, studio, description, image }),
