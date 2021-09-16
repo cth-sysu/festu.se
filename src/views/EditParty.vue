@@ -10,6 +10,10 @@
       <label>Date</label>
     </div>
     <div class="group">
+      <input type="datetime-local" v-model="endDate" required>
+      <label>End Date</label>
+    </div>
+    <div class="group">
       <input type="file" accept="image/*" ref="poster">
       <label>Poster</label>
     </div>
@@ -54,6 +58,7 @@ export default {
       loading: false,
       name: null,
       date: null,
+      endDate: null,
       description: null,
       cffc: null,
       studio: null,
@@ -86,9 +91,10 @@ export default {
       this.loading = true;
       const res = await fetch(`/api/parties/${this.id}`);
       if (res.ok) {
-        const { name, date, description, cffc, studio } = await res.json();
+        const { name, date, endDate, description, cffc, studio } = await res.json();
         this.name = name;
         this.date = moment(date).format('YYYY-MM-DD[T]HH:mm');
+        this.endDate = moment(endDate).format('YYYY-MM-DD[T]HH:mm');
         this.description = description;
         this.cffc = cffc;
         this.studio = studio;
@@ -128,9 +134,10 @@ export default {
     saveInfo(method, url) {
       const { name, description, cffc, studio, image } = this;
       const date = new Date(this.date).toISOString();
+      const endDate = new Date(this.endDate).toISOString();
       return fetch(url, {
         method,
-        body: JSON.stringify({ name, date, cffc, studio, description, image }),
+        body: JSON.stringify({ name, date, endDate, cffc, studio, description, image }),
         headers: { 'Content-Type': 'application/json' }
       });
     },
