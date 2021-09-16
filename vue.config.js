@@ -20,12 +20,13 @@ module.exports = {
     proxy: {
       '/api': {
         target: 'https://festu.se',
-        headers: {
-          authorization: `Bearer ${process.env.TOKEN}`
-        }
       },
       '/images': {
         target: 'https://festu.se'
+      },
+      '/login': {
+        target: 'https://festu.se',
+        bypass: (req) => req.method.toLowerCase() === 'post' ? null : req.url
       }
     }
   }

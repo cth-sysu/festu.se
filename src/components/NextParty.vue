@@ -2,7 +2,7 @@
   <div class="next-party card">
     <div class="header">
       <div class="h3">{{ party.name }}</div>
-      <div class="h4">{{ party.date | start }}-{{ party.date | end }}</div>
+      <div class="h4">{{ party.date | start }}-{{ party.endDate | end }}</div>
     </div>
     <div class="poster" @click="$emit('show-poster')">
       <img :src="`/images/parties/${party._id}_small.jpg`">
@@ -21,7 +21,7 @@ export default {
   },
   filters: {
     start: (date) => moment(date).format('MMMM D, YYYY HH:mm'),
-    end: (date) => moment(date).add(10, 'hours').format('HH:mm')
+    end: (date) => moment(date).format('HH:mm')
   },
 }
 </script>
