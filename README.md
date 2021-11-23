@@ -29,3 +29,8 @@ npm run build
 ```
 npm run lint
 ```
+
+### To run locally
+Create *.env* file. See *example.env* for info.
+
+Change *vue.config.js* to point proxy to **http://localhost:5000** if using local backend.
