@@ -67,7 +67,7 @@ export default {
   name: 'EditMember',
   data() {
     return {
-      image: `/images/members/${this.id}.jpg`,
+      image: `/images/members/${this.$route.params.id}.jpg`,
       loading: false,
       posts: [],
       name: null,

@@ -20,6 +20,10 @@
 .image {
   display: flex;
   height: 150px;
+  & center {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 img {
   height: 100%;

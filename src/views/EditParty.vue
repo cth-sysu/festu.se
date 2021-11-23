@@ -2,6 +2,11 @@
   <div class="page" v-if="loading">Loading...</div>
   <form class="page" v-else @submit.prevent="save">
     <div class="group">
+      <div class="image center">
+        <img :src="posterImage" />
+      </div>
+    </div>
+    <div class="group">
       <input type="text" v-model="name" required>
       <label>Name</label>
     </div>
@@ -14,7 +19,7 @@
       <label>End Date</label>
     </div>
     <div class="group">
-      <input type="file" accept="image/*" ref="poster">
+      <input type="file" accept="image/*" ref="poster" v-on:change="updatePosterImage()">
       <label>Poster</label>
     </div>
     <div class="group">
@@ -30,7 +35,7 @@
         <input type="text" v-model="studio">
         <label>Studio</label>
       </div>
-      <div class="group images" v-if="images.length">
+      <div class="group images" v-if="images !== null && images.length">
         <span v-for="(image, index) in images" :key="index"
             :class="{ selected: index === selectedImage }"
             @click="selectedImage = index">
@@ -55,6 +60,7 @@ export default {
   name: 'EditParty',
   data() {
     return {
+      posterImage: `/images/parties/${this.$route.params.id}_small.jpg`,
       loading: false,
       name: null,
       date: null,
@@ -84,6 +90,13 @@ export default {
     }
   },
   methods: {
+    updatePosterImage() {
+      const { files } = this.$refs.poster;
+      if (files.length === 0) {
+        return;
+      }
+      this.posterImage = URL.createObjectURL(files[0]);
+    },
     async getParty() {
       if (this.isNew) {
         return;
