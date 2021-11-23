@@ -112,37 +112,42 @@ export default {
         this.$router.push('/orv');
       }
     },
-    save() {
-      this.saveImage();
+    async save() {
+      let res;
       if (this.isNew) {
-        this.saveInfo('POST', `/api/members`);
+        res = await this.saveInfo('POST', `/api/members`);
+        if (res.ok) {
+          const member = await res.json();
+          this.saveImage(member._id);
+        }
       } else {
-        this.saveInfo('PUT', `/api/members/${this.id}`);
+        res = await this.saveInfo('PUT', `/api/members/${this.id}`);
+        this.saveImage(this.id);
+      }
+      if (res.ok) {
+        this.$router.push('/orv')
       }
     },
     markDeceased() {
       this.deceased = true;
       this.saveInfo('PUT', `/api/members/${this.id}`);
     },
-    async saveInfo(method, url) {
+    saveInfo(method, url) {
       const { name, post, year, phone, adress, email: mail, programme, deceased } = this;
-      const res = await fetch(url, {
+      return fetch(url, {
         method,
         body: JSON.stringify({ name, post, year, phone, adress, mail, programme, deceased }),
         headers: { 'Content-Type': 'application/json' }
       });
-      if (res.ok) {
-        this.$router.push('/orv');
-      }
     },
-    async saveImage() {
+    async saveImage(id) {
       const { files } = this.$refs.image;
       if (files.length === 0) {
         return;
       }
       const body = new FormData();
       body.append('image', files[0]);
-      await fetch(`/api/members/${this.id}/image`, { method: 'PUT', body });
+      await fetch(`/api/members/${id}/image`, { method: 'PUT', body });
     },
     async deleteMember() {
       const res = await fetch(`/api/members/${this.id}`, { method: 'DELETE' });
