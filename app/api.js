@@ -6,7 +6,7 @@ const request = require('request-promise-native');
 
 const Party = require('./models/parties');
 const Member = require('./models/members');
-const Post = require('./models/post');
+const Post = require('./models/posts');
 
 const router = express.Router();
 const upload = multer({ dest: 'uploads/' })

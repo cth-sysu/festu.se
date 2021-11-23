@@ -29,3 +29,11 @@ npm run build
 ```
 npm run lint
 ```
+
+### To run locally
+Create *.env* file. See *example.env* for info.
+
+If using local db: Create local mongodb with festu database and tables **members**, **parties**, and **posts**.
+Create user from *.env* file as dbAdmin in festu database.
+
+If using local backend: Change *vue.config.js* to point proxy to **http://localhost:5000**.
