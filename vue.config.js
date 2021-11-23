@@ -19,13 +19,13 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'https://festu.se',
+        target: 'http://localhost:5000',
       },
       '/images': {
-        target: 'https://festu.se'
+        target: 'http://localhost:5000'
       },
       '/login': {
-        target: 'https://festu.se',
+        target: 'http://localhost:5000',
         bypass: (req) => req.method.toLowerCase() === 'post' ? null : req.url
       }
     }
