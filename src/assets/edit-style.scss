@@ -17,6 +17,13 @@
   margin: 16px 0;
   display: flex;
 }
+.image {
+  display: flex;
+  height: 150px;
+}
+img {
+  height: 100%;
+}
 .images {
   overflow-x: scroll;
   & span {

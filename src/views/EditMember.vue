@@ -25,9 +25,14 @@
         <label>Email</label>
       </div>
     </div>
-    <div class="group">
-      <textarea v-model="adress" rows="4"></textarea>
-      <label>Adress</label>
+    <div class="row">
+      <div class="group flex">
+        <textarea v-model="adress" rows="4"></textarea>
+        <label>Adress</label>
+      </div>
+      <div class="image">
+        <img :src="image">
+      </div>
     </div>
     <div class="row">
       <div class="group flex">
@@ -40,7 +45,7 @@
       </div>
     </div>
     <div class="group">
-      <input type="file" accept="image/*" ref="image">
+      <input type="file" accept="image/*" ref="image" v-on:change="updateImage()">
       <label>Image</label>
     </div>
     <div class="buttons">
@@ -62,6 +67,7 @@ export default {
   name: 'EditMember',
   data() {
     return {
+      image: `/images/members/${this.id}.jpg`,
       loading: false,
       posts: [],
       name: null,
@@ -83,6 +89,13 @@ export default {
     isNew() { return this.id === 'new'; },
   },
   methods: {
+    updateImage() {
+      const { files } = this.$refs.image;
+      if (files.length === 0) {
+        return;
+      }
+      this.image = URL.createObjectURL(files[0]);
+    },
     async getPosts() {
       const res = await fetch('/api/posts');
       this.posts = await res.json();
