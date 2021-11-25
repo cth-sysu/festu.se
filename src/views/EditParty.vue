@@ -2,7 +2,7 @@
   <div class="page" v-if="loading">Loading...</div>
   <form class="page" v-else @submit.prevent="save">
     <div class="group">
-      <div v-if="this.posterImage !== null" class="poster center">
+      <div class="poster" v-if="this.posterImage !== null" @click="poster = true" >
         <img :src="posterImage" />
       </div>
     </div>
@@ -50,17 +50,23 @@
       <router-link to="/kalas" tag="button" type="button">Cancel</router-link>
       <button type="submit" class="save">Save</button>
     </div>
+    <PosterModal v-if="poster" :poster="id" @dismiss="poster = false"/>
   </form>
 </template>
 
 <script>
 import moment from 'moment';
+import PosterModal from "@/components/PosterModal";
 
 export default {
   name: 'EditParty',
+  components: {
+    PosterModal,
+  },
   data() {
     return {
       posterImage: this.$route.params.id === 'new' ? null : `/images/parties/${this.$route.params.id}_small.jpg`,
+      poster: null,
       loading: false,
       name: null,
       date: null,

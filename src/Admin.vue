@@ -5,7 +5,9 @@
       <router-link to="/kalas">Kalas</router-link>
       <router-link to="/orv">Orvregister</router-link>
     </div>
-    <router-view/>
+    <div id="wrapper">
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -28,9 +30,14 @@ body {
   color: #2c3e50;
 }
 #nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #f8f9fa;
+  z-index: 1;
   & a {
     flex: 0 1 128px;
     margin: 16px 8px;
@@ -52,5 +59,10 @@ body {
     margin: 16px;
     color: #2c3e50;
   }
+}
+
+#wrapper {
+  margin-top: 80px;
+  min-height: calc(100vh - 83px);
 }
 </style>
