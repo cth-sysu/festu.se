@@ -2,8 +2,8 @@
   <div class="page" v-if="loading">Loading...</div>
   <form class="page" v-else @submit.prevent="save">
     <div class="group">
-      <div class="poster" v-if="this.posterImage !== null" @click="poster = true" >
-        <img :src="posterImage" />
+      <div class="poster" v-if="this.posterImageUrl !== null" @click="showPoster = true" >
+        <img :src="posterImageUrl" />
       </div>
     </div>
     <div class="group">
@@ -50,7 +50,7 @@
       <router-link to="/kalas" tag="button" type="button">Cancel</router-link>
       <button type="submit" class="save">Save</button>
     </div>
-    <PosterModal v-if="poster" :poster="id" @dismiss="poster = false"/>
+    <PosterModal v-if="showPoster" :poster="id" @dismiss="showPoster = false"/>
   </form>
 </template>
 
@@ -65,8 +65,8 @@ export default {
   },
   data() {
     return {
-      posterImage: this.$route.params.id === 'new' ? null : `/images/parties/${this.$route.params.id}_small.jpg`,
-      poster: null,
+      posterImageUrl: this.$route.params.id === 'new' ? null : `/images/parties/${this.$route.params.id}_small.jpg`,
+      showPoster: null,
       loading: false,
       name: null,
       date: null,
@@ -101,7 +101,7 @@ export default {
       if (files.length === 0) {
         return;
       }
-      this.posterImage = URL.createObjectURL(files[0]);
+      this.posterImageUrl = URL.createObjectURL(files[0]);
     },
     async getParty() {
       if (this.isNew) {
