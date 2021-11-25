@@ -2,7 +2,7 @@
   <div class="page" v-if="loading">Loading...</div>
   <form class="page" v-else @submit.prevent="save">
     <div class="group">
-      <div class="image center">
+      <div v-if="this.posterImage !== null" class="poster center">
         <img :src="posterImage" />
       </div>
     </div>
@@ -60,7 +60,7 @@ export default {
   name: 'EditParty',
   data() {
     return {
-      posterImage: `/images/parties/${this.$route.params.id}_small.jpg`,
+      posterImage: this.$route.params.id === 'new' ? null : `/images/parties/${this.$route.params.id}_small.jpg`,
       loading: false,
       name: null,
       date: null,
