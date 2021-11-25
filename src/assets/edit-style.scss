@@ -16,6 +16,24 @@
   position: relative;
   margin: 16px 0;
   display: flex;
+
+  & textarea {
+    resize: none;
+    height: 3.3em;
+  }
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile {
+  height: auto;
+
+  & img {
+    width: 100%;
+  }
 }
 
 .poster {

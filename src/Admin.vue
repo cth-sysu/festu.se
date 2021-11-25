@@ -36,7 +36,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f8f9fa;
+  background-color: white;
   z-index: 1;
   & a {
     flex: 0 1 128px;

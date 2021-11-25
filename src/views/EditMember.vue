@@ -2,36 +2,46 @@
   <div class="page" v-if="loading">Loading...</div>
   <form class="page" v-else @submit.prevent="save">
     <div class="row">
-      <div class="group flex">
-        <input type="text" v-model="name" required>
-        <label>Name</label>
+      <div class="col">
+        <div class="profile">
+          <img :src="image" />
+        </div>
       </div>
-      <div class="group">
-        <select v-model="post">
-          <option v-for="post in posts" :key="post._id" :value="post._id">{{ post.symbol }}</option>
-        </select>
-      </div>
-      <div class="group">
-        <input type="number" v-model="year" required>
-      </div>
-    </div>
-    <div class="row">
-      <div class="group flex">
-        <input type="tel" v-model="phone" required>
-        <label>Phone</label>
-      </div>
-      <div class="group flex email">
-        <input type="email" v-model="email" required>
-        <label>Email</label>
+      <div class="col">
+        <div class="row">
+          <div class="group flex">
+            <input type="text" v-model="name" required>
+            <label>Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="group">
+            <select v-model="post">
+              <option v-for="post in posts" :key="post._id" :value="post._id">{{ post.symbol }}</option>
+            </select>
+          </div>
+          <div class="group flex">
+            <input type="number" v-model="year" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="group flex">
+            <input type="tel" v-model="phone" required>
+            <label>Phone</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="group flex email">
+            <input type="email" v-model="email" required>
+            <label>Email</label>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="group flex">
         <textarea v-model="adress" rows="4"></textarea>
         <label>Adress</label>
-      </div>
-      <div class="image">
-        <img :src="image">
       </div>
     </div>
     <div class="row">
