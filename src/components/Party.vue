@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     image() {
-      return `/images/parties/${this.party._id}_small.jpg`;
+      return this.party.cffc ? `/images/parties/${this.party._id}.jpg` : `/images/parties/${this.party._id}_small.jpg`;
     }
   },
   methods: {

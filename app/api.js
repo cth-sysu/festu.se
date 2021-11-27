@@ -78,7 +78,13 @@ router.route('/parties/:id')
   .put(auth, (req, res, next) => {
     Party.findByIdAndUpdate(req.params.id, req.body).exec()
     .then(party => party || Promise.reject(kNotFound))
-    .then(() => res.end())
+    .then(party => {
+        if (req.body.image) {
+            const filename = `static/images/parties/${party.id}.jpg`;
+            request(req.body.image).pipe(fs.createWriteStream(filename));
+        }
+        res.end();
+    })
     .catch(err => next(err));
   })
   .delete(auth, (req, res, next) => {
