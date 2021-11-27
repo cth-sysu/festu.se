@@ -16,7 +16,37 @@
   position: relative;
   margin: 16px 0;
   display: flex;
+
+  & textarea {
+    resize: none;
+    height: 3.3em;
+  }
 }
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile {
+  height: auto;
+
+  & img {
+    width: 100%;
+  }
+}
+
+.poster {
+  width: 100%;
+  padding: 8px;
+  border: solid 1px black;
+
+  & img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .images {
   overflow-x: scroll;
   & span {

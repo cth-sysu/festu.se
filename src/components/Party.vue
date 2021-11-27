@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     image() {
-      return `/images/parties/${this.party._id}.jpg`;
+      return `/images/parties/${this.party._id}_small.jpg`;
     }
   },
   methods: {

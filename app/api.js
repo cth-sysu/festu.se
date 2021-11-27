@@ -6,7 +6,7 @@ const request = require('request-promise-native');
 
 const Party = require('./models/parties');
 const Member = require('./models/members');
-const Post = require('./models/post');
+const Post = require('./models/posts');
 
 const router = express.Router();
 const upload = multer({ dest: 'uploads/' })
@@ -78,13 +78,7 @@ router.route('/parties/:id')
   .put(auth, (req, res, next) => {
     Party.findByIdAndUpdate(req.params.id, req.body).exec()
     .then(party => party || Promise.reject(kNotFound))
-    .then(party => {
-      if (req.body.image) {
-        const filename = `static/images/parties/${party.id}.jpg`;
-        request(req.body.image).pipe(fs.createWriteStream(filename));
-      }
-      res.end();
-    })
+    .then(() => res.end())
     .catch(err => next(err));
   })
   .delete(auth, (req, res, next) => {

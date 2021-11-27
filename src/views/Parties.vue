@@ -1,6 +1,6 @@
 <template>
   <div class="wall">
-    <Party v-for="party in parties" :key="party._id" :party="party"
+    <Party v-for="party in parties.filter(p => p.endDate < (new Date()).toISOString())" :key="party._id" :party="party"
         @show-poster="poster = party._id"/>
     <PosterModal v-if="poster" :poster="poster" @dismiss="poster = null"/>
   </div>

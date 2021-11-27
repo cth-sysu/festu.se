@@ -2,6 +2,11 @@
   <div class="page" v-if="loading">Loading...</div>
   <form class="page" v-else @submit.prevent="save">
     <div class="group">
+      <div class="poster" v-if="this.posterImageUrl !== null" @click="showPoster = true" >
+        <img :src="posterImageUrl" />
+      </div>
+    </div>
+    <div class="group">
       <input type="text" v-model="name" required>
       <label>Name</label>
     </div>
@@ -14,7 +19,7 @@
       <label>End Date</label>
     </div>
     <div class="group">
-      <input type="file" accept="image/*" ref="poster">
+      <input type="file" accept="image/*" ref="poster" v-on:change="updatePosterImage()">
       <label>Poster</label>
     </div>
     <div class="group">
@@ -30,7 +35,7 @@
         <input type="text" v-model="studio">
         <label>Studio</label>
       </div>
-      <div class="group images" v-if="images.length">
+      <div class="group images" v-if="images !== null && images.length">
         <span v-for="(image, index) in images" :key="index"
             :class="{ selected: index === selectedImage }"
             @click="selectedImage = index">
@@ -45,16 +50,23 @@
       <router-link to="/kalas" tag="button" type="button">Cancel</router-link>
       <button type="submit" class="save">Save</button>
     </div>
+    <PosterModal v-if="showPoster" :poster="id" @dismiss="showPoster = false"/>
   </form>
 </template>
 
 <script>
 import moment from 'moment';
+import PosterModal from "@/components/PosterModal";
 
 export default {
   name: 'EditParty',
+  components: {
+    PosterModal,
+  },
   data() {
     return {
+      posterImageUrl: this.$route.params.id === 'new' ? null : `/images/parties/${this.$route.params.id}_small.jpg`,
+      showPoster: null,
       loading: false,
       name: null,
       date: null,
@@ -84,6 +96,13 @@ export default {
     }
   },
   methods: {
+    updatePosterImage() {
+      const { files } = this.$refs.poster;
+      if (files.length === 0) {
+        return;
+      }
+      this.posterImageUrl = URL.createObjectURL(files[0]);
+    },
     async getParty() {
       if (this.isNew) {
         return;
