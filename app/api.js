@@ -99,7 +99,7 @@ router.route('/parties/:id/poster')
 
 router.route('/posts')
   .get((req, res, next) => {
-    Post.find().exec().then(posts => res.json(posts)).catch(err => next(err));
+    Post.find().sort('order').exec().then(posts => res.json(posts)).catch(err => next(err));
   });
 
 router.route('/members')

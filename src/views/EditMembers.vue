@@ -67,7 +67,7 @@ export default {
       const res = await fetch('/api/members');
       this.members = await res.json();
       this.members.sort((lhs, rhs) => {
-        const score = member => member.year * 6 - (member.post ? ['6','66','$','‰','A','X'].indexOf(member.post.symbol) : 0);
+        const score = member => member.year * 7 - (member.post ? ['6','66','$','‰', '!','A','X'].indexOf(member.post.symbol) : 0);
         return score(rhs) - score(lhs);
       });
     },
