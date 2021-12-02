@@ -26,7 +26,7 @@ app.use(helmet({
       defaultSrc: ["'self'"],
       styleSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com', 'use.fontawesome.com', "'unsafe-inline'"],
       scriptSrc: ["'self'"],
-      imgSrc: ["'self'", "data:", 'https://cffc.se'],
+      imgSrc: ["'self'", "blob:", "data:", 'https://cffc.se'],
       fontSrc: ["'self'", 'data:', 'fonts.googleapis.com', 'fonts.gstatic.com', 'use.fontawesome.com'],
       frameSrc: ["'self'", 'www.facebook.com']
     }
