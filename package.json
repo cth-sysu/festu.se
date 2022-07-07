@@ -28,7 +28,7 @@
     "express-jwt": "^6.0.0",
     "helmet": "^3.15.1",
     "jsonwebtoken": "^8.4.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mongoose": "^5.7.5",
     "multer": "^1.4.1",
     "pm2": "^3.3.0",
