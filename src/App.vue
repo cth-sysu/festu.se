@@ -11,7 +11,7 @@
     <div id="footer">
       <a href="https://www.ljudobildgruppen.se/"><img src="./assets/committees/lob.png"></a>
       <a href="https://www.svea.chs.chalmers.se/"><img src="./assets/committees/svea.png"></a>
-      <a href="http://www.pu.se"><img src="./assets/committees/pu.png"></a>
+      <a href="https://pu.chs.chalmers.se/"><img src="./assets/committees/pu.png"></a>
       <a href="https://www.cffc.se/"><img src="./assets/committees/cffc.png"></a>
       <a href="https://chalmersstudentkar.se/"><img src="./assets/committees/chs.png"></a>
     </div>
